@@ -94,6 +94,7 @@ line会員登録
 |CI/CD|Github Actions|
 |インフラ|heroku|
 |API|LINEログイン/LINE Messaging API|
+
 技術スタックに関しては、目標期間でのアプリの機能実現を最優先と考えているため、
 RUNTEQカリキュラムとRails Tutorialで使用したことのある技術を中心に採用しています。
 
