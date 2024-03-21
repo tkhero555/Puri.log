@@ -85,6 +85,7 @@ line会員登録
 
 ■ 使用予定の技術スタック
 |カテゴリ|技術|
+|----|----|
 |フロントエンド|javascript/bootstrap/Hotwire|
 |バックエンド|ruby on Rails|
 |データベース|PostgreSQL|
