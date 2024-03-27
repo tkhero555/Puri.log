@@ -129,3 +129,6 @@ RUNTEQカリキュラムとRails Tutorialで使用したことのある技術を
 
 ■ 画面遷移図URL
   https://www.figma.com/file/Gz3PGuJz0pdUp5TUxz7Ris/%E5%8D%92%E6%A5%AD%E8%A9%A6%E9%A8%93%E3%82%A2%E3%83%97%E3%83%AA%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&mode=design&t=g8TSF07mKy0rHjes-1
+
+■ ER図
+![Alt text](%E5%90%8D%E7%A7%B0%E6%9C%AA%E8%A8%AD%E5%AE%9A.png)
