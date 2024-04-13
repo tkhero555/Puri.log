@@ -104,10 +104,10 @@
 ### ■ 使用予定の技術スタック  
 |カテゴリ|技術|
 |----|----|
-|フロントエンド|javascript/bootstrap/Hotwire|
+|フロントエンド|javascript/Hotwire/tailwindCSS/daisyUI|
 |バックエンド|ruby on Rails|
 |データベース|PostgreSQL|
-|認証|sorcery|
+|認証|devise|
 |環境構築|Docker / docker-compose|
 |CI/CD|Github Actions|
 |インフラ|heroku|
