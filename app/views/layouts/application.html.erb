@@ -11,16 +11,13 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <div class="alert alert-info">
-        <%= flash[:notice] %>
-      </div>
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
     <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+    <%= render 'shared/flash_message' %>
     <%= yield %>
+    <%= render 'shared/footer' %>
   </body>
 </html>
