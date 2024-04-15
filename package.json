@@ -9,6 +9,6 @@
   },
   "scripts": {
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-    "build": "npm run build:css"
+    "build": "yarn run build:css"
   }
 }
