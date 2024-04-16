@@ -97,15 +97,33 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: avert_meal
                     }
-
+        
+        # 食事メニューの記録を行う
         else
+          # LINEBOTを操作しているユーザーのLINEIDとusersテーブルのデータを紐づける
+          user = User.find_by(uid: event['source']['userId'])
+          user_id = user.id
+          # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する
           meal_log = event.message["text"]
-=begin
-          データベースへの保管を行うコードを実装予定 issue#20で対応予定
-=end
+          meal = Meal.find_by(meal_name: meal_log)
+          if meal.present?
+            meal_id = meal.id
+          else
+            meal = Meal.new(meal_name: meal_log, user_id: user_id)
+            meal.save
+            meal_id = meal.id
+          end
+          # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0
+          # saveの成否に応じてユーザーへの返信内容を設定する
+          evaluation = Evaluation.new(user_id: user_id, meal_id: meal_id, eated_at: Time.current)
+          if evaluation.save
+            meal_log_reply_message = "食事の記録が完了しました。"
+          else
+            meal_log_reply_message = "食事の記録に失敗しました。やり直してください。"
+          end
           message = {
                       type: "text",
-                      text: "食事の記録が完了しました。" 
+                      text: meal_log_reply_message
                     }
         end
       end
