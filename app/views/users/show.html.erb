@@ -1,0 +1,13 @@
+<%= form_with url: meals_path do |f| %>
+  <div>
+    <%= f.label :meal_name %>
+    <%= f.text_field :meal_name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :eated_at %>
+    <%= f.datetime_field :eated_at %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

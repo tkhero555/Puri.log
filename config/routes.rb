@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   }
   root 'static_pages#index'
   post 'callback' => 'line_bot#callback'
+  resources :users, only: %i[show]
+  resources :meals, only: %i[create]
 end
