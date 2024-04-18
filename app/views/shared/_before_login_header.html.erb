@@ -4,7 +4,7 @@
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      <li class="bg-green-500 text-white rounded-lg"><a>LINE連携ログイン</a></li>
+      <li class="bg-green-500 text-white rounded-lg"><%= button_to 'LINE連携ログイン', omniauth_authorize_path(:user, :line), data: { turbo: false } %></li>
     </ul>
   </div>
 </div>
