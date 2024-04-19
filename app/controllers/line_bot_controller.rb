@@ -50,31 +50,30 @@ class LineBotController < ApplicationController
           user_id = user.id
           stool_log = event.message["text"].to_i
           stool = Stool.new(condition: stool_log, user_id: user_id)
-          if stool.save
-            stool_log_reply_message = "排便の記録が完了しました。"
-          else
-            stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
+          unless stool.save
+            message = {
+              type: "text",
+              text: "排便の記録に失敗しました。やり直してください。"
+            }
+            return
           end
           if stool_log == 0
-            evaluations = Evaluation.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
-            evaluations.each do |evaluation|
-              if evaluation.update(score: evaluation.score + 1)
-                stool_log_reply_message = "排便の記録が完了しました。"
-              else
-                stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
-                break
-              end
-            end
+            score_change = 1
           elsif stool_log == 2
+            score_change = -1
+          else
+            score_change = 0
+            stool_log_reply_message = "排便の記録が完了しました。"
+          end
+          if score_change == 1 || score_change == -1
             evaluations = Evaluation.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
             evaluations.each do |evaluation|
-              if evaluation.update(score: evaluation.score - 1)
-                stool_log_reply_message = "排便の記録が完了しました。"
-              else
+              unless evaluation.update(score: evaluation.score + score_change)
                 stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
                 break
               end
             end
+            stool_log_reply_message = "排便の記録が完了しました。"
           end
           message = {
                       type: "text",
