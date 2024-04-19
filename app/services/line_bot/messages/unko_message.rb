@@ -12,18 +12,18 @@ module LineBot
             "actions": [
               {
                 "type": "message",
-                "label": "1:良い",
+                "label": "0:良い",
+                "text": "0"
+              },
+              {
+                "type": "message",
+                "label": "1:普通",
                 "text": "1"
               },
               {
                 "type": "message",
-                "label": "2:普通",
+                "label": "2:悪い",
                 "text": "2"
-              },
-              {
-                "type": "message",
-                "label": "3:悪い",
-                "text": "3"
               }
             ]
           }

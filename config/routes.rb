@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post 'callback' => 'line_bot#callback'
   resources :users, only: %i[show]
   resources :meals, only: %i[create]
+  resources :stools, only: %i[create]
 end

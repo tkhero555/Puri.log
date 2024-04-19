@@ -1,0 +1,2 @@
+module StoolsHelper
+end

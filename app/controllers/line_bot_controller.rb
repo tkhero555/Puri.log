@@ -45,15 +45,39 @@ class LineBotController < ApplicationController
         when "便の記録"
           message = LineBot::Messages::UnkoMessage.new.button_message
 
-        when "1", "2", "3"
-          puts "便の記録完了確認用"
-          stool_log = event.message["text"]
-=begin 便の記録と、状態に応じた評価値の変動未実装 issue#21で対応予定
-          Stool.create({ status: message.to_i })
-=end
+        when "0", "1", "2"
+          user = User.find_by(uid: event['source']['userId'])
+          user_id = user.id
+          stool_log = event.message["text"].to_i
+          stool = Stool.new(condition: stool_log, user_id: user_id)
+          unless stool.save
+            message = {
+              type: "text",
+              text: "排便の記録に失敗しました。やり直してください。"
+            }
+            return
+          end
+          if stool_log == 0
+            score_change = 1
+          elsif stool_log == 2
+            score_change = -1
+          else
+            score_change = 0
+            stool_log_reply_message = "排便の記録が完了しました。"
+          end
+          if score_change == 1 || score_change == -1
+            evaluations = Evaluation.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
+            evaluations.each do |evaluation|
+              unless evaluation.update(score: evaluation.score + score_change)
+                stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
+                break
+              end
+            end
+            stool_log_reply_message = "排便の記録が完了しました。"
+          end
           message = {
                       type: "text",
-                      text: "排便の記録が完了しました。" 
+                      text: stool_log_reply_message
                     }
 
         when "おすすめの食事"
