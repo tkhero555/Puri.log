@@ -1,0 +1,4 @@
+class Stool < ApplicationRecord
+  belongs_to :user
+  enum condition: { good: 0, normal: 1, bad: 2 }
+end
