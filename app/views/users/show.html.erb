@@ -24,3 +24,13 @@
     <%= f.submit %>
   </div>
 <% end %>
+<p>おすすめの食事</p>
+<% @recommend_meals.each do |recommend_meal| %>
+  <p><%= recommend_meal.meal.meal_name %></p>
+  <p><%= recommend_meal.eated_at %></p>
+<% end %>
+<p>避けるべき食事</p>
+<% @avert_meals.each do |avert_meal| %>
+  <p><%= avert_meal.meal.meal_name %></p>
+  <p><%= avert_meal.eated_at %></p>
+<% end %>
