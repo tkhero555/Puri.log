@@ -79,13 +79,13 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: stool_log_reply_message
                     }
-
+=begin
         when "おすすめの食事"
-          puts "おすすめの食事動作確認用"
-=begin データベース操作のコード 動作未確認 issue#22で対応予定
-          recommend_meal = Evaluation.where('evaluation >= ?', 3).order('RANDOM()').first
+          user = User.find_by(uid: event['source']['userId'])
+          user_id = user.id
+          recommend_meal = Evaluation.where('score >= ?', 3).where(user_id: user_id).order('RANDOM()').first
           if recommend_meal.nil?
-            recommend_meal = Evaluation.where('evaluation >= ?', 1).order('RANDOM()').first
+            recommend_meal = Evaluation.where('score >= ?', 1).where(user_id: user_id).order('RANDOM()').first
             if recommend_meal.nil?
               recommend_meal = "おすすめの食事はありません"
             else
@@ -94,19 +94,17 @@ class LineBotController < ApplicationController
           else
             recommend_meal = recommend_meal.name
           end
-=end
-          recommend_meal = "おすすめの食事機能は未実装です。"
           message = {
                       type: "text",
                       text: recommend_meal
                     }
 
         when "避けるべき食事"
-          puts "避けるべき食事動作確認用"
-=begin データベース操作のコード 動作未確認 issue#22で対応予定
-          avert_meal = Evaluation.where('evaluation <= ?', -3).order('RANDOM()').first
+          user = User.find_by(uid: event['source']['userId'])
+          user_id = user.id
+          avert_meal = Evaluation.where('score <= ?', -3).where(user_id: user_id).order('RANDOM()').first
           if avert_meal.nil?
-            avert_meal = Evaluation.where('evaluation <= ?', -1).order('RANDOM()').first
+            avert_meal = Evaluation.where('score <= ?', -1).where(user_id: user_id).order('RANDOM()').first
             if avert_meal.nil?
               avert_meal = "避けるべき食事はありません"
             else
@@ -115,13 +113,11 @@ class LineBotController < ApplicationController
           else
             avert_meal = avert_meal.name
           end
-=end
-          avert_meal = "避けるべき食事機能は未実装です。"
           message = {
                       type: "text",
                       text: avert_meal
                     }
-        
+=end
         # 食事メニューの記録を行う
         else
           # LINEBOTを操作しているユーザーのLINEIDとusersテーブルのデータを紐づける
