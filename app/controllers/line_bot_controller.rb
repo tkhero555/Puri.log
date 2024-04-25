@@ -33,6 +33,9 @@ class LineBotController < ApplicationController
       case event.type
       # MessageType::Textかどうかをチェック
       when Line::Bot::Event::MessageType::Text
+        # LINEBOTを操作しているユーザーのLINEIDとusersテーブルのデータを紐づける
+        user = User.find_by(uid: event['source']['userId'])
+        user_id = user.id
         case event.message["text"]
         when "食事の記録"
           message = {
@@ -46,8 +49,6 @@ class LineBotController < ApplicationController
           message = LineBot::Messages::UnkoMessage.new.button_message
 
         when "0", "1", "2"
-          user = User.find_by(uid: event['source']['userId'])
-          user_id = user.id
           stool_log = event.message["text"].to_i
           stool = Stool.new(condition: stool_log, user_id: user_id)
           unless stool.save
@@ -80,50 +81,44 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: stool_log_reply_message
                     }
-=begin
+
         when "おすすめの食事"
-          user = User.find_by(uid: event['source']['userId'])
-          user_id = user.id
-          recommend_meal = Evaluation.where('score >= ?', 3).where(user_id: user_id).order('RANDOM()').first
-          if recommend_meal.nil?
-            recommend_meal = Evaluation.where('score >= ?', 1).where(user_id: user_id).order('RANDOM()').first
-            if recommend_meal.nil?
+          recommend_meals = Meal.where('score >= ?', 3).where(user_id: user_id)
+          if recommend_meals.empty?
+            recommend_meals = Meal.where('score >= ?', 1).where(user_id: user_id)
+            if recommend_meals.empty?
               recommend_meal = "おすすめの食事はありません"
             else
-              recommend_meal = recommend_meal.name
+              recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join("\n")
             end
           else
-            recommend_meal = recommend_meal.name
+            recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join("\n")
           end
+          p recommend_meals
           message = {
                       type: "text",
                       text: recommend_meal
                     }
 
         when "避けるべき食事"
-          user = User.find_by(uid: event['source']['userId'])
-          user_id = user.id
-          avert_meal = Evaluation.where('score <= ?', -3).where(user_id: user_id).order('RANDOM()').first
-          if avert_meal.nil?
-            avert_meal = Evaluation.where('score <= ?', -1).where(user_id: user_id).order('RANDOM()').first
-            if avert_meal.nil?
+          avert_meals = Meal.where('score <= ?', -3).where(user_id: user_id)
+          if avert_meals.empty?
+            avert_meals = Meal.where('score <= ?', -1).where(user_id: user_id)
+            if avert_meals.empty?
               avert_meal = "避けるべき食事はありません"
             else
-              avert_meal = avert_meal.name
+              avert_meal = avert_meals.map { |meal| meal.meal_name }.join("\n")
             end
           else
-            avert_meal = avert_meal.name
+            avert_meal = avert_meals.map { |meal| meal.meal_name }.join("\n")
           end
           message = {
                       type: "text",
                       text: avert_meal
                     }
-=end
+
         # 食事メニューの記録を行う
         else
-          # LINEBOTを操作しているユーザーのLINEIDとusersテーブルのデータを紐づける
-          user = User.find_by(uid: event['source']['userId'])
-          user_id = user.id
           # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する
           meal_log = event.message["text"]
           meal = Meal.find_by(meal_name: meal_log)
