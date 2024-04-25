@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
-  has_many :evaluations, dependent: :destroy
+  has_many :eatings, dependent: :destroy
   has_many :meals, dependent: :destroy
   has_many :stools, dependent: :destroy
 

@@ -66,9 +66,10 @@ class LineBotController < ApplicationController
             stool_log_reply_message = "排便の記録が完了しました。"
           end
           if score_change == 1 || score_change == -1
-            evaluations = Evaluation.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
-            evaluations.each do |evaluation|
-              unless evaluation.update(score: evaluation.score + score_change)
+            eatings = Eating.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
+            eatings.each do |eating|
+              meal = Meal.find(eating.meal_id)
+              unless meal.update(score: meal.score + score_change)
                 stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
                 break
               end
@@ -135,8 +136,8 @@ class LineBotController < ApplicationController
           end
           # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0
           # saveの成否に応じてユーザーへの返信内容を設定する
-          evaluation = Evaluation.new(user_id: user_id, meal_id: meal_id, eated_at: Time.current)
-          if evaluation.save
+          eating = Eating.new(user_id: user_id, meal_id: meal_id, eated_at: Time.current)
+          if eating.save
             meal_log_reply_message = "食事の記録が完了しました。"
           else
             meal_log_reply_message = "食事の記録に失敗しました。やり直してください。"
