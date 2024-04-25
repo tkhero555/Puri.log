@@ -1,6 +1,6 @@
 require "test_helper"
 
-class EvaluationsControllerTest < ActionDispatch::IntegrationTest
+class EatingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

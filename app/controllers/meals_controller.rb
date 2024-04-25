@@ -14,8 +14,8 @@ class MealsController < ApplicationController
       meal.save
       meal_id = meal.id
     end
-    evaluation = Evaluation.new(user_id: user_id, meal_id: meal_id, eated_at: params[:eated_at])
-    if evaluation.save
+    eating = Eating.new(user_id: user_id, meal_id: meal_id, eated_at: params[:eated_at])
+    if eating.save
       flash[:notice] = '食事を記録しました'
       redirect_to user_path(current_user)
     else

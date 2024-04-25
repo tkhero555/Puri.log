@@ -1,7 +1,7 @@
 class StoolsController < ApplicationController
 
   def create
-    stool = Stool.new(condition: params[:condition].to_i, user_id: current_user.id)
+    stool = Stool.new(condition: params[:condition].to_i, user_id: current_user.id, created_at:params[:created_at])
     unless stool.save
       flash.now[:danger] = '排便の記録に失敗しました'
       render("user/show")
@@ -16,12 +16,15 @@ class StoolsController < ApplicationController
       redirect_to user_path(current_user)
       return
     end
-    evaluations = Evaluation.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: current_user.id)
-    evaluations.each do |evaluation|
-      unless evaluation.update(score: evaluation.score + score_change)
+    start_time = stool.created_at - 50.hours
+    end_time = stool.created_at - 20.hours
+    eatings = Eating.where(eated_at: start_time..end_time).where(user_id: current_user.id)
+    eatings.each do |eating|
+      meal = Meal.find(eating.meal_id)
+      p meal
+      unless meal.update(score: meal.score + score_change)
         flash.now[:danger] = '排便の記録に失敗しました'
-        render("user/show")
-        return
+        render("user/show") and return
       end
     end
     flash[:notice] = '排便を記録しました'
