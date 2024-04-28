@@ -11,10 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_04_20_083319) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "eatings", force: :cascade do |t|
+  create_table "eatings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "meal_id"
     t.datetime "eated_at"
@@ -24,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_083319) do
     t.index ["user_id"], name: "index_eatings_on_user_id"
   end
 
-  create_table "meals", force: :cascade do |t|
+  create_table "meals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "meal_name"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -33,7 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_083319) do
     t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
-  create_table "stools", force: :cascade do |t|
+  create_table "stools", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "condition", default: 0, null: false
     t.datetime "created_at", null: false
@@ -41,7 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_083319) do
     t.index ["user_id"], name: "index_stools_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

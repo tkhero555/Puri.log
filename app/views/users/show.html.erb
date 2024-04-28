@@ -102,7 +102,7 @@
                   <th></th>
                   <td><%= log.meal.meal_name %></td>
                   <td>-</td> 
-                  <td><%= log.eated_at %></td>
+                  <td><%= log.eated_at.strftime('%Y-%m-%d %H:%M') %></td>
                   <th></th>
                 </tr>
               </tbody> 
@@ -111,8 +111,16 @@
                 <tr>
                   <th></th>
                   <td>-</td> 
-                  <td><%= log.condition %></td>
-                  <td><%= log.created_at %></td> 
+                  <% if log.condition == "good" %>
+                    <td>良い</td>
+                  <% elsif log.condition == "normal" %>
+                    <td>普通</td>
+                  <% elsif log.condition == "bad" %>
+                    <td>悪い</td>
+                  <% else %>
+                    <td><%= log.condition %></td>
+                  <% end %>
+                  <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td> 
                   <th></th>
                 </tr>
               </tbody> 
