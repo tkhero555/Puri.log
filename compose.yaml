@@ -1,11 +1,18 @@
 services:
   db:
-    image: postgres
+    image: mysql:8.0
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
     volumes:
-      - postgres_volume:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -uroot -ppassword
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
   web:
     build:
       context: .
@@ -21,5 +28,5 @@ services:
     depends_on:
       - db
 volumes:
-  postgres_volume:
+  mysql_data:
   node_modules:

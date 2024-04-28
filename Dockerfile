@@ -3,7 +3,7 @@ FROM ruby:3.3.0
 
 ENV TZ Asia/Tokyo
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs && apt-get install -y vim
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs && apt-get install -y vim default-mysql-client
 
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
   && wget --quiet -O - /tmp/pubkey.gpg https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
