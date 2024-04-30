@@ -30,4 +30,10 @@ class StoolsController < ApplicationController
     flash[:notice] = '排便を記録しました'
     redirect_to user_path(current_user)
   end
+
+  def destroy
+    stool = Stool.find(params[:id])
+    stool.destroy!
+    redirect_to user_url(current_user), status: :see_other
+  end
 end
