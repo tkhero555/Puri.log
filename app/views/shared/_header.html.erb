@@ -4,8 +4,23 @@
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
+      <li><button onclick="my_modal_1.showModal()">LINE友達追加</button></li>
       <li><%= link_to 'マイページ', user_path(current_user) %></li>
       <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>
 </div>
+
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">LINE友達追加</h3>
+      <img src="https://qr-official.line.me/gs/M_954plcez_BW.png?oat_content=qr" class="mx-auto">
+      <a href="https://lin.ee/yVwXbVK"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" class="mx-auto" alt="友だち追加" height="36" border="0"></a>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>

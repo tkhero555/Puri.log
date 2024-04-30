@@ -30,10 +30,7 @@ class MealsController < ApplicationController
 
   # def update; end
 
-  # def destroy; end
-
-  private
-
-  #def meal_params
-   # params.require(:).permit()
+  def destroy 
+    
+  end
 end

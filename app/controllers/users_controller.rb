@@ -23,5 +23,6 @@ class UsersController < ApplicationController
         log.created_at
       end
     end
+    p @log_index
   end
 end
