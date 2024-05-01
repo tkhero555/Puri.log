@@ -40,12 +40,11 @@ class LineBotController < ApplicationController
         when "食事の記録"
           message = {
                       type: "text",
-                      text: "メッセージで食べたもののメニュー名を送ると記録されます。" +
-                      "送った際の時刻に食べたものとして記録されます。" +
-                      "時間指定をして記録したい場合は、サイトから実行してください。"
+                      text: "食べたものの名前をメッセージしてください。\n
+                      送った時刻に食べたものとして記録されます。"
                     }
 
-        when "便の記録"
+        when "排便の記録"
           message = LineBot::Messages::UnkoMessage.new.button_message
 
         when "0", "1", "2"
@@ -117,6 +116,23 @@ class LineBotController < ApplicationController
                       text: avert_meal
                     }
 
+        when "使用説明"
+          message = {
+                      type: "text",
+                      text: "①LINE連携ログインが完了済みか確認する\n
+                      このLINEBOTはサイトでのLINE連携ログインが完了していることが前提条件です。\n
+                      まだの方はサイトにアクセスボタンからログインを実施してください。\n
+                      ②食事の記録の仕方\n
+                      食事名をメッセージで送信すると、その時刻に食べたものとして記録されます。\n
+                      ③排便の記録\n
+                      排便の記録ボタンを押すと3択の選択肢ボタンが送られてきます[0:良い, 1:普通, 2:悪い]\n
+                      自分の便の状態を3段階で判断して、該当するボタンをクリックしてください。
+                      クリックした状態と時刻で記録されます。\n
+                      ④おすすめの食事・避けるべき食事\n
+                      それぞれのボタンをクリックすると、あなたと相性の良い食事、悪い食事が送られてきます。\n
+                      まだ判定ができていない場合は、データが足りていないので、記録を継続してから再度試してください"
+                    }
+
         # 食事メニューの記録を行う
         else
           # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する
@@ -131,7 +147,7 @@ class LineBotController < ApplicationController
           end
           # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0
           # saveの成否に応じてユーザーへの返信内容を設定する
-          eating = Eating.new(user_id: user_id, meal_id: meal_id, eated_at: Time.current)
+          eating = Eating.new(user_id: user_id, meal_id: meal_id)
           if eating.save
             meal_log_reply_message = "食事の記録が完了しました。"
           else
