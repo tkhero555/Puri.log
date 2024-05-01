@@ -18,11 +18,10 @@ class UsersController < ApplicationController
     @log_index = meal_log_index.concat(stool_log_index)
     @log_index = @log_index.sort_by do |log|
       if log.is_a?(Eating)
-        log.eated_at
+        log.created_at
       elsif log.is_a?(Stool)
         log.created_at
       end
     end
-    p @log_index
   end
 end
