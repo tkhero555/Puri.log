@@ -19,8 +19,8 @@ class MealsController < ApplicationController
       flash[:notice] = '食事を記録しました'
       redirect_to user_path(current_user)
     else
-      flash.now[:danger] = '食事の記録に失敗しました'
-      render("user/show")
+      flash[:alert] = '食事の記録に失敗しました'
+      redirect_to user_path(current_user)
     end
   end
 
