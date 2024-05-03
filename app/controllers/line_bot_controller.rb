@@ -66,7 +66,7 @@ class LineBotController < ApplicationController
             stool_log_reply_message = "排便の記録が完了しました。"
           end
           if score_change == 1 || score_change == -1
-            eatings = Eating.where(eated_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
+            eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
             eatings.each do |eating|
               meal = Meal.find(eating.meal_id)
               unless meal.update(score: meal.score + score_change)
