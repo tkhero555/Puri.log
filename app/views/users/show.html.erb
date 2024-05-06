@@ -81,6 +81,29 @@
       </div>
     </div>
   </div>
+  <div>
+    <%= month_calendar(events: @log_index, attribute: :created_at) do |date, logs| %>
+      <%= date.day %>
+
+      <% logs.each do |log| %>
+      <div>
+        <% if log.is_a?(Eating) %>
+          <%= log.meal.meal_name %>
+        <% elsif log.is_a?(Stool) %>
+          <% if log.condition == "good" %>
+            <p>良い</p>
+          <% elsif log.condition == "normal" %>
+            <p>普通</p>
+          <% elsif log.condition == "bad" %>
+            <p>悪い</p>
+          <% else %>
+            <%= log.condition %>
+          <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
   <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
     <div class="card-body">
       <h2 class="card-title">記録履歴一覧</h2>
