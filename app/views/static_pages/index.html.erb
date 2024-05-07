@@ -30,62 +30,121 @@
   </div>
 </div>
 
-<div class="min-h-fit bg-base-200 p-4">
-    <div class="max-w-xl">
-      <h1 class="text-4xl font-bold">詳しい使い方</h1>
-    </div>
-</div>
+<div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-200">
+  <div class="collapse-title text-4xl font-bold">
+    詳しい使い方
+  </div>
+  <div class="collapse-content bg-base-200"> 
+    <div class="space-y-4">
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">1.LINE連携ログインをする。</h2>
+          <p>画面右上のLINE連携ログインをクリックし、LINEアカウントでログインします。<br>ログイン後は自動的にあなたのマイページが表示されます。<br></p>
+        </div>
+        <figure><%= image_tag "line_login_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "login_image" %></figure>
+      </div>
 
-<div class="space-y-4">
-  <div class="card bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">1.LINE連携ログインをする</h2>
-      <p>ヘッダーかトップページ上部のLINE連携ログインをクリックし、あなたのLINEアカウントでログインします。ログイン後は自動的にマイページに飛ばされます。<br></p>
-    </div>
-  </div>
-  <div class="card bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">2.マイページで出来ること</h2>
-      <p>全ての機能がマイページ内に集約されています。<br>
-      ・食事と排便の記録<br>上部の記録フォームから毎日の記録が行えます。日時を入力しなかった場合は、入力した時刻で記録されます。<br>
-      ・相性判定結果の確認<br>あなたと食事との相性をアプリが判定すると、マイページにその結果が表示されます。<br>
-      ・記録履歴の確認<br>あなたの記録履歴が一覧で確認できます。</p>
-    </div>
-  </div>
-  <div class="card bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">3.LINEBOTから記録してみる</h2>
-      <p>LINEBOTを友だち登録してみましょう。<br>
-      LINEBOTからもほとんどの機能が利用可能です。<br>
-      ・食事と排便の記録<br>ボタンを押してメッセージで記録することができます。<br>
-      ・相性判定結果の確認<br>ボタンを押すことで、判定済みの食事が表示されます。</p>
-    </div>
-  </div>
-  <div class="card bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">4.記録と改善を繰り返す</h2>
-      <p>日々の記録を続けていくことで、食事との相性がより詳しく分かってきます。<br>
-      避けるべき食事と判定されたものを食べる頻度を減らすことで、胃腸への悪影響を無くしていき、健康な身体を目指していきましょう。</p>
-    </div>
-  </div>
-  <div class="card bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">ゲストユーザーでログインする</h2>
-      <p>アプリの内容を閲覧したい方向けにゲストユーザーでのログインを用意しています。<br></p>
-      <p><%= @guest_login_email %></p>
-      <%= button_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-ghost bg-base-300" %>
-      <p>また、アプリの機能を手早く体験したい方は、下記から1ヶ月ほどアプリを利用した状態のユーザーアカウントにログインできます。<br></p>
-      <%= button_to '記録済みユーザーログイン', users_guest_logged_sign_in_path, class: "btn btn-ghost bg-base-300" %>
-    </div>
-  </div>
-</div>
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">2.食事と排便の記録</h2>
+          <p>マイページ上部の記録フォームから毎日の記録が行えます。<br>
+          <strong>【食事の記録】</strong><br>
+          <strong>食事名：</strong>食べたものの名前を記入します。<br>
+          <strong>食べた時間：</strong>灰色の入力欄を押すとカレンダーと時計が表示されるので、食べた時間を選択します。<br>
+          記録するボタンを押すと、入力した内容が記録されます。<br>
+          <strong>【排便の記録】</strong><br>
+          <strong>便の状態：</strong>自分の便の状態を「0.良い・1.普通・2.悪い」3つの選択肢から決定してください。<br>
+          <strong>出した日時：</strong>灰色の入力欄を押すとカレンダーと時計が表示されるので、食べた時間を選択します。<br>
+          記録するボタンを押すと、入力した内容が記録されます。<br>
+        </div>
+        <figure><%= image_tag "log_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "log_image" %></figure>
+      </div>
 
-<div class="hero min-h-fit bg-base-200">
-  <div class="hero-content text-center">
-    <div class="max-w-xl">
-      <h1 class="text-4xl font-bold"></h1>
-      <p class="py-6">
-        </p>
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">3.相性判定結果の表示</h2>
+          <p>アプリがあなたの胃腸と食事との相性を判定すると、マイページでその結果を確認できます。<br>
+          <strong>【おすすめの食事】</strong><br>
+          あなたと相性が良いと判定された食事名が表示されます。<br>
+          <strong>【避けるべき食事】</strong><br>
+          あなたと相性が悪いと判定された食事名が表示されます。<br>
+          下痢や便秘の要因となっている可能性があるので、摂取を控えて様子を見てみましょう。<br></p>
+        </div>
+        <figure><%= image_tag "recommend_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "log_image" %></figure>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">4.記録履歴の表示</h2>
+          <p>あなたの記録した履歴がマイページで一覧表示されています。<br>
+          もし間違って記録をしてしまった場合には、ここの削除ボタンを利用してください。<br></p>
+        </div>
+        <figure><%= image_tag "history_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "log_image" %></figure>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">5.LINEBOTを友だち登録する。</h2>
+          <p>ログイン後のヘッダーにLINE友だち追加ボタンが表示されます。<br>
+          ボタンを押すと画像のように、QRコードと友だち追加ボタンが表示されるので、カメラでQRを読み込むか、スマートフォンで友だち追加ボタンをタップしてください。<br>
+          LINEが起動して、LINEBOTの友達登録画面が表示されます<br></p>
+        </div>
+        <figure><%= image_tag "add_line_bot.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "login_image" %></figure>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">6.LINEBOTから利用する。</h2>
+          <ul>
+            <li>
+              <strong>①食事の記録：</strong>ボタンを押すと「食べたものの名前をメッセージしてください。送った時刻に食べたものとして記録されます。」と返信されます。<br>
+              食べたものの名前をメッセージしてください。<br>
+              ※ボタンを押さず、直接食事名をメッセージしても問題ありません。<br>
+            </li>
+            <li>
+              <strong>②排便の記録：</strong>ボタンを押すと、「0.良い・1.普通・2.悪い」の3つの選択肢ボタンがついたメッセージが送られてきます。<br>
+              自分の便の状態を選んでタップすれば、排便が記録されます。<br>
+            </li>
+            <li>
+              <strong>③使用説明：</strong>LINEBOTの使用説明がメッセージで送られてきます。
+            </li>
+            <li>
+              <strong>④おすすめの食事：</strong>判定済みのおすすめの食事一覧がメッセージで送られてきます。
+            </li>
+            <li>
+              <strong>⑤避けるべき食事：</strong>判定済みの避けるべき食事一覧がメッセージで送られてきます。
+            </li>
+            <li>
+              <strong>⑥サイトにアクセス：</strong>サイトのトップページにアクセスします。
+            </li>
+            <li>
+              <strong>⑦直接入力：</strong>直接メッセージに食事名を入力して送ると、食事が記録されます。
+            </li>
+          </ul>
+        </div>
+        <figure><%= image_tag "line_bot_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "login_image" %></figure>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">7.記録と食生活改善を繰り返す。</h2>
+          <p>日々の記録を続けていくことで、食事との相性がより正確に判定されていきます。<br>
+          避けるべき食事の摂取を控えて、胃腸の調子を整えていきましょう。<br>
+          記録し、結果を元に改善し、また記録する。<br>
+          繰り返していくことで、健康な身体を目指していきましょう。<br></p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card-body">
+          <h2 class="card-title">ゲストユーザーでログインする</h2>
+          <p>アプリの内容を閲覧したい方向けにゲストユーザーでログインできます。<br></p>
+          <p><%= @guest_login_email %></p>
+          <%= button_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-ghost bg-base-300" %>
+          <p>アプリの機能を手早く体験したい方は、下記から1ヶ月ほどアプリを利用した状態のユーザーアカウントにログインできます。<br></p>
+          <%= button_to '記録済みユーザーログイン', users_guest_logged_sign_in_path, class: "btn btn-ghost bg-base-300" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
