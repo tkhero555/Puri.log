@@ -126,7 +126,7 @@
                   <% end %>
                   <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
                   <% unless current_user.id == 2 %>
-                    <td><%= button_to '削除', stool_path(log.id), method: :delete %></td>
+                    <td><%= button_to '削除', stool_path(log.id), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %></td>
                   <% end %>
                   <th></th>
                 </tr>
