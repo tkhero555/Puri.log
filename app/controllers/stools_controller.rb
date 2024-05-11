@@ -1,7 +1,12 @@
 class StoolsController < ApplicationController
 
   def create
-    stool = Stool.new(condition: params[:condition].to_i, user_id: current_user.id, created_at:params[:created_at])
+    if params[:condition] == ""
+      condition = 1
+    else
+      condition = params[:condition].to_i
+    end
+    stool = Stool.new(condition: condition, user_id: current_user.id, created_at:params[:created_at])
     unless stool.save
       flash.now[:danger] = '排便の記録に失敗しました'
       render("user/show")
