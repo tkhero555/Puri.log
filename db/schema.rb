@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_01_083509) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_11_044129) do
   create_table "eatings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "meal_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_083509) do
 
   create_table "stools", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "condition", default: 0, null: false
+    t.integer "condition", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_stools_on_user_id"
