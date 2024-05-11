@@ -126,7 +126,7 @@
                   <% end %>
                   <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
                   <% unless current_user.id == 2 %>
-                    <td><%= button_to '削除', stool_path(log.id), method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %></td>
+                    <td><%= button_to '削除', stool_path(log.id), method: :delete %></td>
                   <% end %>
                   <th></th>
                 </tr>
@@ -134,6 +134,62 @@
             <% end %>
           <% end %>
         </table>
+      </div>
+    </div>
+  </div>
+  <div class="md:flex justify-center items-center gap-4 space-y-4 mx-auto max-w-screen-md">
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">記録回数の実績</h2>
+        <div class="max-h-72 overflow-auto">
+          <h3><strong>通算</strong></h3>
+            <p>食事：<%= @eating_count %> 回</p>
+            <p>排便：<%= @stool_count %> 回</p>
+          <h3><strong>今月</strong></h3>
+            <p>食事：<%= @this_month_eating_count %> 回</p>
+            <p>排便：<%= @this_month_stool_count %> 回</p>
+          <h3><strong>先月</strong></h3>
+            <p>食事：<%= @last_month_eating_count %> 回</p>
+            <p>排便：<%= @last_month_stool_count %> 回</p>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">登録済みの食事名一覧</h2>
+        <div class="max-h-72 overflow-auto">
+          <table class="table table-xs table-pin-rows table-pin-cols">
+            <thead>
+              <tr>
+                <th></th> 
+                <td>食事名</td> 
+                <td>記録回数</td> 
+                <th></th> 
+              </tr>
+            </thead> 
+            <% @meals.each do |meal| %>
+              <% meal_id = meal.id %>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <td><%= meal.meal_name %></td>
+                  <td><%= @my_meal_count[meal_id] %></td>
+                  <th></th>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md:flex justify-center items-center gap-4 space-y-4 mx-auto max-w-screen-md">
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">マイスコア</h2>
+        <div class="flex items-center justify-center text-9xl">
+          <%= @log_count %>
+        </div>
       </div>
     </div>
   </div>
