@@ -40,8 +40,7 @@ class LineBotController < ApplicationController
         when "食事の記録"
           message = {
                       type: "text",
-                      text: "食べたものの名前をメッセージしてください。\n
-                      送った時刻に食べたものとして記録されます。"
+                      text: "食べたものの名前をメッセージしてください。\n送った時刻に食べたものとして記録されます。"
                     }
 
         when "排便の記録"
@@ -137,7 +136,7 @@ class LineBotController < ApplicationController
         else
           # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する
           meal_log = event.message["text"]
-          meal = Meal.find_by(meal_name: meal_log)
+          meal = Meal.find_by(meal_name: meal_log, user_id: user_id)
           if meal.present?
             meal_id = meal.id
           else

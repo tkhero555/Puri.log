@@ -6,7 +6,7 @@ class MealsController < ApplicationController
 
   def create
     user_id = current_user.id
-    meal = Meal.find_by(meal_name: params[:meal_name])
+    meal = Meal.find_by(meal_name: params[:meal_name], user_id: user_id)
     if meal.present?
       meal_id = meal.id
     else
