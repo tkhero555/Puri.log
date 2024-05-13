@@ -41,5 +41,32 @@ class UsersController < ApplicationController
     # 登録済みの食事メニュー一覧用のインスタンス変数
     @my_meal_count = current_user.eatings.group(:meal_id).count
     @meals = current_user.meals
+
+    # 通算の胃腸の状況用のインスタンス変数
+    @stool_good_count = current_user.stools.where(condition: "good").count
+    @stool_normal_count = current_user.stools.where(condition: "normal").count
+    @stool_bad_count = current_user.stools.where(condition: "bad").count
+    # 今月の胃腸の状況用のインスタンス変数
+    @this_month_stool_good_count = current_user.stools.where(condition: "good").where(created_at: Time.current.beginning_of_month..Time.current.end_of_month).count
+    @this_month_stool_normal_count = current_user.stools.where(condition: "normal").where(created_at: Time.current.beginning_of_month..Time.current.end_of_month).count
+    @this_month_stool_bad_count = current_user.stools.where(condition: "bad").where(created_at: Time.current.beginning_of_month..Time.current.end_of_month).count
+    # 先月の胃腸の状況用のインスタンス変数
+    @last_month_stool_good_count = current_user.stools.where(condition: "good").where(created_at: Time.current.last_month.beginning_of_month..Time.current.last_month.end_of_month).count
+    @last_month_stool_normal_count = current_user.stools.where(condition: "normal").where(created_at: Time.current.last_month.beginning_of_month..Time.current.last_month.end_of_month).count
+    @last_month_stool_bad_count = current_user.stools.where(condition: "bad").where(created_at: Time.current.last_month.beginning_of_month..Time.current.last_month.end_of_month).count
+
+    # 連続記録日数のインスタンス変数
+    @meal_log_days_record = 0
+    @stool_log_days_record = 0
+    meal_date = Date.today
+    stool_date= Date.today
+    while current_user.eatings.where("DATE(created_at) = ?", meal_date).exists?
+      @meal_log_days_record += 1
+      meal_date = meal_date.prev_day
+    end
+    while current_user.stools.where("DATE(created_at) = ?", stool_date).exists?
+      @stool_log_days_record += 1
+      stool_date = stool_date.prev_day
+    end
   end
 end

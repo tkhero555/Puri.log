@@ -12,9 +12,9 @@ class StoolsController < ApplicationController
       render("user/show")
       return
     end
-    if params[:condition].to_i == 0
+    if condition == 0
       score_change = 1
-    elsif params[:condition].to_i == 2
+    elsif condition == 2
       score_change = -1
     else
       flash[:notice] = '排便を記録しました'
@@ -24,6 +24,7 @@ class StoolsController < ApplicationController
     start_time = stool.created_at - 50.hours
     end_time = stool.created_at - 20.hours
     eatings = Eating.where(created_at: start_time..end_time).where(user_id: current_user.id)
+    p score_change
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
       unless meal.update(score: meal.score + score_change)
