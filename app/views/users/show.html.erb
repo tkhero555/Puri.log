@@ -62,6 +62,32 @@
   <div class="md:flex justify-center items-center gap-4 space-y-4 mx-auto max-w-screen-md">
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
+        <h2 class="card-title">マイスコア</h2>
+        <div class="flex items-center justify-center text-9xl">
+          <%= @log_count %>
+        </div>
+        <div class="text-right text-xl">ポイント</div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">連続記録日数</h2>
+        <h3><strong>食事の連続記録日数</strong></h3>
+        <div class="flex items-center justify-center text-7xl">
+          <%= @meal_log_days_record %>
+        </div>
+        <div class="text-right text-3xl">日</div>
+        <h3><strong>排便の連続記録日数</strong></h3>
+        <div class="flex items-center justify-center text-7xl">
+          <%= @stool_log_days_record %>
+        </div>
+        <div class="text-right text-3xl">日</div>
+      </div>
+    </div>
+  </div>
+  <div class="md:flex justify-center items-center gap-4 space-y-4 mx-auto max-w-screen-md">
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
         <h2 class="card-title">おすすめの食事</h2>
         <div class="max-h-72 overflow-auto">
           <% @recommend_meals.each do |recommend_meal| %>
@@ -78,62 +104,6 @@
             <p><%= avert_meal.meal_name %></p>
           <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-    <div class="card-body">
-      <h2 class="card-title">記録履歴一覧</h2>
-      <div class="max-h-72 overflow-auto">
-        <table class="table table-xs table-pin-rows table-pin-cols">
-          <thead>
-            <tr>
-              <th></th> 
-              <td>食事名</td> 
-              <td>便の状態</td> 
-              <td>記録日時</td> 
-              <td>削除ボタン</td> 
-              <th></th> 
-            </tr>
-          </thead> 
-          <% @log_index.each do |log| %>
-            <% if log.is_a?(Eating) %>
-              <tbody>
-                <tr>
-                  <th></th>
-                  <td><%= log.meal.meal_name %></td>
-                  <td>-</td> 
-                  <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-                  <% unless current_user.id == 2 %>
-                    <td><%= button_to '削除', eating_path(log.id), method: :delete %></td>
-                  <% end %>
-                  <th></th>
-                </tr>
-              </tbody> 
-            <% elsif log.is_a?(Stool) %>
-              <tbody>
-                <tr>
-                  <th></th>
-                  <td>-</td> 
-                  <% if log.condition == "good" %>
-                    <td>良い</td>
-                  <% elsif log.condition == "normal" %>
-                    <td>普通</td>
-                  <% elsif log.condition == "bad" %>
-                    <td>悪い</td>
-                  <% else %>
-                    <td><%= log.condition %></td>
-                  <% end %>
-                  <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-                  <% unless current_user.id == 2 %>
-                    <td><%= button_to '削除', stool_path(log.id), method: :delete %></td>
-                  <% end %>
-                  <th></th>
-                </tr>
-              </tbody> 
-            <% end %>
-          <% end %>
-        </table>
       </div>
     </div>
   </div>
@@ -182,13 +152,78 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="md:flex justify-center items-center gap-4 space-y-4 mx-auto max-w-screen-md">
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
-        <h2 class="card-title">マイスコア</h2>
-        <div class="flex items-center justify-center text-9xl">
-          <%= @log_count %>
+        <h2 class="card-title">胃腸の状況</h2>
+        <div class="max-h-72 overflow-auto">
+          <h3><strong>便の状態ごとの記録回数(通算)</strong></h3>
+            <p>良い：<%= @stool_good_count %> 回</p>
+            <p>普通：<%= @stool_normal_count %> 回</p>
+            <p>悪い：<%= @stool_bad_count %> 回</p>
+          <h3><strong>便の状態ごとの記録回数(今月)</strong></h3>
+            <p>良い：<%= @this_month_stool_good_count %> 回</p>
+            <p>普通：<%= @this_month_stool_normal_count %> 回</p>
+            <p>悪い：<%= @this_month_stool_bad_count %> 回</p>
+          <h3><strong>便の状態ごとの記録回数(先月)</strong></h3>
+            <p>良い：<%= @last_month_stool_good_count %> 回</p>
+            <p>普通：<%= @last_month_stool_normal_count %> 回</p>
+            <p>悪い：<%= @last_month_stool_bad_count %> 回</p>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">記録履歴一覧</h2>
+        <div class="max-h-72 overflow-auto">
+          <table class="table table-xs table-pin-rows table-pin-cols">
+            <thead>
+              <tr>
+                <th></th> 
+                <td>食事名</td> 
+                <td>便の状態</td> 
+                <td>記録日時</td> 
+                <td>削除ボタン</td> 
+                <th></th> 
+              </tr>
+            </thead> 
+            <% @log_index.each do |log| %>
+              <% if log.is_a?(Eating) %>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <td><%= log.meal.meal_name %></td>
+                    <td>-</td> 
+                    <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+                    <% unless current_user.id == 2 %>
+                      <td><%= button_to '削除', eating_path(log.id), method: :delete %></td>
+                    <% end %>
+                    <th></th>
+                  </tr>
+                </tbody> 
+              <% elsif log.is_a?(Stool) %>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <td>-</td> 
+                    <% if log.condition == "good" %>
+                      <td>良い</td>
+                    <% elsif log.condition == "normal" %>
+                      <td>普通</td>
+                    <% elsif log.condition == "bad" %>
+                      <td>悪い</td>
+                    <% else %>
+                      <td><%= log.condition %></td>
+                    <% end %>
+                    <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+                    <% unless current_user.id == 2 %>
+                      <td><%= button_to '削除', stool_path(log.id), method: :delete %></td>
+                    <% end %>
+                    <th></th>
+                  </tr>
+                </tbody> 
+              <% end %>
+            <% end %>
+          </table>
         </div>
       </div>
     </div>
