@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   end
   root 'static_pages#index'
   post 'callback' => 'line_bot#callback'
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    collection do
+      get :search
+    end
+  end
   resources :meals, only: %i[create]
   resources :stools, only: %i[create destroy]
   resources :eatings, only: %i[destroy]
