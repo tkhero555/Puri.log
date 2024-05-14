@@ -67,4 +67,11 @@ class UsersController < ApplicationController
       stool_date = stool_date.prev_day
     end
   end
+
+  def search
+    @suggest_meals = Meal.where("meal_name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end  
 end
