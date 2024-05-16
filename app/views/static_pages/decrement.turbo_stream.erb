@@ -1,0 +1,21 @@
+<%= turbo_stream.replace "number_value" do %>
+  <div id="number_value">
+    <%= render partial: "static_pages/description/content#{@number}" %>
+  </div>
+<% end %>
+
+<turbo-stream action="replace" target="page_value">
+  <template>
+    <div id="page_value">
+      <div class="w-24 text-center"><%= @number %> / 8</div>
+    </div>
+  </template>
+</turbo-atream>
+
+<turbo-stream action="replace" target="page_value2">
+  <template>
+    <div id="page_value2">
+      <div class="w-24 text-center"><%= @number %> / 8</div>
+    </div>
+  </template>
+</turbo-atream>

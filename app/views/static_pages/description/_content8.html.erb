@@ -1,0 +1,10 @@
+<div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+  <div class="card-body">
+    <h2 class="card-title">ゲストユーザーでログインする</h2>
+    <p>アプリの内容を閲覧したい方向けにゲストユーザーでログインできます。<br></p>
+    <p><%= @guest_login_email %></p>
+    <%= button_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-ghost bg-base-300" %>
+    <p>アプリの機能を手早く体験したい方は、下記から1ヶ月ほどアプリを利用した状態のユーザーアカウントにログインできます。<br></p>
+    <%= button_to '記録済みユーザーログイン', users_guest_logged_sign_in_path, class: "btn btn-ghost bg-base-300" %>
+  </div>
+</div>

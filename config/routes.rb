@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :meals, only: %i[create]
   resources :stools, only: %i[create destroy]
   resources :eatings, only: %i[destroy]
+  post 'increment/card', to: 'static_pages#increment', as: 'increment'
+  post 'decrement/card', to: 'static_pages#decrement', as: 'decrement'
 end
