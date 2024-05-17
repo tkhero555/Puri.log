@@ -31,11 +31,11 @@
     </div>
   </div>
   <div class="bg-base-200 pb-4"> 
-    <div class="text-4xl font-bold max-w-3xl mx-auto h-screen md:h-3/4 lg:h-2/3 pt-4">
+    <div class="text-4xl font-bold max-w-3xl mx-auto md:h-3/4 lg:h-2/3 pt-4">
       詳しい説明
     </div>  
     <div class="space-y-4">
-      <div class="flex justify-center items-center max-w-3xl mx-auto h-screen md:h-3/4 lg:h-2/3 pt-4">
+      <div class="flex justify-center items-center max-w-3xl mx-auto md:h-3/4 lg:h-2/3 pt-4">
         <%= button_to '前へ', decrement_path, method: :post, form: { data: { turbo_frame: "number_frame" } }, class: "btn btn-ghost bg-base-300 w-20" %>
         <%= turbo_frame_tag "number_frame" do %>
           <div id="page_value">
@@ -51,7 +51,7 @@
           </div>
         <% end %>
       </div>
-      <div class="flex justify-center items-center max-w-3xl mx-auto h-screen md:h-3/4 lg:h-2/3 pt-4">
+      <div class="flex justify-center items-center max-w-3xl mx-auto md:h-3/4 lg:h-2/3 pt-4">
         <%= button_to '前へ', decrement_path, method: :post, form: { data: { turbo_frame: "number_frame" } }, class: "btn btn-ghost bg-base-300 w-20" %>
           <%= turbo_frame_tag "number_frame" do %>
             <div id="page_value2">
