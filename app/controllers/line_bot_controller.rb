@@ -37,10 +37,21 @@ class LineBotController < ApplicationController
         user = User.find_by(uid: event['source']['userId'])
         user_id = user.id
         case event.message["text"]
-        when "食事の記録"
+        when "登録済の食事"
+          meal_log_count = Eating.where(user_id: user_id).group(:meal_id).count
+          my_meals = Meal.where(user_id: user_id)
+          logged_meals = ""
+          if my_meals.empty?
+            logged_meals = "まだ食事が登録されていません"
+          else
+            my_meals.each do |my_meal|
+              my_meal_id = my_meal.id
+              logged_meals << "#{my_meal.meal_name} : #{meal_log_count[my_meal_id]}回\n"
+            end
+          end
           message = {
                       type: "text",
-                      text: "食べたものの名前をメッセージしてください。\n送った時刻に食べたものとして記録されます。"
+                      text: "食事名 : 記録回数\n#{logged_meals}"
                     }
 
         when "排便の記録"
@@ -92,7 +103,7 @@ class LineBotController < ApplicationController
           else
             recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join("\n")
           end
-          p recommend_meals
+          p recommend_meal
           message = {
                       type: "text",
                       text: recommend_meal
@@ -118,18 +129,28 @@ class LineBotController < ApplicationController
         when "使用説明"
           message = {
                       type: "text",
-                      text: "①LINE連携ログインが完了済みか確認する\n
-このLINEBOTはサイトでのLINE連携ログインが完了していることが前提条件です。\n
-まだの方はサイトにアクセスボタンからログインを実施してください。\n
-②食事の記録の仕方\n
-食事名をメッセージで送信すると、その時刻に食べたものとして記録されます。\n
-③排便の記録\n
-排便の記録ボタンを押すと3択の選択肢ボタンが送られてきます[0:良い, 1:普通, 2:悪い]\n
-自分の便の状態を3段階で判断して、該当するボタンをクリックしてください。
-クリックした状態と時刻で記録されます。\n
-④おすすめの食事・避けるべき食事\n
-それぞれのボタンをクリックすると、あなたと相性の良い食事、悪い食事が送られてきます。\n
-まだ判定ができていない場合は、データが足りていないので、記録を継続してから再度試してください"
+                      text: "① **LINE連携ログインの確認**
+
+- このLINEBOTは、サイトでのLINE連携ログインが完了していることが前提条件です。
+- まだの方は、サイトにアクセスしてログインを実施してください。
+
+② **登録済の食事**
+
+- 今までに記録したことのある、食事名の一覧が確認できます。
+
+③ **食事の記録**
+
+- 食事名をメッセージで送信すると、その時刻に食べたものとして記録されます。
+
+④ **排便の記録**
+
+- 排便の記録ボタンを押すと、3択の選択肢ボタンが送られてきます（[0: 良い, 1: 普通, 2: 悪い]）。
+- 自分の便の状態を3段階で判断して、該当するボタンをクリックしてください。クリックした状態と時刻で記録されます。
+
+⑤ **おすすめの食事・避けるべき食事**
+
+- それぞれのボタンをクリックすると、あなたと相性の良い食事、悪い食事が送られてきます。
+- まだ判定ができていない場合は、データが足りていないので、記録を継続してから再度試してください。"
                     }
 
         # 食事メニューの記録を行う
