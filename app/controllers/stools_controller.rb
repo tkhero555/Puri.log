@@ -56,6 +56,6 @@ class StoolsController < ApplicationController
       end
     end
     stool.destroy!
-    redirect_to user_url(current_user), status: :see_other
+    set_log_index
   end
 end

@@ -11,9 +11,6 @@ class StaticPagesController < ApplicationController
     else
       session[:number] = @number
     end
-    respond_to do |format|
-      format.turbo_stream
-    end
   end
 
   def decrement
@@ -23,9 +20,6 @@ class StaticPagesController < ApplicationController
       session[:number] = @number
     else
       session[:number] = @number
-    end
-    respond_to do |format|
-      format.turbo_stream
     end
   end
 end

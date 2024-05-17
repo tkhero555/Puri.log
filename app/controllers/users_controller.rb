@@ -14,16 +14,7 @@ class UsersController < ApplicationController
     end
 
     # 記録履歴一覧用のインスタンス変数
-    meal_log_index = current_user.eatings.includes(:meal)
-    stool_log_index = current_user.stools
-    meal_log_index = meal_log_index.to_a
-    stool_log_index = stool_log_index.to_a
-    @log_index = meal_log_index.concat(stool_log_index)
-    if params[:desc]
-      @log_index = @log_index.sort_by { |log| log.created_at }.reverse
-    else
-      @log_index = @log_index.sort_by { |log| log.created_at }
-    end
+    set_log_index
 
     # 通算記録回数表示用のインスタンス変数
     @eating_count = current_user.eatings.count
@@ -68,10 +59,15 @@ class UsersController < ApplicationController
     end
   end
 
+  # 食事記録フォームの入力補助
   def search
     @suggest_meals = Meal.where("meal_name like ?", "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end
-  end  
+  end
+
+  def sort
+    set_log_index
+  end
 end

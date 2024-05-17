@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show] do
     collection do
       get :search
+      post :sort, as: 'sort_log'
     end
   end
   resources :meals, only: %i[create]
