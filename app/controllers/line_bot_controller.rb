@@ -24,7 +24,46 @@ class LineBotController < ApplicationController
     events = client.parse_events_from(request_body)
   end
 
+  # ユーザーに通知する実績情報を作成する
+  def achievement(user, message)
+    user_id = user.id
+    #my_scoreの判定
+    eating_count = Eating.where(user_id: user_id).count
+    stool_count = Stool.where(user_id: user_id).count
+    my_score = eating_count + stool_count
+    # meal_log_days_recordの判定
+    meal_log_days_record = 0
+    meal_date = Date.today
+    while Eating.where(user_id: user_id).where("DATE(created_at) = ?", meal_date).exists?
+      meal_log_days_record += 1
+      meal_date = meal_date.prev_day
+    end
+    # continuation_daysの判定
+    date_registered = user.created_at.to_date
+    today = DateTime.now.to_date
+    continuation_days = (today - date_registered).to_i
+    # first_meal second_meal third_meal
+    my_meal_counts = Eating.where(user_id: user_id).group(:meal_id).count.sort_by{|key, val| -val}
+    first_meal = Meal.find(my_meal_counts[0][0]).meal_name
+    first_meal_count = my_meal_counts[0][1]
+    second_meal = Meal.find(my_meal_counts[1][0]).meal_name
+    second_meal_count = my_meal_counts[1][1]
+    third_meal = Meal.find(my_meal_counts[2][0]) .meal_name
+    third_meal_count = my_meal_counts[2][1]
+    # 実績の返信内容を作成する
+    achievement_message = "【現在の実績】\n・スコア：#{my_score}ポイント\n・#{meal_log_days_record}日連続記録達成中！(食事)\n・アプリを始めてから#{continuation_days}日経過\n\n【記録回数Top3の食事名】\n1.#{first_meal}：#{first_meal_count}回\n2.#{second_meal}：#{second_meal_count}回\n3.#{third_meal}：#{third_meal_count}回"
+    achievement = [
+                message,
+                {
+                  type: "text",
+                  text: achievement_message  # ここに追加したいメッセージの内容を書く
+                }
+              ]
+  end
+
   def message(event)
+    user = User.find_by(uid: event['source']['userId'])
+    user_id = user.id
     # caseを使用して、eventの種類の条件をwhenで指定して、種類ごとに処理を行う。
     case event
     # eventがMessageかどうかをチェック
@@ -34,8 +73,6 @@ class LineBotController < ApplicationController
       # MessageType::Textかどうかをチェック
       when Line::Bot::Event::MessageType::Text
         # LINEBOTを操作しているユーザーのLINEIDとusersテーブルのデータを紐づける
-        user = User.find_by(uid: event['source']['userId'])
-        user_id = user.id
         case event.message["text"]
         when "登録済の食事"
           meal_log_count = Eating.where(user_id: user_id).group(:meal_id).count
@@ -53,6 +90,7 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: "食事名 : 記録回数\n#{logged_meals}"
                     }
+          message = achievement(user, message)
 
         when "排便の記録"
           message = LineBot::Messages::UnkoMessage.new.button_message
@@ -73,23 +111,22 @@ class LineBotController < ApplicationController
             score_change = -1
           else
             score_change = 0
-            stool_log_reply_message = "排便の記録が完了しました。"
           end
-          if score_change == 1 || score_change == -1
-            eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
-            eatings.each do |eating|
-              meal = Meal.find(eating.meal_id)
-              unless meal.update(score: meal.score + score_change)
-                stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
-                break
-              end
+          eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
+          stool_log_reply_message = "排便の記録が完了しました。\n\n\n【今記録した便の元となっている可能性がある食事一覧】\n\n食事名：日時\n"
+          eatings.each do |eating|
+            meal = Meal.find(eating.meal_id)
+            unless meal.update(score: meal.score + score_change)
+              stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
+              break
             end
-            stool_log_reply_message = "排便の記録が完了しました。"
+            stool_log_reply_message << "#{meal.meal_name}：#{meal.created_at.strftime("%-m-%d %H:%M")}\n"
           end
           message = {
                       type: "text",
                       text: stool_log_reply_message
                     }
+          message = achievement(user, message)
 
         when "おすすめの食事"
           recommend_meals = Meal.where('score >= ?', 3).where(user_id: user_id)
@@ -108,6 +145,7 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: recommend_meal
                     }
+          message = achievement(user, message)
 
         when "避けるべき食事"
           avert_meals = Meal.where('score <= ?', -3).where(user_id: user_id)
@@ -125,6 +163,7 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: avert_meal
                     }
+          message = achievement(user, message)
 
         when "使用説明"
           message = {
@@ -177,6 +216,7 @@ class LineBotController < ApplicationController
                       type: "text",
                       text: meal_log_reply_message
                     }
+          message = achievement(user, message)
         end
       end
     end
