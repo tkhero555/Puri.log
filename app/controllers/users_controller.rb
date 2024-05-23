@@ -70,4 +70,21 @@ class UsersController < ApplicationController
   def sort
     set_log_index
   end
+
+  def toggle_notifications
+    current_user.notifications_enabled = !current_user.notifications_enabled
+    if current_user.save
+      flash[:notice] = "通知設定が更新されました。"
+    else
+      flash[:alert] = "通知設定の更新に失敗しました。"
+    end
+    redirect_to user_path(current_user)
+  end
+
+  def destroy
+    user = current_user
+    user.destroy!
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to root_path
+  end
 end
