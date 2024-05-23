@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   root 'static_pages#index'
   post 'callback' => 'line_bot#callback'
-  resources :users, only: %i[show] do
+  resources :users, only: %i[show destroy] do
     collection do
       get :search
       post :sort, as: 'sort_log'
@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :eatings, only: %i[destroy]
   post 'increment/card', to: 'static_pages#increment', as: 'increment'
   post 'decrement/card', to: 'static_pages#decrement', as: 'decrement'
+  post 'toggle_notifications', to: 'users#toggle_notifications'
 end

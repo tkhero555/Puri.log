@@ -179,4 +179,21 @@
       <%= render 'shared/log_index' %>
     <% end %>
   </div>
+  <div class="md:flex justify-center items-center gap-4 space-y-4 mx-auto max-w-screen-md">
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">セッティング</h2>
+        <div>
+          <%= link_to (current_user.notifications_enabled ? "通知をオフにする" : "通知をオンにする"), toggle_notifications_path, data: { turbo_method: :post }, class: "bg-base-300 hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20" %>
+        </div>
+        <div class="pt-4">
+          <% unless current_user.id == 2 %>
+            <%= link_to user_path(current_user), data: { turbo_method: :delete, turbo_confirm: '元には戻せませんが、本当に削除しますか？' }, style: 'display: inline-block;' do %>
+              <%= image_tag 'destroy_button.png' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

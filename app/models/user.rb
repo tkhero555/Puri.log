@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :eatings, dependent: :destroy
   has_many :meals, dependent: :destroy
   has_many :stools, dependent: :destroy
+  after_initialize :set_defaults, if: :new_record?
 
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
@@ -31,5 +32,9 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
+  end
+
+  def set_defaults
+    self.notifications_enabled ||= false
   end
 end
