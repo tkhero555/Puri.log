@@ -27,6 +27,11 @@ services:
     tty: true
     depends_on:
       - db
+      - selenium_chrome
+  selenium_chrome:
+    image: seleniarm/standalone-chromium
+    ports:
+      - 4444:4444
 volumes:
   mysql_data:
   node_modules:
