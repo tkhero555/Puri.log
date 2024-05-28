@@ -65,7 +65,7 @@
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">マイスコア</h2>
-        <div class="flex items-center justify-center text-9xl">
+        <div class="flex items-center justify-center text-9xl my-score">
           <%= @log_count %>
         </div>
         <div class="text-right text-xl">ポイント</div>
@@ -75,12 +75,12 @@
       <div class="card-body">
         <h2 class="card-title">連続記録日数</h2>
         <h3><strong>食事の連続記録日数</strong></h3>
-        <div class="flex items-center justify-center text-7xl">
+        <div class="flex items-center justify-center text-7xl meal-log-days-record">
           <%= @meal_log_days_record %>
         </div>
         <div class="text-right text-3xl">日</div>
         <h3><strong>排便の連続記録日数</strong></h3>
-        <div class="flex items-center justify-center text-7xl">
+        <div class="flex items-center justify-center text-7xl stool-log-days-record">
           <%= @stool_log_days_record %>
         </div>
         <div class="text-right text-3xl">日</div>
@@ -91,9 +91,9 @@
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">おすすめの食事</h2>
-        <div class="max-h-72 overflow-auto">
+        <div class="max-h-72 overflow-auto recommend-meal">
           <% @recommend_meals.each do |recommend_meal| %>
-            <p><%= recommend_meal.meal_name %></p>
+            <%= recommend_meal.meal_name %>
           <% end %>
         </div>
       </div>
@@ -101,9 +101,9 @@
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">避けるべき食事</h2>
-        <div class="max-h-72 overflow-auto">
+        <div class="max-h-72 overflow-auto avert-meal">
           <% @avert_meals.each do |avert_meal| %>
-            <p><%= avert_meal.meal_name %></p>
+            <%= avert_meal.meal_name %>
           <% end %>
         </div>
       </div>
@@ -113,7 +113,7 @@
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">記録回数の実績</h2>
-        <div class="max-h-72 overflow-auto">
+        <div class="max-h-72 overflow-auto log-count">
           <h3><strong>通算</strong></h3>
             <p>食事：<%= @eating_count %> 回</p>
             <p>排便：<%= @stool_count %> 回</p>
@@ -129,7 +129,7 @@
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">登録済みの食事名一覧</h2>
-        <div class="max-h-72 overflow-auto">
+        <div class="max-h-72 overflow-auto meal-log-index">
           <table class="table table-xs table-pin-rows table-pin-cols">
             <thead>
               <tr>
@@ -159,7 +159,7 @@
     <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">胃腸の状況</h2>
-        <div class="max-h-72 overflow-auto">
+        <div class="max-h-72 overflow-auto stomach-condition">
           <h3><strong>便の状態ごとの記録回数(通算)</strong></h3>
             <p>良い：<%= @stool_good_count %> 回</p>
             <p>普通：<%= @stool_normal_count %> 回</p>
