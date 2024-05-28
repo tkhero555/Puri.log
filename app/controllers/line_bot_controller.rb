@@ -72,7 +72,6 @@ class LineBotController < ApplicationController
       case event.type
       # MessageType::Textかどうかをチェック
       when Line::Bot::Event::MessageType::Text
-        # LINEBOTを操作しているユーザーのLINEIDとusersテーブルのデータを紐づける
         case event.message["text"]
         when "登録済の食事"
           meal_log_count = Eating.where(user_id: user_id).group(:meal_id).count
