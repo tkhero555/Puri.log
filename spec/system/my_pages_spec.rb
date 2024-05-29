@@ -32,15 +32,25 @@ RSpec.describe "MyPages", type: :system do
       expect(meal_initial_number).to eq(0)
       expect(stool_initial_number).to eq(0)
 
-      # 食事記録を増やす
+      # 時刻設定
       current_time = Time.now.iso8601
+      one_month_ago = (DateTime.now << 1).iso8601
+      # 食事記録を増やす
       fill_in 'new_meal_name', with: 'Sample Meal'
       fill_in 'meal_created_at', with: current_time
+      find('.meal-btn').click
+
+      fill_in 'new_meal_name', with: 'Sample Meal'
+      fill_in 'meal_created_at', with: one_month_ago
       find('.meal-btn').click
 
       # 排便記録を増やす
       select '0.良い', from: 'condition'
       fill_in 'created_at', with: current_time
+      find('.stool-btn').click
+
+      select '0.良い', from: 'condition'
+      fill_in 'created_at', with: one_month_ago
       find('.stool-btn').click
 
       # 2つの表示部の数字が1増えていることを確認する
@@ -215,6 +225,56 @@ RSpec.describe "MyPages", type: :system do
         expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[2]").text).to eq('普通：1 回')
         expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[3]").text).to eq('悪い：1 回')
       end
+    end
+
+    it '記録履歴一覧cardの表示が正常であること' do
+      # @mealsが空の状態を確認する
+      within('.log-index') do
+        expect(page).to have_selector('table.table tbody tr', count: 0)
+      end
+
+      # 時刻設定
+      current_time = Time.now.iso8601
+      one_month_ago = (DateTime.now << 1).iso8601
+
+      # 現在時刻の食事記録を作成
+      fill_in 'new_meal_name', with: '今月のサンプル'
+      fill_in 'meal_created_at', with: current_time
+      find('.meal-btn').click
+
+      # 1月前の食事記録を作成
+      fill_in 'new_meal_name', with: '先月のサンプル'
+      fill_in 'meal_created_at', with: one_month_ago
+      find('.meal-btn').click
+
+      # 記録が追加されたことを確認する
+      within('.log-index') do
+        expect(page).to have_selector('table.table tbody tr', count: 2)
+        expect(find('table.table tbody tr td', text: '今月のサンプル')).to be_present
+        expect(find('table.table tbody tr td', text: '先月のサンプル')).to be_present
+      end
+
+      # 古い順の並び替えボタンを押す
+      
+      # 先月のサンプルが先に表示されていることを確認する
+  
+      # 保管した値の中身を確認する
+
+      # 新しい順の並び替えボタンを押す
+
+      # 今月のサンプルが先に表示されていることを確認する
+    end
+
+    it 'セッティングcardが正常に動作すること' do
+      # 通知変更ボタンをクリック
+
+      # テストユーザーのnotifications_enabledが変化していることを確認する
+
+      # 削除ボタンをクリック
+
+      # 確認ダイアログをクリック
+
+      # テストユーザーが消えていることを確認する
     end
   end
 end

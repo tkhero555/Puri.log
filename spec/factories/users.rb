@@ -6,6 +6,7 @@ FactoryBot.define do
     name { "Test User" }
     provider { "line" }
     uid { "123456" }
+    notifications_enabled { "false" }
   end
 end
 

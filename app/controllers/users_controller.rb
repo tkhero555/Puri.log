@@ -47,15 +47,20 @@ class UsersController < ApplicationController
     # 連続記録日数のインスタンス変数
     @meal_log_days_record = 0
     @stool_log_days_record = 0
-    meal_date = Date.today
-    stool_date= Date.today
-    while current_user.eatings.where("DATE(created_at) = ?", meal_date).exists?
+    meal_start_day = Time.zone.now.beginning_of_day
+    meal_end_day = Time.zone.now.end_of_day
+    stool_start_day = Time.zone.now.beginning_of_day
+    stool_end_day = Time.zone.now.end_of_day
+
+    while current_user.eatings.where(created_at: meal_start_day..meal_end_day).exists?
       @meal_log_days_record += 1
-      meal_date = meal_date.prev_day
+      meal_start_day = meal_start_day - 1.day
+      meal_end_day = meal_end_day - 1.day
     end
-    while current_user.stools.where("DATE(created_at) = ?", stool_date).exists?
+    while current_user.stools.where(created_at: stool_start_day..stool_end_day).exists?
       @stool_log_days_record += 1
-      stool_date = stool_date.prev_day
+      stool_start_day = stool_start_day - 1.day
+      stool_end_day = stool_end_day - 1.day
     end
   end
 
