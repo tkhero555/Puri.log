@@ -2,7 +2,7 @@ class LineBotController < ApplicationController
 
   def callback
     events.each do |event|
-      client.reply_message(event['replyToken'], "message(event)")
+      client.reply_message(event['replyToken'], message(event))
     end
   end
 
@@ -35,34 +35,35 @@ class LineBotController < ApplicationController
       when Line::Bot::Event::MessageType::Text
         case event.message["text"]
         when "登録済の食事"
-          make_logged_meals
+          make_logged_meals(event)
 
         when "排便の記録"
           make_stool_button_message
           
         when "0", "1", "2"
-          make_stool_log
+          make_stool_log(event)
 
         when "おすすめの食事"
-          make_recommend_meals
+          make_recommend_meals(event)
 
         when "避けるべき食事"
-          make_avert_meals
+          make_avert_meals(event)
 
         when "使用説明"
           make_explain
 
         # 食事メニューの記録を行う
         else
-          make_meal_log
+          make_meal_log(event)
         end
       end
     end
   end
 
-  def make_logged_meals
-    meal_log_count = Eating.where(user_id: user_id).group(:meal_id).count
-    my_meals = Meal.where(user_id: user_id)
+  def make_logged_meals(event)
+    set_user(event)
+    meal_log_count = Eating.where(user_id: @user_id).group(:meal_id).count
+    my_meals = Meal.where(user_id: @user_id)
     logged_meals = ""
     if my_meals.empty?
       logged_meals = "まだ食事が登録されていません"
@@ -76,16 +77,17 @@ class LineBotController < ApplicationController
                 type: "text",
                 text: "食事名 : 記録回数\n#{logged_meals}"
               }
-    message = achievement(user, message)
+    message = achievement(@user, message)
   end
 
   def make_stool_button_message
     message = LineBot::Messages::UnkoMessage.new.button_message
   end
 
-  def make_stool_log
+  def make_stool_log(event)
+    set_user(event)
     stool_log = event.message["text"].to_i
-    stool = Stool.new(condition: stool_log, user_id: user_id)
+    stool = Stool.new(condition: stool_log, user_id: @user_id)
     unless stool.save
       message = {
         type: "text",
@@ -100,7 +102,7 @@ class LineBotController < ApplicationController
     else
       score_change = 0
     end
-    eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)
+    eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: @user_id)
     stool_log_reply_message = "排便の記録が完了しました。\n\n\n【今記録した便の元となっている可能性がある食事一覧】\n\n食事名：日時\n"
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
@@ -114,13 +116,14 @@ class LineBotController < ApplicationController
                 type: "text",
                 text: stool_log_reply_message
               }
-    message = achievement(user, message)
+    message = achievement(@user, message)
   end
 
-  def make_recommend_meals
-    recommend_meals = Meal.where('score >= ?', 3).where(user_id: user_id)
+  def make_recommend_meals(event)
+    set_user(event)
+    recommend_meals = Meal.where('score >= ?', 3).where(user_id: @user_id)
     if recommend_meals.empty?
-      recommend_meals = Meal.where('score >= ?', 1).where(user_id: user_id)
+      recommend_meals = Meal.where('score >= ?', 1).where(user_id: @user_id)
       if recommend_meals.empty?
         recommend_meal = "おすすめの食事はありません"
       else
@@ -133,13 +136,14 @@ class LineBotController < ApplicationController
                 type: "text",
                 text: recommend_meal
               }
-    message = achievement(user, message)
+    message = achievement(@user, message)
   end
 
-  def make_avert_meals
-    avert_meals = Meal.where('score <= ?', -3).where(user_id: user_id)
+  def make_avert_meals(event)
+    set_user(event)
+    avert_meals = Meal.where('score <= ?', -3).where(user_id: @user_id)
     if avert_meals.empty?
-      avert_meals = Meal.where('score <= ?', -1).where(user_id: user_id)
+      avert_meals = Meal.where('score <= ?', -1).where(user_id: @user_id)
       if avert_meals.empty?
         avert_meal = "避けるべき食事はありません"
       else
@@ -152,7 +156,7 @@ class LineBotController < ApplicationController
                 type: "text",
                 text: avert_meal
               }
-    message = achievement(user, message)
+    message = achievement(@user, message)
   end
 
   def make_explain
@@ -183,20 +187,21 @@ class LineBotController < ApplicationController
     }
   end
 
-  def make_meal_log
+  def make_meal_log(event)
+    set_user(event)
     # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する
     meal_log = event.message["text"]
-    meal = Meal.find_by(meal_name: meal_log, user_id: user_id)
+    meal = Meal.find_by(meal_name: meal_log, user_id: @user_id)
     if meal.present?
       meal_id = meal.id
     else
-      meal = Meal.new(meal_name: meal_log, user_id: user_id)
+      meal = Meal.new(meal_name: meal_log, user_id: @user_id)
       meal.save
       meal_id = meal.id
     end
     # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0
     # saveの成否に応じてユーザーへの返信内容を設定する
-    eating = Eating.new(user_id: user_id, meal_id: meal_id)
+    eating = Eating.new(user_id: @user_id, meal_id: meal_id)
     if eating.save
       meal_log_reply_message = "食事の記録が完了しました。"
     else
@@ -206,12 +211,12 @@ class LineBotController < ApplicationController
                 type: "text",
                 text: meal_log_reply_message
               }
-    message = achievement(user, message)
+    message = achievement(@user, message)
   end
 
-  def user_id
-    user = User.find_by(uid: event['source']['userId'])
-    user_id = user.id
+  def set_user(event)
+    @user = User.find_by(uid: event['source']['userId'])
+    @user_id = @user.id
   end
 
   # ユーザーに通知する実績情報を作成する
