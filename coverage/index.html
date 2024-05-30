@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-05-30T07:59:00+09:00">2024-05-30T07:59:00+09:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-05-30T10:11:08+09:00">2024-05-30T10:11:08+09:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  71.04%
+  70.41%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.31
+         4.28
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>556</b> relevant lines,
+    <b>561</b> relevant lines,
     <span class="green"><b>395</b> lines covered</span> and
-    <span class="red"><b>161</b> lines missed. </span>
+    <span class="red"><b>166</b> lines missed. </span>
     (<span class="red">
-  71.04%
+  70.41%
 </span>
 )
   </div>
@@ -83,11 +83,11 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#ac33b75f88b42cba90092cf749930277a2730196" class="src_link" title="app/controllers/line_bot_controller.rb">app/controllers/line_bot_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">13.45 %</td>
-            <td class="cell--number">253</td>
-            <td class="cell--number">119</td>
+            <td class="red strong cell--number t-file__coverage">12.90 %</td>
+            <td class="cell--number">258</td>
+            <td class="cell--number">124</td>
             <td class="cell--number">16</td>
-            <td class="cell--number">103</td>
+            <td class="cell--number">108</td>
             <td class="cell--number">0.13</td>
             
           </tr>
@@ -574,7 +574,7 @@
     <h3>app/controllers/line_bot_controller.rb</h3>
     <h4>
       <span class="red">
-  13.45%
+  12.9%
 </span>
 
       lines covered
@@ -583,9 +583,9 @@
     
 
     <div class="t-line-summary">
-      <b>119</b> relevant lines.
+      <b>124</b> relevant lines.
       <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>103</b> lines missed.</span>
+      <span class="red"><b>108</b> lines missed.</span>
     </div>
 
     
@@ -646,7 +646,7 @@
 
             
 
-            <code class="ruby">      client.reply_message(event[&#39;replyToken&#39;], &quot;message(event)&quot;)</code>
+            <code class="ruby">      client.reply_message(event[&#39;replyToken&#39;], message(event))</code>
           </li>
         </div>
       
@@ -1009,7 +1009,7 @@
 
             
 
-            <code class="ruby">          make_logged_meals</code>
+            <code class="ruby">          make_logged_meals(event)</code>
           </li>
         </div>
       
@@ -1075,7 +1075,7 @@
 
             
 
-            <code class="ruby">          make_stool_log</code>
+            <code class="ruby">          make_stool_log(event)</code>
           </li>
         </div>
       
@@ -1108,7 +1108,7 @@
 
             
 
-            <code class="ruby">          make_recommend_meals</code>
+            <code class="ruby">          make_recommend_meals(event)</code>
           </li>
         </div>
       
@@ -1141,7 +1141,7 @@
 
             
 
-            <code class="ruby">          make_avert_meals</code>
+            <code class="ruby">          make_avert_meals(event)</code>
           </li>
         </div>
       
@@ -1218,7 +1218,7 @@
 
             
 
-            <code class="ruby">          make_meal_log</code>
+            <code class="ruby">          make_meal_log(event)</code>
           </li>
         </div>
       
@@ -1284,7 +1284,7 @@
 
             
 
-            <code class="ruby">  def make_logged_meals</code>
+            <code class="ruby">  def make_logged_meals(event)</code>
           </li>
         </div>
       
@@ -1295,7 +1295,7 @@
 
             
 
-            <code class="ruby">    meal_log_count = Eating.where(user_id: user_id).group(:meal_id).count</code>
+            <code class="ruby">    set_user(event)</code>
           </li>
         </div>
       
@@ -1306,7 +1306,7 @@
 
             
 
-            <code class="ruby">    my_meals = Meal.where(user_id: user_id)</code>
+            <code class="ruby">    meal_log_count = Eating.where(user_id: @user_id).group(:meal_id).count</code>
           </li>
         </div>
       
@@ -1317,7 +1317,7 @@
 
             
 
-            <code class="ruby">    logged_meals = &quot;&quot;</code>
+            <code class="ruby">    my_meals = Meal.where(user_id: @user_id)</code>
           </li>
         </div>
       
@@ -1328,7 +1328,7 @@
 
             
 
-            <code class="ruby">    if my_meals.empty?</code>
+            <code class="ruby">    logged_meals = &quot;&quot;</code>
           </li>
         </div>
       
@@ -1339,29 +1339,29 @@
 
             
 
+            <code class="ruby">    if my_meals.empty?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="69">
+            
+            
+
+            
+
             <code class="ruby">      logged_meals = &quot;まだ食事が登録されていません&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="never" data-hits="" data-linenumber="70">
             
             
 
             
 
             <code class="ruby">    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="70">
-            
-            
-
-            
-
-            <code class="ruby">      my_meals.each do |my_meal|</code>
           </li>
         </div>
       
@@ -1372,7 +1372,7 @@
 
             
 
-            <code class="ruby">        my_meal_id = my_meal.id</code>
+            <code class="ruby">      my_meals.each do |my_meal|</code>
           </li>
         </div>
       
@@ -1383,18 +1383,18 @@
 
             
 
-            <code class="ruby">        logged_meals &lt;&lt; &quot;#{my_meal.meal_name} : #{meal_log_count[my_meal_id]}回\n&quot;</code>
+            <code class="ruby">        my_meal_id = my_meal.id</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="73">
+          <li class="missed" data-hits="0" data-linenumber="73">
             
             
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">        logged_meals &lt;&lt; &quot;#{my_meal.meal_name} : #{meal_log_count[my_meal_id]}回\n&quot;</code>
           </li>
         </div>
       
@@ -1405,7 +1405,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -1416,29 +1416,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="76">
+            
+            
+
+            
+
             <code class="ruby">    message = {</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="76">
+          <li class="missed" data-hits="0" data-linenumber="77">
             
             
 
             
 
             <code class="ruby">                type: &quot;text&quot;,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="77">
-            
-            
-
-            
-
-            <code class="ruby">                text: &quot;食事名 : 記録回数\n#{logged_meals}&quot;</code>
           </li>
         </div>
       
@@ -1449,29 +1449,29 @@
 
             
 
+            <code class="ruby">                text: &quot;食事名 : 記録回数\n#{logged_meals}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="79">
+            
+            
+
+            
+
             <code class="ruby">              }</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="79">
+          <li class="missed" data-hits="0" data-linenumber="80">
             
             
 
             
 
-            <code class="ruby">    message = achievement(user, message)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="80">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
+            <code class="ruby">    message = achievement(@user, message)</code>
           </li>
         </div>
       
@@ -1482,12 +1482,23 @@
 
             
 
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="82">
+            
+            
+
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="82">
+          <li class="covered" data-hits="1" data-linenumber="83">
             <span class="hits">1</span>
             
 
@@ -1498,7 +1509,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="83">
+          <li class="missed" data-hits="0" data-linenumber="84">
             
             
 
@@ -1509,7 +1520,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="84">
+          <li class="never" data-hits="" data-linenumber="85">
             
             
 
@@ -1520,7 +1531,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="85">
+          <li class="never" data-hits="" data-linenumber="86">
             
             
 
@@ -1531,24 +1542,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="86">
+          <li class="covered" data-hits="1" data-linenumber="87">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def make_stool_log</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="87">
-            
-            
-
-            
-
-            <code class="ruby">    stool_log = event.message[&quot;text&quot;].to_i</code>
+            <code class="ruby">  def make_stool_log(event)</code>
           </li>
         </div>
       
@@ -1559,7 +1559,7 @@
 
             
 
-            <code class="ruby">    stool = Stool.new(condition: stool_log, user_id: user_id)</code>
+            <code class="ruby">    set_user(event)</code>
           </li>
         </div>
       
@@ -1570,18 +1570,18 @@
 
             
 
-            <code class="ruby">    unless stool.save</code>
+            <code class="ruby">    stool_log = event.message[&quot;text&quot;].to_i</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="90">
+          <li class="missed" data-hits="0" data-linenumber="90">
             
             
 
             
 
-            <code class="ruby">      message = {</code>
+            <code class="ruby">    stool = Stool.new(condition: stool_log, user_id: @user_id)</code>
           </li>
         </div>
       
@@ -1592,7 +1592,7 @@
 
             
 
-            <code class="ruby">        type: &quot;text&quot;,</code>
+            <code class="ruby">    unless stool.save</code>
           </li>
         </div>
       
@@ -1603,29 +1603,29 @@
 
             
 
+            <code class="ruby">      message = {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="93">
+            
+            
+
+            
+
+            <code class="ruby">        type: &quot;text&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="94">
+            
+            
+
+            
+
             <code class="ruby">        text: &quot;排便の記録に失敗しました。やり直してください。&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="93">
-            
-            
-
-            
-
-            <code class="ruby">      }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="94">
-            
-            
-
-            
-
-            <code class="ruby">      return</code>
           </li>
         </div>
       
@@ -1636,7 +1636,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      }</code>
           </li>
         </div>
       
@@ -1647,18 +1647,18 @@
 
             
 
-            <code class="ruby">    if stool_log == 0</code>
+            <code class="ruby">      return</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="97">
+          <li class="never" data-hits="" data-linenumber="97">
             
             
 
             
 
-            <code class="ruby">      score_change = 1</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -1669,7 +1669,7 @@
 
             
 
-            <code class="ruby">    elsif stool_log == 2</code>
+            <code class="ruby">    if stool_log == 0</code>
           </li>
         </div>
       
@@ -1680,18 +1680,18 @@
 
             
 
-            <code class="ruby">      score_change = -1</code>
+            <code class="ruby">      score_change = 1</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="100">
+          <li class="missed" data-hits="0" data-linenumber="100">
             
             
 
             
 
-            <code class="ruby">    else</code>
+            <code class="ruby">    elsif stool_log == 2</code>
           </li>
         </div>
       
@@ -1702,7 +1702,7 @@
 
             
 
-            <code class="ruby">      score_change = 0</code>
+            <code class="ruby">      score_change = -1</code>
           </li>
         </div>
       
@@ -1713,7 +1713,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    else</code>
           </li>
         </div>
       
@@ -1724,18 +1724,18 @@
 
             
 
-            <code class="ruby">    eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: user_id)</code>
+            <code class="ruby">      score_change = 0</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="104">
+          <li class="never" data-hits="" data-linenumber="104">
             
             
 
             
 
-            <code class="ruby">    stool_log_reply_message = &quot;排便の記録が完了しました。\n\n\n【今記録した便の元となっている可能性がある食事一覧】\n\n食事名：日時\n&quot;</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -1746,7 +1746,7 @@
 
             
 
-            <code class="ruby">    eatings.each do |eating|</code>
+            <code class="ruby">    eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: @user_id)</code>
           </li>
         </div>
       
@@ -1757,7 +1757,7 @@
 
             
 
-            <code class="ruby">      meal = Meal.find(eating.meal_id)</code>
+            <code class="ruby">    stool_log_reply_message = &quot;排便の記録が完了しました。\n\n\n【今記録した便の元となっている可能性がある食事一覧】\n\n食事名：日時\n&quot;</code>
           </li>
         </div>
       
@@ -1768,7 +1768,7 @@
 
             
 
-            <code class="ruby">      unless meal.update(score: meal.score + score_change)</code>
+            <code class="ruby">    eatings.each do |eating|</code>
           </li>
         </div>
       
@@ -1779,7 +1779,7 @@
 
             
 
-            <code class="ruby">        stool_log_reply_message = &quot;排便の記録に失敗しました。やり直してください。&quot;</code>
+            <code class="ruby">      meal = Meal.find(eating.meal_id)</code>
           </li>
         </div>
       
@@ -1790,18 +1790,18 @@
 
             
 
-            <code class="ruby">        break</code>
+            <code class="ruby">      unless meal.update(score: meal.score + score_change)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="110">
+          <li class="missed" data-hits="0" data-linenumber="110">
             
             
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">        stool_log_reply_message = &quot;排便の記録に失敗しました。やり直してください。&quot;</code>
           </li>
         </div>
       
@@ -1812,7 +1812,7 @@
 
             
 
-            <code class="ruby">      stool_log_reply_message &lt;&lt; &quot;#{meal.meal_name}：#{meal.created_at.strftime(&quot;%-m-%d %H:%M&quot;)}\n&quot;</code>
+            <code class="ruby">        break</code>
           </li>
         </div>
       
@@ -1823,29 +1823,29 @@
 
             
 
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="113">
+            
+            
+
+            
+
+            <code class="ruby">      stool_log_reply_message &lt;&lt; &quot;#{meal.meal_name}：#{meal.created_at.strftime(&quot;%-m-%d %H:%M&quot;)}\n&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="114">
+            
+            
+
+            
+
             <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="113">
-            
-            
-
-            
-
-            <code class="ruby">    message = {</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="114">
-            
-            
-
-            
-
-            <code class="ruby">                type: &quot;text&quot;,</code>
           </li>
         </div>
       
@@ -1856,29 +1856,29 @@
 
             
 
+            <code class="ruby">    message = {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="116">
+            
+            
+
+            
+
+            <code class="ruby">                type: &quot;text&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="117">
+            
+            
+
+            
+
             <code class="ruby">                text: stool_log_reply_message</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="116">
-            
-            
-
-            
-
-            <code class="ruby">              }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="117">
-            
-            
-
-            
-
-            <code class="ruby">    message = achievement(user, message)</code>
           </li>
         </div>
       
@@ -1889,12 +1889,34 @@
 
             
 
+            <code class="ruby">              }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="119">
+            
+            
+
+            
+
+            <code class="ruby">    message = achievement(@user, message)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="120">
+            
+            
+
+            
+
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="119">
+          <li class="never" data-hits="" data-linenumber="121">
             
             
 
@@ -1905,35 +1927,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="120">
+          <li class="covered" data-hits="1" data-linenumber="122">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def make_recommend_meals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="121">
-            
-            
-
-            
-
-            <code class="ruby">    recommend_meals = Meal.where(&#39;score &gt;= ?&#39;, 3).where(user_id: user_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="122">
-            
-            
-
-            
-
-            <code class="ruby">    if recommend_meals.empty?</code>
+            <code class="ruby">  def make_recommend_meals(event)</code>
           </li>
         </div>
       
@@ -1944,7 +1944,7 @@
 
             
 
-            <code class="ruby">      recommend_meals = Meal.where(&#39;score &gt;= ?&#39;, 1).where(user_id: user_id)</code>
+            <code class="ruby">    set_user(event)</code>
           </li>
         </div>
       
@@ -1955,7 +1955,7 @@
 
             
 
-            <code class="ruby">      if recommend_meals.empty?</code>
+            <code class="ruby">    recommend_meals = Meal.where(&#39;score &gt;= ?&#39;, 3).where(user_id: @user_id)</code>
           </li>
         </div>
       
@@ -1966,18 +1966,18 @@
 
             
 
-            <code class="ruby">        recommend_meal = &quot;おすすめの食事はありません&quot;</code>
+            <code class="ruby">    if recommend_meals.empty?</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="126">
+          <li class="missed" data-hits="0" data-linenumber="126">
             
             
 
             
 
-            <code class="ruby">      else</code>
+            <code class="ruby">      recommend_meals = Meal.where(&#39;score &gt;= ?&#39;, 1).where(user_id: @user_id)</code>
           </li>
         </div>
       
@@ -1988,18 +1988,18 @@
 
             
 
-            <code class="ruby">        recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
+            <code class="ruby">      if recommend_meals.empty?</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="128">
+          <li class="missed" data-hits="0" data-linenumber="128">
             
             
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">        recommend_meal = &quot;おすすめの食事はありません&quot;</code>
           </li>
         </div>
       
@@ -2010,7 +2010,7 @@
 
             
 
-            <code class="ruby">    else</code>
+            <code class="ruby">      else</code>
           </li>
         </div>
       
@@ -2021,7 +2021,7 @@
 
             
 
-            <code class="ruby">      recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
+            <code class="ruby">        recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
           </li>
         </div>
       
@@ -2032,7 +2032,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -2043,7 +2043,7 @@
 
             
 
-            <code class="ruby">    message = {</code>
+            <code class="ruby">    else</code>
           </li>
         </div>
       
@@ -2054,7 +2054,7 @@
 
             
 
-            <code class="ruby">                type: &quot;text&quot;,</code>
+            <code class="ruby">      recommend_meal = recommend_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
           </li>
         </div>
       
@@ -2065,7 +2065,7 @@
 
             
 
-            <code class="ruby">                text: recommend_meal</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -2076,7 +2076,7 @@
 
             
 
-            <code class="ruby">              }</code>
+            <code class="ruby">    message = {</code>
           </li>
         </div>
       
@@ -2087,7 +2087,7 @@
 
             
 
-            <code class="ruby">    message = achievement(user, message)</code>
+            <code class="ruby">                type: &quot;text&quot;,</code>
           </li>
         </div>
       
@@ -2098,7 +2098,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">                text: recommend_meal</code>
           </li>
         </div>
       
@@ -2109,199 +2109,23 @@
 
             
 
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="139">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def make_avert_meals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="140">
-            
-            
-
-            
-
-            <code class="ruby">    avert_meals = Meal.where(&#39;score &lt;= ?&#39;, -3).where(user_id: user_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="141">
-            
-            
-
-            
-
-            <code class="ruby">    if avert_meals.empty?</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="142">
-            
-            
-
-            
-
-            <code class="ruby">      avert_meals = Meal.where(&#39;score &lt;= ?&#39;, -1).where(user_id: user_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="143">
-            
-            
-
-            
-
-            <code class="ruby">      if avert_meals.empty?</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="144">
-            
-            
-
-            
-
-            <code class="ruby">        avert_meal = &quot;避けるべき食事はありません&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="145">
-            
-            
-
-            
-
-            <code class="ruby">      else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="146">
-            
-            
-
-            
-
-            <code class="ruby">        avert_meal = avert_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="147">
-            
-            
-
-            
-
-            <code class="ruby">      end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="148">
-            
-            
-
-            
-
-            <code class="ruby">    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="149">
-            
-            
-
-            
-
-            <code class="ruby">      avert_meal = avert_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="150">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="151">
-            
-            
-
-            
-
-            <code class="ruby">    message = {</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="152">
-            
-            
-
-            
-
-            <code class="ruby">                type: &quot;text&quot;,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="153">
-            
-            
-
-            
-
-            <code class="ruby">                text: avert_meal</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="154">
-            
-            
-
-            
-
             <code class="ruby">              }</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="155">
+          <li class="missed" data-hits="0" data-linenumber="139">
             
             
 
             
 
-            <code class="ruby">    message = achievement(user, message)</code>
+            <code class="ruby">    message = achievement(@user, message)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="156">
+          <li class="never" data-hits="" data-linenumber="140">
             
             
 
@@ -2312,7 +2136,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="157">
+          <li class="never" data-hits="" data-linenumber="141">
             
             
 
@@ -2323,18 +2147,150 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="158">
+          <li class="covered" data-hits="1" data-linenumber="142">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def make_explain</code>
+            <code class="ruby">  def make_avert_meals(event)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="159">
+          <li class="missed" data-hits="0" data-linenumber="143">
+            
+            
+
+            
+
+            <code class="ruby">    set_user(event)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="144">
+            
+            
+
+            
+
+            <code class="ruby">    avert_meals = Meal.where(&#39;score &lt;= ?&#39;, -3).where(user_id: @user_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="145">
+            
+            
+
+            
+
+            <code class="ruby">    if avert_meals.empty?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="146">
+            
+            
+
+            
+
+            <code class="ruby">      avert_meals = Meal.where(&#39;score &lt;= ?&#39;, -1).where(user_id: @user_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="147">
+            
+            
+
+            
+
+            <code class="ruby">      if avert_meals.empty?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="148">
+            
+            
+
+            
+
+            <code class="ruby">        avert_meal = &quot;避けるべき食事はありません&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="149">
+            
+            
+
+            
+
+            <code class="ruby">      else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="150">
+            
+            
+
+            
+
+            <code class="ruby">        avert_meal = avert_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="151">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="152">
+            
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="153">
+            
+            
+
+            
+
+            <code class="ruby">      avert_meal = avert_meals.map { |meal| meal.meal_name }.join(&quot;\n&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="154">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="155">
             
             
 
@@ -2345,7 +2301,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="160">
+          <li class="missed" data-hits="0" data-linenumber="156">
             
             
 
@@ -2356,24 +2312,68 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="157">
+            
+            
+
+            
+
+            <code class="ruby">                text: avert_meal</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="158">
+            
+            
+
+            
+
+            <code class="ruby">              }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="159">
+            
+            
+
+            
+
+            <code class="ruby">    message = achievement(@user, message)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="160">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="never" data-hits="" data-linenumber="161">
             
             
 
             
 
-            <code class="ruby">                text: &quot;① **LINE連携ログインの確認**</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="162">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="162">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">  def make_explain</code>
           </li>
         </div>
       
@@ -2384,18 +2384,18 @@
 
             
 
-            <code class="ruby">- このLINEBOTは、サイトでのLINE連携ログインが完了していることが前提条件です。</code>
+            <code class="ruby">    message = {</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="164">
+          <li class="missed" data-hits="0" data-linenumber="164">
             
             
 
             
 
-            <code class="ruby">- まだの方は、サイトにアクセスしてログインを実施してください。</code>
+            <code class="ruby">                type: &quot;text&quot;,</code>
           </li>
         </div>
       
@@ -2406,7 +2406,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">                text: &quot;① **LINE連携ログインの確認**</code>
           </li>
         </div>
       
@@ -2417,7 +2417,7 @@
 
             
 
-            <code class="ruby">② **登録済の食事**</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2428,7 +2428,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">- このLINEBOTは、サイトでのLINE連携ログインが完了していることが前提条件です。</code>
           </li>
         </div>
       
@@ -2439,7 +2439,7 @@
 
             
 
-            <code class="ruby">- 今までに記録したことのある、食事名の一覧が確認できます。</code>
+            <code class="ruby">- まだの方は、サイトにアクセスしてログインを実施してください。</code>
           </li>
         </div>
       
@@ -2461,7 +2461,7 @@
 
             
 
-            <code class="ruby">③ **食事の記録**</code>
+            <code class="ruby">② **登録済の食事**</code>
           </li>
         </div>
       
@@ -2483,7 +2483,7 @@
 
             
 
-            <code class="ruby">- 食事名をメッセージで送信すると、その時刻に食べたものとして記録されます。</code>
+            <code class="ruby">- 今までに記録したことのある、食事名の一覧が確認できます。</code>
           </li>
         </div>
       
@@ -2505,7 +2505,7 @@
 
             
 
-            <code class="ruby">④ **排便の記録**</code>
+            <code class="ruby">③ **食事の記録**</code>
           </li>
         </div>
       
@@ -2527,7 +2527,7 @@
 
             
 
-            <code class="ruby">- 排便の記録ボタンを押すと、3択の選択肢ボタンが送られてきます（[0: 良い, 1: 普通, 2: 悪い]）。</code>
+            <code class="ruby">- 食事名をメッセージで送信すると、その時刻に食べたものとして記録されます。</code>
           </li>
         </div>
       
@@ -2538,7 +2538,7 @@
 
             
 
-            <code class="ruby">- 自分の便の状態を3段階で判断して、該当するボタンをクリックしてください。クリックした状態と時刻で記録されます。</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2549,7 +2549,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">④ **排便の記録**</code>
           </li>
         </div>
       
@@ -2560,7 +2560,7 @@
 
             
 
-            <code class="ruby">⑤ **おすすめの食事・避けるべき食事**</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2571,7 +2571,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">- 排便の記録ボタンを押すと、3択の選択肢ボタンが送られてきます（[0: 良い, 1: 普通, 2: 悪い]）。</code>
           </li>
         </div>
       
@@ -2582,7 +2582,7 @@
 
             
 
-            <code class="ruby">- それぞれのボタンをクリックすると、あなたと相性の良い食事、悪い食事が送られてきます。</code>
+            <code class="ruby">- 自分の便の状態を3段階で判断して、該当するボタンをクリックしてください。クリックした状態と時刻で記録されます。</code>
           </li>
         </div>
       
@@ -2593,7 +2593,7 @@
 
             
 
-            <code class="ruby">- まだ判定ができていない場合は、データが足りていないので、記録を継続してから再度試してください。&quot;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2604,7 +2604,7 @@
 
             
 
-            <code class="ruby">    }</code>
+            <code class="ruby">⑤ **おすすめの食事・避けるべき食事**</code>
           </li>
         </div>
       
@@ -2615,7 +2615,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2626,18 +2626,18 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">- それぞれのボタンをクリックすると、あなたと相性の良い食事、悪い食事が送られてきます。</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="186">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="186">
+            
             
 
             
 
-            <code class="ruby">  def make_meal_log</code>
+            <code class="ruby">- まだ判定ができていない場合は、データが足りていないので、記録を継続してから再度試してください。&quot;</code>
           </li>
         </div>
       
@@ -2648,254 +2648,12 @@
 
             
 
-            <code class="ruby">    # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する</code>
+            <code class="ruby">    }</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="188">
-            
-            
-
-            
-
-            <code class="ruby">    meal_log = event.message[&quot;text&quot;]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="189">
-            
-            
-
-            
-
-            <code class="ruby">    meal = Meal.find_by(meal_name: meal_log, user_id: user_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="190">
-            
-            
-
-            
-
-            <code class="ruby">    if meal.present?</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="191">
-            
-            
-
-            
-
-            <code class="ruby">      meal_id = meal.id</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="192">
-            
-            
-
-            
-
-            <code class="ruby">    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="193">
-            
-            
-
-            
-
-            <code class="ruby">      meal = Meal.new(meal_name: meal_log, user_id: user_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="194">
-            
-            
-
-            
-
-            <code class="ruby">      meal.save</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="195">
-            
-            
-
-            
-
-            <code class="ruby">      meal_id = meal.id</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="196">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="197">
-            
-            
-
-            
-
-            <code class="ruby">    # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="198">
-            
-            
-
-            
-
-            <code class="ruby">    # saveの成否に応じてユーザーへの返信内容を設定する</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="199">
-            
-            
-
-            
-
-            <code class="ruby">    eating = Eating.new(user_id: user_id, meal_id: meal_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="200">
-            
-            
-
-            
-
-            <code class="ruby">    if eating.save</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="201">
-            
-            
-
-            
-
-            <code class="ruby">      meal_log_reply_message = &quot;食事の記録が完了しました。&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="202">
-            
-            
-
-            
-
-            <code class="ruby">    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="203">
-            
-            
-
-            
-
-            <code class="ruby">      meal_log_reply_message = &quot;食事の記録に失敗しました。やり直してください。&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="204">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="205">
-            
-            
-
-            
-
-            <code class="ruby">    message = {</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="206">
-            
-            
-
-            
-
-            <code class="ruby">                type: &quot;text&quot;,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="207">
-            
-            
-
-            
-
-            <code class="ruby">                text: meal_log_reply_message</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="208">
-            
-            
-
-            
-
-            <code class="ruby">              }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="209">
-            
-            
-
-            
-
-            <code class="ruby">    message = achievement(user, message)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="210">
+          <li class="never" data-hits="" data-linenumber="188">
             
             
 
@@ -2906,7 +2664,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="211">
+          <li class="never" data-hits="" data-linenumber="189">
             
             
 
@@ -2917,24 +2675,266 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="212">
+          <li class="covered" data-hits="1" data-linenumber="190">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def user_id</code>
+            <code class="ruby">  def make_meal_log(event)</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="213">
+          <li class="missed" data-hits="0" data-linenumber="191">
             
             
 
             
 
-            <code class="ruby">    user = User.find_by(uid: event[&#39;source&#39;][&#39;userId&#39;])</code>
+            <code class="ruby">    set_user(event)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="192">
+            
+            
+
+            
+
+            <code class="ruby">    # 入力されたテキストを受け取り、mealsテーブルにそれが無ければ新規に登録する</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="193">
+            
+            
+
+            
+
+            <code class="ruby">    meal_log = event.message[&quot;text&quot;]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="194">
+            
+            
+
+            
+
+            <code class="ruby">    meal = Meal.find_by(meal_name: meal_log, user_id: @user_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="195">
+            
+            
+
+            
+
+            <code class="ruby">    if meal.present?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="196">
+            
+            
+
+            
+
+            <code class="ruby">      meal_id = meal.id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="197">
+            
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="198">
+            
+            
+
+            
+
+            <code class="ruby">      meal = Meal.new(meal_name: meal_log, user_id: @user_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="199">
+            
+            
+
+            
+
+            <code class="ruby">      meal.save</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="200">
+            
+            
+
+            
+
+            <code class="ruby">      meal_id = meal.id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="201">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="202">
+            
+            
+
+            
+
+            <code class="ruby">    # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="203">
+            
+            
+
+            
+
+            <code class="ruby">    # saveの成否に応じてユーザーへの返信内容を設定する</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="204">
+            
+            
+
+            
+
+            <code class="ruby">    eating = Eating.new(user_id: @user_id, meal_id: meal_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="205">
+            
+            
+
+            
+
+            <code class="ruby">    if eating.save</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="206">
+            
+            
+
+            
+
+            <code class="ruby">      meal_log_reply_message = &quot;食事の記録が完了しました。&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="207">
+            
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="208">
+            
+            
+
+            
+
+            <code class="ruby">      meal_log_reply_message = &quot;食事の記録に失敗しました。やり直してください。&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="209">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="210">
+            
+            
+
+            
+
+            <code class="ruby">    message = {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="211">
+            
+            
+
+            
+
+            <code class="ruby">                type: &quot;text&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="212">
+            
+            
+
+            
+
+            <code class="ruby">                text: meal_log_reply_message</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="213">
+            
+            
+
+            
+
+            <code class="ruby">              }</code>
           </li>
         </div>
       
@@ -2945,7 +2945,7 @@
 
             
 
-            <code class="ruby">    user_id = user.id</code>
+            <code class="ruby">    message = achievement(@user, message)</code>
           </li>
         </div>
       
@@ -2972,24 +2972,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="217">
-            
-            
-
-            
-
-            <code class="ruby">  # ユーザーに通知する実績情報を作成する</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="218">
+          <li class="covered" data-hits="1" data-linenumber="217">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def achievement(user, message)</code>
+            <code class="ruby">  def set_user(event)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="218">
+            
+            
+
+            
+
+            <code class="ruby">    @user = User.find_by(uid: event[&#39;source&#39;][&#39;userId&#39;])</code>
           </li>
         </div>
       
@@ -3000,7 +3000,7 @@
 
             
 
-            <code class="ruby">    user_id = user.id</code>
+            <code class="ruby">    @user_id = @user.id</code>
           </li>
         </div>
       
@@ -3011,62 +3011,62 @@
 
             
 
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="221">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="222">
+            
+            
+
+            
+
+            <code class="ruby">  # ユーザーに通知する実績情報を作成する</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="223">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def achievement(user, message)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="224">
+            
+            
+
+            
+
+            <code class="ruby">    user_id = user.id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="225">
+            
+            
+
+            
+
             <code class="ruby">    #my_scoreの判定</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="221">
-            
-            
-
-            
-
-            <code class="ruby">    eating_count = Eating.where(user_id: user_id).count</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="222">
-            
-            
-
-            
-
-            <code class="ruby">    stool_count = Stool.where(user_id: user_id).count</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="223">
-            
-            
-
-            
-
-            <code class="ruby">    my_score = eating_count + stool_count</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="224">
-            
-            
-
-            
-
-            <code class="ruby">    # meal_log_days_recordの判定</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="225">
-            
-            
-
-            
-
-            <code class="ruby">    meal_log_days_record = 0</code>
           </li>
         </div>
       
@@ -3077,7 +3077,7 @@
 
             
 
-            <code class="ruby">    meal_date = Date.today</code>
+            <code class="ruby">    eating_count = Eating.where(user_id: user_id).count</code>
           </li>
         </div>
       
@@ -3088,7 +3088,7 @@
 
             
 
-            <code class="ruby">    while Eating.where(user_id: user_id).where(&quot;DATE(created_at) = ?&quot;, meal_date).exists?</code>
+            <code class="ruby">    stool_count = Stool.where(user_id: user_id).count</code>
           </li>
         </div>
       
@@ -3099,40 +3099,40 @@
 
             
 
-            <code class="ruby">      meal_log_days_record += 1</code>
+            <code class="ruby">    my_score = eating_count + stool_count</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="229">
+          <li class="never" data-hits="" data-linenumber="229">
             
             
 
             
 
-            <code class="ruby">      meal_date = meal_date.prev_day</code>
+            <code class="ruby">    # meal_log_days_recordの判定</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="230">
+          <li class="missed" data-hits="0" data-linenumber="230">
             
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    meal_log_days_record = 0</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="231">
+          <li class="missed" data-hits="0" data-linenumber="231">
             
             
 
             
 
-            <code class="ruby">    # continuation_daysの判定</code>
+            <code class="ruby">    meal_date = Date.today</code>
           </li>
         </div>
       
@@ -3143,7 +3143,7 @@
 
             
 
-            <code class="ruby">    date_registered = user.created_at.to_date</code>
+            <code class="ruby">    while Eating.where(user_id: user_id).where(&quot;DATE(created_at) = ?&quot;, meal_date).exists?</code>
           </li>
         </div>
       
@@ -3154,7 +3154,7 @@
 
             
 
-            <code class="ruby">    today = DateTime.now.to_date</code>
+            <code class="ruby">      meal_log_days_record += 1</code>
           </li>
         </div>
       
@@ -3165,7 +3165,7 @@
 
             
 
-            <code class="ruby">    continuation_days = (today - date_registered).to_i</code>
+            <code class="ruby">      meal_date = meal_date.prev_day</code>
           </li>
         </div>
       
@@ -3176,18 +3176,18 @@
 
             
 
-            <code class="ruby">    # first_meal second_meal third_meal</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="236">
+          <li class="never" data-hits="" data-linenumber="236">
             
             
 
             
 
-            <code class="ruby">    my_meal_counts = Eating.where(user_id: user_id).group(:meal_id).count.sort_by{|key, val| -val}</code>
+            <code class="ruby">    # continuation_daysの判定</code>
           </li>
         </div>
       
@@ -3198,7 +3198,7 @@
 
             
 
-            <code class="ruby">    first_meal = Meal.find(my_meal_counts[0][0]).meal_name</code>
+            <code class="ruby">    date_registered = user.created_at.to_date</code>
           </li>
         </div>
       
@@ -3209,7 +3209,7 @@
 
             
 
-            <code class="ruby">    first_meal_count = my_meal_counts[0][1]</code>
+            <code class="ruby">    today = DateTime.now.to_date</code>
           </li>
         </div>
       
@@ -3220,18 +3220,18 @@
 
             
 
-            <code class="ruby">    second_meal = Meal.find(my_meal_counts[1][0]).meal_name</code>
+            <code class="ruby">    continuation_days = (today - date_registered).to_i</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="240">
+          <li class="never" data-hits="" data-linenumber="240">
             
             
 
             
 
-            <code class="ruby">    second_meal_count = my_meal_counts[1][1]</code>
+            <code class="ruby">    # first_meal second_meal third_meal</code>
           </li>
         </div>
       
@@ -3242,7 +3242,7 @@
 
             
 
-            <code class="ruby">    third_meal = Meal.find(my_meal_counts[2][0]) .meal_name</code>
+            <code class="ruby">    my_meal_counts = Eating.where(user_id: user_id).group(:meal_id).count.sort_by{|key, val| -val}</code>
           </li>
         </div>
       
@@ -3253,18 +3253,18 @@
 
             
 
-            <code class="ruby">    third_meal_count = my_meal_counts[2][1]</code>
+            <code class="ruby">    first_meal = Meal.find(my_meal_counts[0][0]).meal_name</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="243">
+          <li class="missed" data-hits="0" data-linenumber="243">
             
             
 
             
 
-            <code class="ruby">    # 実績の返信内容を作成する</code>
+            <code class="ruby">    first_meal_count = my_meal_counts[0][1]</code>
           </li>
         </div>
       
@@ -3275,18 +3275,18 @@
 
             
 
-            <code class="ruby">    achievement_message = &quot;【現在の実績】\n・スコア：#{my_score}ポイント\n・#{meal_log_days_record}日連続記録達成中！(食事)\n・アプリを始めてから#{continuation_days}日経過\n\n【記録回数Top3の食事名】\n1.#{first_meal}：#{first_meal_count}回\n2.#{second_meal}：#{second_meal_count}回\n3.#{third_meal}：#{third_meal_count}回&quot;</code>
+            <code class="ruby">    second_meal = Meal.find(my_meal_counts[1][0]).meal_name</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="245">
+          <li class="missed" data-hits="0" data-linenumber="245">
             
             
 
             
 
-            <code class="ruby">    achievement = [</code>
+            <code class="ruby">    second_meal_count = my_meal_counts[1][1]</code>
           </li>
         </div>
       
@@ -3297,18 +3297,18 @@
 
             
 
-            <code class="ruby">                message,</code>
+            <code class="ruby">    third_meal = Meal.find(my_meal_counts[2][0]) .meal_name</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="247">
+          <li class="missed" data-hits="0" data-linenumber="247">
             
             
 
             
 
-            <code class="ruby">                {</code>
+            <code class="ruby">    third_meal_count = my_meal_counts[2][1]</code>
           </li>
         </div>
       
@@ -3319,18 +3319,18 @@
 
             
 
-            <code class="ruby">                  type: &quot;text&quot;,</code>
+            <code class="ruby">    # 実績の返信内容を作成する</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="249">
+          <li class="missed" data-hits="0" data-linenumber="249">
             
             
 
             
 
-            <code class="ruby">                  text: achievement_message  # ここに追加したいメッセージの内容を書く</code>
+            <code class="ruby">    achievement_message = &quot;【現在の実績】\n・スコア：#{my_score}ポイント\n・#{meal_log_days_record}日連続記録達成中！(食事)\n・アプリを始めてから#{continuation_days}日経過\n\n【記録回数Top3の食事名】\n1.#{first_meal}：#{first_meal_count}回\n2.#{second_meal}：#{second_meal_count}回\n3.#{third_meal}：#{third_meal_count}回&quot;</code>
           </li>
         </div>
       
@@ -3341,18 +3341,18 @@
 
             
 
-            <code class="ruby">                }</code>
+            <code class="ruby">    achievement = [</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="251">
+          <li class="missed" data-hits="0" data-linenumber="251">
             
             
 
             
 
-            <code class="ruby">              ]</code>
+            <code class="ruby">                message,</code>
           </li>
         </div>
       
@@ -3363,12 +3363,67 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">                {</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="253">
+            
+            
+
+            
+
+            <code class="ruby">                  type: &quot;text&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="254">
+            
+            
+
+            
+
+            <code class="ruby">                  text: achievement_message  # ここに追加したいメッセージの内容を書く</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="255">
+            
+            
+
+            
+
+            <code class="ruby">                }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="256">
+            
+            
+
+            
+
+            <code class="ruby">              ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="257">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="258">
             
             
 
