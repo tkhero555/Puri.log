@@ -1,9 +1,6 @@
 # 「Puri.log」
 サービスURL:https://www.puri-log.com/
 
-![Uploading Puri.log OGP用画像1200 (1).png…]()
-
-
 ### ■ サービス概要
 
 胃腸の弱い人のための食事と排便の記録アプリです。<br>
