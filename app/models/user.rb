@@ -37,4 +37,32 @@ class User < ApplicationRecord
   def set_defaults
     self.notifications_enabled ||= false
   end
+
+  def set_instance_meal_log_days
+    meal_log_days_record = 0
+    meal_start_day = Time.zone.now.beginning_of_day
+    meal_end_day = Time.zone.now.end_of_day
+
+    while eatings.where(created_at: meal_start_day..meal_end_day).exists?
+      meal_log_days_record += 1
+      meal_start_day -= 1.day
+      meal_end_day -= 1.day
+    end
+
+    meal_log_days_record
+  end
+
+  def set_instance_stool_log_days
+    stool_log_days_record = 0
+    stool_start_day = Time.zone.now.beginning_of_day
+    stool_end_day = Time.zone.now.end_of_day
+
+    while stools.where(created_at: stool_start_day..stool_end_day).exists?
+      stool_log_days_record += 1
+      stool_start_day -= 1.day
+      stool_end_day -= 1.day
+    end
+
+    stool_log_days_record
+  end
 end

@@ -1,12 +1,13 @@
 class StaticPagesController < ApplicationController
+
   def index 
-    @number = session[:number] || 1
+    @number = session[:number] || EXPLAIN_MIN_PAGE
   end
 
   def increment
-    @number = (session[:number] || 0) + 1
-    if @number >= 9
-      @number = 1
+    @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_PLUS
+    if @number >= EXPLAIN_MAX_PAGE + PAGE_NUMBER_PLUS
+      @number = EXPLAIN_MIN_PAGE
       session[:number] = @number
     else
       session[:number] = @number
@@ -14,9 +15,9 @@ class StaticPagesController < ApplicationController
   end
 
   def decrement
-    @number = (session[:number] || 0) - 1
-    if @number <= 0
-      @number = 8
+    @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_MINUS
+    if @number <= EXPLAIN_MIN_PAGE + PAGE_NUMBER_MINUS
+      @number = EXPLAIN_MAX_PAGE
       session[:number] = @number
     else
       session[:number] = @number
