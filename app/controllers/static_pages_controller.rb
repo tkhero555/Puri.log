@@ -23,4 +23,13 @@ class StaticPagesController < ApplicationController
       session[:number] = @number
     end
   end
+
+  # トップページで使用する定数の設定
+  # 詳しい説明の最小と最大ページ番号
+  EXPLAIN_MIN_PAGE = 1
+  EXPLAIN_MAX_PAGE = 8
+
+  # 詳しい説明のページ移行用の値
+  PAGE_NUMBER_PLUS = 1
+  PAGE_NUMBER_MINUS = -1
 end

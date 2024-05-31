@@ -62,6 +62,7 @@ class LineBotController < ApplicationController
 
   def make_logged_meals(event)
     set_user(event)
+    # ユーザーに紐づく食事記録を食事名ごとにグループ化してカウント
     meal_log_count = Eating.where(user_id: @user_id).group(:meal_id).count
     my_meals = Meal.where(user_id: @user_id)
     logged_meals = ""
@@ -70,6 +71,7 @@ class LineBotController < ApplicationController
     else
       my_meals.each do |my_meal|
         my_meal_id = my_meal.id
+        # 食事名：記録回数という形式の文字列を作成して変数logged_mealsに追加
         logged_meals << "#{my_meal.meal_name} : #{meal_log_count[my_meal_id]}回\n"
       end
     end
@@ -95,14 +97,15 @@ class LineBotController < ApplicationController
       }
       return
     end
-    if stool_log == STOOL_LOG_CONDITION_GOOD
-      score_change = MEAL_SCORE_CHANGE_PLUS
-    elsif stool_log == STOOL_LOG_CONDITION_BAD
-      score_change = MEAL_SCORE_CHANGE_MINUS
+    if stool_log == Stool::STOOL_LOG_CONDITION_GOOD
+      score_change = Meal::MEAL_SCORE_CHANGE_PLUS
+    elsif stool_log == Stool::STOOL_LOG_CONDITION_BAD
+      score_change = Meal::MEAL_SCORE_CHANGE_MINUS
     else
-      score_change = MEAL_SCORE_CHANGE_ZERO
+      score_change = Meal::MEAL_SCORE_CHANGE_ZERO
     end
-    eatings = Eating.where(created_at: DETERMINING_COMPATIBILITY_START_TIME.hours.ago..DETERMINING_COMPATIBILITY_END_TIME.hours.ago).where(user_id: @user_id)
+    # ユーザーに紐づく食事記録から、特定の時間範囲の記録を取り出す。時間範囲は定数で始点と終点が設定されている。
+    eatings = Eating.where(created_at: Eating::DETERMINING_COMPATIBILITY_START_TIME.hours.ago..Eating::DETERMINING_COMPATIBILITY_END_TIME.hours.ago).where(user_id: @user_id)
     stool_log_reply_message = "排便の記録が完了しました。\n\n\n【今記録した便の元となっている可能性がある食事一覧】\n\n食事名：日時\n"
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
@@ -110,6 +113,7 @@ class LineBotController < ApplicationController
         stool_log_reply_message = "排便の記録に失敗しました。やり直してください。"
         break
       end
+      # 食事名：記録日時という形式の文字列を作成して、変数に追加
       stool_log_reply_message << "#{meal.meal_name}：#{meal.created_at.strftime("%-m-%d %H:%M")}\n"
     end
     message = {
@@ -121,9 +125,11 @@ class LineBotController < ApplicationController
 
   def make_recommend_meals(event)
     set_user(event)
-    recommend_meals = Meal.where('score >= ?', RECOMMEND_MEAL_JUDGE_FIRST_POINT).where(user_id: @user_id)
+    # ユーザーに紐づく食事記録から、scoreカラムが第一基準値以上のものを取り出す。基準値は定数で設定されている。
+    recommend_meals = Meal.where('score >= ?', Meal::RECOMMEND_MEAL_JUDGE_FIRST_POINT).where(user_id: @user_id)
     if recommend_meals.empty?
-      recommend_meals = Meal.where('score >= ?', RECOMMEND_MEAL_JUDGE_SECOND_POINT).where(user_id: @user_id)
+      # ユーザーに紐づく食事記録から、scoreカラムが第二基準値以上のものを取り出す。基準値は定数で設定されている。
+      recommend_meals = Meal.where('score >= ?', Meal::RECOMMEND_MEAL_JUDGE_SECOND_POINT).where(user_id: @user_id)
       if recommend_meals.empty?
         recommend_meal = "おすすめの食事はありません"
       else
@@ -141,9 +147,11 @@ class LineBotController < ApplicationController
 
   def make_avert_meals(event)
     set_user(event)
-    avert_meals = Meal.where('score <= ?', AVERT_MEAL_JUDGE_FIRST_POINT).where(user_id: @user_id)
+    # ユーザーに紐づく食事記録から、scoreカラムが第一基準値以下のものを取り出す。基準値は定数で設定されている。
+    avert_meals = Meal.where('score <= ?', Meal::AVERT_MEAL_JUDGE_FIRST_POINT).where(user_id: @user_id)
     if avert_meals.empty?
-      avert_meals = Meal.where('score <= ?', AVERT_MEAL_JUDGE_SECOND_POINT).where(user_id: @user_id)
+      # ユーザーに紐づく食事記録から、scoreカラムが第二基準値以下のものを取り出す。基準値は定数で設定されている。
+      avert_meals = Meal.where('score <= ?', Meal::AVERT_MEAL_JUDGE_SECOND_POINT).where(user_id: @user_id)
       if avert_meals.empty?
         avert_meal = "避けるべき食事はありません"
       else
@@ -222,22 +230,28 @@ class LineBotController < ApplicationController
   # ユーザーに通知する実績情報を作成する
   def achievement(user, message)
     user_id = user.id
+
     #my_scoreの判定
     eating_count = Eating.where(user_id: user_id).count
     stool_count = Stool.where(user_id: user_id).count
     my_score = eating_count + stool_count
+
     # meal_log_days_recordの判定
     meal_log_days_record = 0
     meal_date = Date.today
+    # ユーザーに紐づく食事記録に、meal_dateで設定した日付のものがあるか判別
     while Eating.where(user_id: user_id).where("DATE(created_at) = ?", meal_date).exists?
       meal_log_days_record += 1
       meal_date = meal_date.prev_day
     end
+
     # continuation_daysの判定
     date_registered = user.created_at.to_date
     today = DateTime.now.to_date
     continuation_days = (today - date_registered).to_i
-    # first_meal second_meal third_meal
+
+    # first_meal second_meal third_mealの判定
+    # ユーザーに紐づく食事記録を、食事名ごとにグループ化しカウントした結果をvalueを基準に降順で並び替え
     my_meal_counts = Eating.where(user_id: user_id).group(:meal_id).count.sort_by{|key, val| -val}
     first_meal = Meal.find(my_meal_counts[0][0]).meal_name
     first_meal_count = my_meal_counts[0][1]

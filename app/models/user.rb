@@ -65,4 +65,8 @@ class User < ApplicationRecord
 
     stool_log_days_record
   end
+
+  # Userモデルに関連する定数の設定
+  # 記録済みテストユーザーid
+  RECORDED_TEST_USER_ID = 2
 end

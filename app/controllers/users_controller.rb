@@ -3,14 +3,14 @@ class UsersController < ApplicationController
 
   def show
     # おすすめの食事用のインスタンス変数
-    @recommend_meals = current_user.meals.where('score >= ?', RECOMMEND_MEAL_JUDGE_FIRST_POINT)
+    @recommend_meals = current_user.meals.where('score >= ?', Meal::RECOMMEND_MEAL_JUDGE_FIRST_POINT)
     if @recommend_meals.nil?
-      @recommend_meals = current_user.meals.where('score >= ?', RECOMMEND_MEAL_JUDGE_SECOND_POINT)
+      @recommend_meals = current_user.meals.where('score >= ?', Meal::RECOMMEND_MEAL_JUDGE_SECOND_POINT)
     end
     # 避けるべき食事用のインスタンス変数
-    @avert_meals = current_user.meals.where('score <= ?', AVERT_MEAL_JUDGE_FIRST_POINT)
+    @avert_meals = current_user.meals.where('score <= ?', Meal::AVERT_MEAL_JUDGE_FIRST_POINT)
     if @avert_meals.nil?
-      @avert_meals = current_user.meals.where('score >= ?', AVERT_MEAL_JUDGE_SECOND_POINT)
+      @avert_meals = current_user.meals.where('score >= ?', Meal::AVERT_MEAL_JUDGE_SECOND_POINT)
     end
 
     # 記録履歴一覧用のインスタンス変数
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     @stool_log_days_record = current_user.set_instance_stool_log_days
 
     # 記録済みテストユーザーのIDを格納する
-    @recorded_test_user_id = RECORDED_TEST_USER_ID
+    @recorded_test_user_id = User::RECORDED_TEST_USER_ID
   end
 
   def destroy

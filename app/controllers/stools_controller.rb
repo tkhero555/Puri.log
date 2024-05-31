@@ -2,7 +2,7 @@ class StoolsController < ApplicationController
 
   def create
     if params[:condition] == ""
-      condition = STOOL_LOG_CONDITION_NORMAL
+      condition = Stool::STOOL_LOG_CONDITION_NORMAL
     else
       condition = params[:condition].to_i
     end
@@ -12,17 +12,17 @@ class StoolsController < ApplicationController
       render("user/show")
       return
     end
-    if condition == STOOL_LOG_CONDITION_GOOD
-      score_change = MEAL_SCORE_CHANGE_PLUS
-    elsif condition == STOOL_LOG_CONDITION_BAD
-      score_change = MEAL_SCORE_CHANGE_MINUS
+    if condition == Stool::STOOL_LOG_CONDITION_GOOD
+      score_change = Meal::MEAL_SCORE_CHANGE_PLUS
+    elsif condition == Stool::STOOL_LOG_CONDITION_BAD
+      score_change = Meal::MEAL_SCORE_CHANGE_MINUS
     else
       flash[:notice] = '排便を記録しました'
       redirect_to user_path(current_user)
       return
     end
-    start_time = stool.created_at - DETERMINING_COMPATIBILITY_START_TIME.hours
-    end_time = stool.created_at - DETERMINING_COMPATIBILITY_END_TIME.hours
+    start_time = stool.created_at - Eating::DETERMINING_COMPATIBILITY_START_TIME.hours
+    end_time = stool.created_at - Eating::DETERMINING_COMPATIBILITY_END_TIME.hours
     eatings = Eating.where(created_at: start_time..end_time).where(user_id: current_user.id)
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
@@ -38,14 +38,14 @@ class StoolsController < ApplicationController
   def destroy
     stool = Stool.find(params[:id])
     if stool.condition == "good"
-      score_change = MEAL_SCORE_CHANGE_MINUS
+      score_change = Meal::MEAL_SCORE_CHANGE_MINUS
     elsif stool.condition == "bad"
-      score_change = MEAL_SCORE_CHANGE_PLUS
+      score_change = Meal::MEAL_SCORE_CHANGE_PLUS
     else
-      score_change = MEAL_SCORE_CHANGE_ZERO
+      score_change = Meal::MEAL_SCORE_CHANGE_ZERO
     end
-    start_time = stool.created_at - DETERMINING_COMPATIBILITY_START_TIME.hours
-    end_time = stool.created_at - DETERMINING_COMPATIBILITY_END_TIME.hours
+    start_time = stool.created_at - Eating::DETERMINING_COMPATIBILITY_START_TIME.hours
+    end_time = stool.created_at - Eatong::DETERMINING_COMPATIBILITY_END_TIME.hours
     eatings = Eating.where(created_at: start_time..end_time).where(user_id: current_user.id)
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
