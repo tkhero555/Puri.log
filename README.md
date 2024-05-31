@@ -1,5 +1,5 @@
 # 「Puri.log」
-サービスURL:https://purilog-2a85943c9f18.herokuapp.com/
+サービスURL:https://www.puri-log.com/
 
 ### ■ サービス概要
 
