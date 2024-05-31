@@ -2,7 +2,7 @@ class StoolsController < ApplicationController
 
   def create
     if params[:condition] == ""
-      condition = 1
+      condition = STOOL_LOG_CONDITION_NORMAL
     else
       condition = params[:condition].to_i
     end
@@ -12,17 +12,17 @@ class StoolsController < ApplicationController
       render("user/show")
       return
     end
-    if condition == 0
-      score_change = 1
-    elsif condition == 2
-      score_change = -1
+    if condition == STOOL_LOG_CONDITION_GOOD
+      score_change = MEAL_SCORE_CHANGE_PLUS
+    elsif condition == STOOL_LOG_CONDITION_BAD
+      score_change = MEAL_SCORE_CHANGE_MINUS
     else
       flash[:notice] = '排便を記録しました'
       redirect_to user_path(current_user)
       return
     end
-    start_time = stool.created_at - 50.hours
-    end_time = stool.created_at - 20.hours
+    start_time = stool.created_at - DETERMINING_COMPATIBILITY_START_TIME.hours
+    end_time = stool.created_at - DETERMINING_COMPATIBILITY_END_TIME.hours
     eatings = Eating.where(created_at: start_time..end_time).where(user_id: current_user.id)
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
@@ -38,14 +38,14 @@ class StoolsController < ApplicationController
   def destroy
     stool = Stool.find(params[:id])
     if stool.condition == "good"
-      score_change = -1
+      score_change = MEAL_SCORE_CHANGE_MINUS
     elsif stool.condition == "bad"
-      score_change = 1
+      score_change = MEAL_SCORE_CHANGE_PLUS
     else
-      score_change = 0
+      score_change = MEAL_SCORE_CHANGE_ZERO
     end
-    start_time = stool.created_at - 50.hours
-    end_time = stool.created_at - 20.hours
+    start_time = stool.created_at - DETERMINING_COMPATIBILITY_START_TIME.hours
+    end_time = stool.created_at - DETERMINING_COMPATIBILITY_END_TIME.hours
     eatings = Eating.where(created_at: start_time..end_time).where(user_id: current_user.id)
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)

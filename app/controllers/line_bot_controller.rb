@@ -95,14 +95,14 @@ class LineBotController < ApplicationController
       }
       return
     end
-    if stool_log == 0
-      score_change = 1
-    elsif stool_log == 2
-      score_change = -1
+    if stool_log == STOOL_LOG_CONDITION_GOOD
+      score_change = MEAL_SCORE_CHANGE_PLUS
+    elsif stool_log == STOOL_LOG_CONDITION_BAD
+      score_change = MEAL_SCORE_CHANGE_MINUS
     else
-      score_change = 0
+      score_change = MEAL_SCORE_CHANGE_ZERO
     end
-    eatings = Eating.where(created_at: 50.hours.ago..20.hours.ago).where(user_id: @user_id)
+    eatings = Eating.where(created_at: DETERMINING_COMPATIBILITY_START_TIME.hours.ago..DETERMINING_COMPATIBILITY_END_TIME.hours.ago).where(user_id: @user_id)
     stool_log_reply_message = "排便の記録が完了しました。\n\n\n【今記録した便の元となっている可能性がある食事一覧】\n\n食事名：日時\n"
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
@@ -121,9 +121,9 @@ class LineBotController < ApplicationController
 
   def make_recommend_meals(event)
     set_user(event)
-    recommend_meals = Meal.where('score >= ?', 3).where(user_id: @user_id)
+    recommend_meals = Meal.where('score >= ?', RECOMMEND_MEAL_JUDGE_FIRST_POINT).where(user_id: @user_id)
     if recommend_meals.empty?
-      recommend_meals = Meal.where('score >= ?', 1).where(user_id: @user_id)
+      recommend_meals = Meal.where('score >= ?', RECOMMEND_MEAL_JUDGE_SECOND_POINT).where(user_id: @user_id)
       if recommend_meals.empty?
         recommend_meal = "おすすめの食事はありません"
       else
@@ -141,9 +141,9 @@ class LineBotController < ApplicationController
 
   def make_avert_meals(event)
     set_user(event)
-    avert_meals = Meal.where('score <= ?', -3).where(user_id: @user_id)
+    avert_meals = Meal.where('score <= ?', AVERT_MEAL_JUDGE_FIRST_POINT).where(user_id: @user_id)
     if avert_meals.empty?
-      avert_meals = Meal.where('score <= ?', -1).where(user_id: @user_id)
+      avert_meals = Meal.where('score <= ?', AVERT_MEAL_JUDGE_SECOND_POINT).where(user_id: @user_id)
       if avert_meals.empty?
         avert_meal = "避けるべき食事はありません"
       else
