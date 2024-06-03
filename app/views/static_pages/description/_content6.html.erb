@@ -1,8 +1,14 @@
-<div class="card bg-base-100 shadow-xl max-w-3xl mx-auto h-screen md:h-3/4 lg:h-2/3">
-  <div class="card-body">
-    <h2 class="card-title">6.記録を忘れた時はマイページで日時指定記録</h2>
-    <p>マイページ上部の記録フォームでは、日時を指定して記録することできます。<br>
-    うっかり記録を忘れた時や、一日の記録をまとめて行う時は、マイページのフォームを使いましょう。<br>
+<div class="h-280 sm:h-192 bg-base-100 shadow-xl max-w-3xl mx-auto border-2 border-black rounded-lg">
+  <div class="p-8">
+    <h2 class="pr-4 pb-4 font-bold text-xl">6.記録を忘れた時はマイページで日時指定記録</h2>
+    <div class="sm:flex">
+      <div class="sm:w-1/2 sm:p-4">
+        <p><br>マイページ上部の記録フォームでは、日時を指定して記録することできます。<br>
+        うっかり記録を忘れた時や、一日の記録をまとめて行う時は、マイページのフォームを使いましょう。<br>
+      </div>
+      <div class="sm:w-1/2 sm:p-4">
+        <%= image_tag "log_image.png", class: "mt-4 mx-auto w-full h-auto max-w-xs border-2 border-black", alt: "log_image" %>
+      </div>
+    </div>
   </div>
-  <figure><%= image_tag "log_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "log_image" %></figure>
 </div>
