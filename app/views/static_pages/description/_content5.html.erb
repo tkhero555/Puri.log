@@ -1,13 +1,19 @@
-<div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
-  <div class="card-body">
-    <h2 class="card-title">5.あなたの胃腸と食事の相性判定</h2>
-    <p>記録が溜まっていくと、アプリがあなたの胃腸と食事との相性を判定してくれるようになります。<br>
-    判定結果はマイページに表示されるので、確認してみましょう。<br>
-    <strong>【おすすめの食事】</strong><br>
-    「良い」の状態で記録した便の元となった可能性が高い、と判断された食事が表示されます。<br>
-    <strong>【避けるべき食事】</strong><br>
-    「悪い」の状態で記録した便の元となった可能性が高い、と判断された食事が表示されます。<br>
-    下痢や便秘の要因となっている可能性があるので、摂取を控えて様子を見てみましょう。<br></p>
+<div class="h-280 sm:h-192 bg-base-100 shadow-xl max-w-3xl mx-auto border-2 border-black rounded-lg">
+  <div class="p-8">
+    <h2 class="pr-4 pb-4 font-bold text-xl">5.あなたの胃腸と食事の相性判定</h2>
+    <div class="sm:flex">
+      <div class="sm:w-1/2 sm:p-4">
+        <p><br>記録が溜まっていくと、アプリがあなたの胃腸と食事との相性を判定してくれるようになります。<br>
+        判定結果はマイページに表示されるので、確認してみましょう。<br>
+        <strong>【おすすめの食事】</strong><br>
+        「良い」の状態で記録した便の元となった可能性が高い、と判断された食事が表示されます。<br>
+        <strong>【避けるべき食事】</strong><br>
+        「悪い」の状態で記録した便の元となった可能性が高い、と判断された食事が表示されます。<br>
+        下痢や便秘の要因となっている可能性があるので、摂取を控えて様子を見てみましょう。<br></p>
+      </div>
+      <div class="sm:w-1/2 sm:p-4">
+        <%= image_tag "recommend_image.png", class: "mt-4 mx-auto w-full h-auto max-w-xs border-2 border-black", alt: "log_image" %>
+      </div>
+    </div>
   </div>
-  <figure><%= image_tag "recommend_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "log_image" %></figure>
 </div>

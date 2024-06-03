@@ -2,10 +2,34 @@
   <div class="flex-1 ">
     <%= link_to 'Puri.log', root_path, class: "btn btn-ghost text-xl" %>
   </div>
-  <div class="flex-none">
+  <div class="flex-none hidden sm:inline-block">
     <ul class="menu menu-horizontal px-1">
       <li class="bg-base-300 rounded-lg"><%= button_to 'ゲストログイン', users_guest_sign_in_path %></li>
       <li class="bg-green-500 text-white rounded-lg"><%= button_to 'LINE連携ログイン', omniauth_authorize_path(:user, :line), data: { turbo: false } %></li>
     </ul>
   </div>
+  <div class="sm:hidden">
+    <div class="dropdown dropdown-bottom dropdown-end border-none">
+      <div tabindex="0" role="button" class="btn bg-header border-none">
+        <svg class="h-10 w-10" role="button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 12h16M4 16h16"></path>
+        </svg>
+      </div>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li><%= button_to 'ゲストログイン', users_guest_sign_in_path, class: "text-header transition-all duration-300" %></li>
+        <li><%= button_to 'LINE連携ログイン', omniauth_authorize_path(:user, :line), data: { turbo: false }, class: "text-header transition-all duration-300" %></li>
+      </ul>
+    </div>
+  </div>
 </div>
+
+<script>
+  function toggleMenu() {
+    var menu = document.getElementById('menu');
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden');
+    } else {
+      menu.classList.add('hidden');
+    }
+  }
+</script>

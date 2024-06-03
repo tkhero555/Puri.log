@@ -1,20 +1,26 @@
-<div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
-  <div class="card-body">
-    <h2 class="card-title">3.LINEBOTから記録する。</h2>
-    <ul>
-      <li>
-        <strong>・食事を記録してみよう</strong><br>
-        食べるタイミングでLINE BOTを開き、画像の⑦を押しましょう。<br>
-        入力画面が表示されるので、食べたものの名前をメッセージしてください。<br>
-        入力された内容があなたのデータとして自動で記録されます。<br>
-      </li>
-      <li>
-        <strong>・排便を記録してみよう</strong><br>
-        トイレに行ったタイミングでLINE BOTを開き、画像の②のボタンを押しましょう。<br>
-        ボタンを押すと、「0.良い・1.普通・2.悪い」の3つの選択肢ボタンがついたメッセージが送られてきます。<br>
-        自分の便の状態を選んでタップすれば、排便が記録されます。<br>
-      </li>
-    </ul>
+<div class="h-280 sm:h-192 bg-base-100 shadow-xl max-w-3xl mx-auto border-2 border-black rounded-lg">
+  <div class="p-8">
+    <h2 class="pr-4 pb-4 font-bold text-xl">3.LINEBOTから記録する。</h2>
+    <div class="sm:flex">
+      <div class="sm:w-1/2 sm:p-4">
+        <ul>
+          <li><br>
+            <strong>・食事を記録してみよう</strong><br>
+            食べるタイミングでLINE BOTを開き、画像の⑦を押しましょう。<br>
+            入力画面が表示されるので、食べたものの名前をメッセージしてください。<br>
+            入力された内容があなたのデータとして自動で記録されます。<br>
+          </li>
+          <li>
+            <strong>・排便を記録してみよう</strong><br>
+            トイレに行ったタイミングでLINE BOTを開き、画像の②のボタンを押しましょう。<br>
+            ボタンを押すと、「0.良い・1.普通・2.悪い」の3つの選択肢ボタンがついたメッセージが送られてきます。<br>
+            自分の便の状態を選んでタップすれば、排便が記録されます。<br>
+          </li>
+        </ul>
+      </div>
+      <div class="sm:w-1/2 sm:p-4">
+        <%= image_tag "line_bot_image.png", class: "mt-4 mx-auto w-full h-auto max-w-xs border-2 border-black", alt: "login_image" %>
+      </div>
+    </div>
   </div>
-  <figure><%= image_tag "line_bot_image.png", class: "w-full h-auto max-w-xs lg:max-w-sm border-2 border-black", alt: "login_image" %></figure>
 </div>
