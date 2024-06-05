@@ -66,6 +66,99 @@ class User < ApplicationRecord
     stool_log_days_record
   end
 
+  def set_instance_eating_count_graph
+    data = eatings.group_by_month(:created_at).count.to_a.last(6)
+    months = %w[1月 2月 3月 4月 5月 6月 7月 8月 9月 10月 11月 12月]
+    data.map! do |date, value|
+      month_name = months[date.month - 1]
+      [month_name, value]
+    end
+  end
+
+  def set_instance_eating_weekly_count_graph
+    data = eatings.group_by_week(:created_at).count.to_a.last(6)
+    data.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+  end
+
+  def set_instance_eating_daily_count_graph
+    data = eatings.group_by_day(:created_at).count.to_a.last(6)
+    data.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+  end
+
+  def set_instance_stool_count_graph
+    data = stools.group_by_month(:created_at).count.to_a.last(6)
+    months = %w[1月 2月 3月 4月 5月 6月 7月 8月 9月 10月 11月 12月]
+    data.map! do |date, value|
+      month_name = months[date.month - 1]
+      [month_name, value]
+    end
+  end
+
+  def set_instance_stool_weekly_count_graph
+    data = stools.group_by_week(:created_at).count.to_a.last(6)
+    data.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+  end
+
+  def set_instance_stool_daily_count_graph
+    data = stools.group_by_day(:created_at).count.to_a.last(6)
+    data.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+  end
+
+  def set_instance_stool_condition_count_graph
+    data = stools.group(:condition).count.to_a
+    data.map! do |key, value|
+      if key == "good"
+        ["良い", value]
+      elsif key == "normal"
+        ["普通", value]
+      elsif key == "bad"
+        ["悪い", value]
+      end
+    end
+  end
+
+  def set_instance_stool_this_month_condition_count_graph
+    data = stools.this_month.group(:condition).count.to_a
+    data.map! do |key, value|
+      if key == "good"
+        ["良い", value]
+      elsif key == "normal"
+        ["普通", value]
+      elsif key == "bad"
+        ["悪い", value]
+      end
+    end
+  end
+
+  def set_instance_stool_last_month_condition_count_graph
+    data = stools.last_month.group(:condition).count.to_a
+    data.map! do |key, value|
+      if key == "good"
+        ["良い", value]
+      elsif key == "normal"
+        ["普通", value]
+      elsif key == "bad"
+        ["悪い", value]
+      end
+    end
+  end
+
+  def set_instance_user_condition_graph
+    data = stools.last(90)
+    data.map! do |item|
+      [item.created_at, item.condition_before_type_cast]
+    end
+  end
+
+
   # Userモデルに関連する定数の設定
   # 記録済みテストユーザーid
   RECORDED_TEST_USER_ID = 2
