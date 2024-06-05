@@ -17,7 +17,7 @@
       </div>
       <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><%= button_to 'ゲストログイン', users_guest_sign_in_path, class: "text-header transition-all duration-300" %></li>
-        <li><%= button_to 'LINE連携ログイン', omniauth_authorize_path(:user, :line), data: { turbo: false }, class: "text-header transition-all duration-300" %></li>
+        <li class="bg-green-500 text-white rounded-lg"><%= button_to 'LINE連携ログイン', omniauth_authorize_path(:user, :line), data: { turbo: false }, class: "text-header transition-all duration-300" %></li>
       </ul>
     </div>
   </div>
