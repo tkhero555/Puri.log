@@ -30,7 +30,6 @@ class StoolsController < ApplicationController
         flash.now[:alert] = '排便の記録に失敗しました'
         redirect_to user_path(current_user) and return
       end
-      p meal.score
     end
     flash[:notice] = '排便を記録しました'
     redirect_to user_path(current_user)
