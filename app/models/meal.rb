@@ -7,7 +7,7 @@ class Meal < ApplicationRecord
   # 食事score変動用
   MEAL_SCORE_CHANGE_ZERO = 0
   MEAL_SCORE_CHANGE_PLUS = 1
-  MEAL_SCORE_CHANGE_MINUS = 2
+  MEAL_SCORE_CHANGE_MINUS = -1
 
   # おすすめの食事と避けるべき食事の判定基準の値
   RECOMMEND_MEAL_JUDGE_FIRST_POINT = 3

@@ -18,7 +18,7 @@ RSpec.describe "Logins", type: :system do
 
     it 'ログインをするとユーザーが増える' do
       expect {
-        click_button 'LINE連携ログイン'
+        all('button', text: 'LINE連携ログイン').first.click
       }.to change(User, :count).by(1)
       expect(page).to have_content 'ログインしました'
       user = User.find_by(email: 'test@example.com')

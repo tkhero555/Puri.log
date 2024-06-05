@@ -30,6 +30,7 @@ class StoolsController < ApplicationController
         flash.now[:alert] = '排便の記録に失敗しました'
         redirect_to user_path(current_user) and return
       end
+      p meal.score
     end
     flash[:notice] = '排便を記録しました'
     redirect_to user_path(current_user)
@@ -45,7 +46,7 @@ class StoolsController < ApplicationController
       score_change = Meal::MEAL_SCORE_CHANGE_ZERO
     end
     start_time = stool.created_at - Eating::DETERMINING_COMPATIBILITY_START_TIME.hours
-    end_time = stool.created_at - Eatong::DETERMINING_COMPATIBILITY_END_TIME.hours
+    end_time = stool.created_at - Eating::DETERMINING_COMPATIBILITY_END_TIME.hours
     eatings = Eating.where(created_at: start_time..end_time).where(user_id: current_user.id)
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
