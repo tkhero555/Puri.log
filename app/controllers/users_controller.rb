@@ -27,6 +27,40 @@ class UsersController < ApplicationController
     @last_month_eating_count = current_user.eatings.last_month.count
     @last_month_stool_count = current_user.stools.last_month.count
 
+    @eating_count_graph = current_user.eatings.group_by_month(:created_at).count.to_a.last(6)
+    months = %w[1月 2月 3月 4月 5月 6月 7月 8月 9月 10月 11月 12月]
+    @eating_count_graph.map! do |date, value|
+      month_name = months[date.month - 1]
+      [month_name, value]
+    end
+
+    @eating_weekly_count_graph = current_user.eatings.group_by_week(:created_at).count.to_a.last(6)
+    @eating_weekly_count_graph.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+
+    @eating_dayly_count_graph = current_user.eatings.group_by_day(:created_at).count.to_a.last(6)
+    @eating_dayly_count_graph.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+
+    @stool_count_graph = current_user.stools.group_by_month(:created_at).count.to_a.last(6)
+    months = %w[1月 2月 3月 4月 5月 6月 7月 8月 9月 10月 11月 12月]
+    @stool_count_graph.map! do |date, value|
+      month_name = months[date.month - 1]
+      [month_name, value]
+    end
+
+    @stool_weekly_count_graph = current_user.stools.group_by_week(:created_at).count.to_a.last(6)
+    @stool_weekly_count_graph.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+
+    @stool_dayly_count_graph = current_user.stools.group_by_day(:created_at).count.to_a.last(6)
+    @stool_dayly_count_graph.map! do |date, value|
+      [date.strftime("%m-%d"), value]
+    end
+
     # 登録済みの食事メニュー一覧用のインスタンス変数
     @my_meal_count = current_user.eatings.group(:meal_id).count
     @meals = current_user.meals
@@ -43,6 +77,46 @@ class UsersController < ApplicationController
     @last_month_stool_good_count = current_user.stools.condition_is("good").last_month.count
     @last_month_stool_normal_count = current_user.stools.condition_is("normal").last_month.count
     @last_month_stool_bad_count = current_user.stools.condition_is("bad").last_month.count
+
+    @stool_condition_count = current_user.stools.group(:condition).count.to_a
+    @stool_condition_count.map! do |key, value|
+      if key == "good"
+        ["良い", value]
+      elsif key == "normal"
+        ["普通", value]
+      elsif key == "bad"
+        ["悪い", value]
+      end
+    end
+
+    @stool_this_month_condition_count = current_user.stools.this_month.group(:condition).count.to_a
+    @stool_this_month_condition_count.map! do |key, value|
+      if key == "good"
+        ["良い", value]
+      elsif key == "normal"
+        ["普通", value]
+      elsif key == "bad"
+        ["悪い", value]
+      end
+    end
+    @stool_last_month_condition_count = current_user.stools.last_month.group(:condition).count.to_a
+    @stool_last_month_condition_count.map! do |key, value|
+      if key == "good"
+        ["良い", value]
+      elsif key == "normal"
+        ["普通", value]
+      elsif key == "bad"
+        ["悪い", value]
+      end
+    end
+
+    user_stools = current_user.stools.last(90)
+    @user_condition_graph = {}
+
+    user_stools.each do |user_stool|
+      @user_condition_graph[user_stool.created_at] = user_stool.condition_before_type_cast
+    end
+    p @user_condition_grap
 
     # 連続記録日数のインスタンス変数
     @meal_log_days_record = current_user.set_instance_meal_log_days

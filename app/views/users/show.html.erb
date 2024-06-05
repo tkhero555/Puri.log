@@ -184,5 +184,87 @@
         </div>
       </div>
     </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">月毎の記録回数：食事</h2>
+        <div>
+          <%= column_chart @eating_count_graph, xtitle: "月", ytitle: "記録回数" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">週毎の記録回数：食事</h2>
+        <div>
+          <%= column_chart @eating_weekly_count_graph, xtitle: "週", ytitle: "記録回数" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">日毎の記録回数：食事</h2>
+        <div>
+          <%= column_chart @eating_dayly_count_graph, xtitle: "日", ytitle: "記録回数" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">月毎の記録回数：排便</h2>
+        <div>
+          <%= column_chart @stool_count_graph, xtitle: "月", ytitle: "記録回数" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">週毎の記録回数：排便</h2>
+        <div>
+          <%= column_chart @stool_weekly_count_graph, xtitle: "週", ytitle: "記録回数" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">日毎の記録回数：排便</h2>
+        <div>
+          <%= column_chart @stool_dayly_count_graph, xtitle: "日", ytitle: "記録回数" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">排便の状態：通算</h2>
+        <div>
+          <%= pie_chart @stool_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">排便の状態：今月</h2>
+        <div>
+          <%= pie_chart @stool_this_month_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">排便の状態：先月</h2>
+        <div>
+          <%= pie_chart @stool_last_month_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body text-center">
+        <h2 class="card-title">胃腸の調子の推移</h2>
+        <p>0:良い&nbsp;&nbsp;&nbsp;1:普通&nbsp;&nbsp;&nbsp;2:悪い</p>
+        <div>
+          <%= line_chart @user_condition_graph, xtitle: "日", ytitle: "便の状態", curve: false, height: "280px", library: { scales:{ y: { reverse: true} } } %>
+        </div>
+      </div>
+    </div>
   </div>
+  <div>
 </div>
