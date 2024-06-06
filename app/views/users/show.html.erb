@@ -1,6 +1,44 @@
 <% content_for :title, "マイページ" %>
-<div class="bg-base-200 space-y-10 pt-4 pb-4">
-  <div class="mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12">
+<div class="bg-base-100 py-8">
+  <div id="tab-menu" class="flex text-xl xl:w-5/6 mx-auto">
+    <%= link_to user_path(current_user), class: "active [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
+      <span class="block text-base sm:hidden">記録&<br>スコア</span>
+      <span class="hidden sm:block">記録&スコア<span>
+    <% end %>
+    <%= link_to user_path(current_user), class: "ml-6 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
+      <span class="block text-base sm:hidden">食事<br>データ</span>
+      <span class="hidden sm:block">食事データ<span>
+    <% end %>
+    <%= link_to user_path(current_user), class: "mx-2 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
+      <span class="block text-base sm:hidden">排便<br>データ</span>
+      <span class="hidden sm:block">排便データ<span>
+    <% end %>
+    <%= link_to user_path(current_user), class: "[&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
+      <span class="block text-base sm:hidden">履歴&<br>設定</span>
+      <span class="hidden sm:block">履歴&セッティング<span>
+    <% end %>
+  </div>
+
+  <div id="tab-contents">
+    <div id="tab1">
+
+    </div>
+
+    <div id="tab2">
+
+    </div>
+
+    <div id="tab3">
+
+    </div>
+
+    <div id="tab4">
+
+    </div>
+  </div>
+
+
+  <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-r-lg rounded-bl-lg">
     <div class="card min-w-96 bg-base-100 shadow-xl mx-auto">
       <div class="card-body">
         <h2 class="card-title">食事の記録</h2>
