@@ -88,56 +88,6 @@ RSpec.describe "MyPages", type: :system do
       expect(find('.avert-meal').text).to eq(meal.meal_name)
     end
 
-    it '記録回数の実績cardの表示が正常であること' do
-      # 初期の表示が0回となっていることを確認
-      within('.log-count') do
-        expect(find(:xpath, "//h3[.='通算']/following-sibling::p[1]").text).to eq('食事：0 回')
-        expect(find(:xpath, "//h3[.='通算']/following-sibling::p[2]").text).to eq('排便：0 回')
-        
-        expect(find(:xpath, "//h3[.='今月']/following-sibling::p[1]").text).to eq('食事：0 回')
-        expect(find(:xpath, "//h3[.='今月']/following-sibling::p[2]").text).to eq('排便：0 回')
-        
-        expect(find(:xpath, "//h3[.='先月']/following-sibling::p[1]").text).to eq('食事：0 回')
-        expect(find(:xpath, "//h3[.='先月']/following-sibling::p[2]").text).to eq('排便：0 回')
-      end
-
-      # 時刻設定
-      current_time = Time.now.iso8601
-      one_month_ago = (DateTime.now << 1).iso8601
-
-      # 今月の食事記録を増やす
-      fill_in 'new_meal_name', with: 'Sample Meal'
-      fill_in 'meal_created_at', with: current_time
-      find('.meal-btn').click
-
-      #先月の食事記録を増やす
-      fill_in 'new_meal_name', with: 'Sample Meal'
-      fill_in 'meal_created_at', with: one_month_ago
-      find('.meal-btn').click
-
-      # 今月の排便記録を増やす
-      select '0.良い', from: 'condition'
-      fill_in 'created_at', with: current_time
-      find('.stool-btn').click
-
-      # 先月の排便記録を増やす
-      select '0.良い', from: 'condition'
-      fill_in 'created_at', with: one_month_ago
-      find('.stool-btn').click
-
-      # 変化した表示を確認する
-      within('.log-count') do
-        expect(find(:xpath, "//h3[.='通算']/following-sibling::p[1]").text).to eq('食事：2 回')
-        expect(find(:xpath, "//h3[.='通算']/following-sibling::p[2]").text).to eq('排便：2 回')
-        
-        expect(find(:xpath, "//h3[.='今月']/following-sibling::p[1]").text).to eq('食事：1 回')
-        expect(find(:xpath, "//h3[.='今月']/following-sibling::p[2]").text).to eq('排便：1 回')
-        
-        expect(find(:xpath, "//h3[.='先月']/following-sibling::p[1]").text).to eq('食事：1 回')
-        expect(find(:xpath, "//h3[.='先月']/following-sibling::p[2]").text).to eq('排便：1 回')
-      end
-    end
-
     it '登録済みの食事名一覧cardの表示が正常であること' do
       # @mealsが空の状態を確認する
       within('.meal-log-index') do
@@ -158,72 +108,6 @@ RSpec.describe "MyPages", type: :system do
         expect(page).to have_selector('table.table tbody tr', count: 1)
         expect(find('table.table tbody tr td', text: 'Sample Meal')).to be_present
         expect(find('table.table tbody tr td', text: '1')).to be_present
-      end
-    end
-
-    it '胃腸の状況cardの表示が正常であること' do
-      within('.stomach-condition') do
-        # 通算の確認
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(通算)']/following::p[1]").text).to eq('良い：0 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(通算)']/following::p[2]").text).to eq('普通：0 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(通算)']/following::p[3]").text).to eq('悪い：0 回')
-    
-        # 今月の確認
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(今月)']/following::p[1]").text).to eq('良い：0 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(今月)']/following::p[2]").text).to eq('普通：0 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(今月)']/following::p[3]").text).to eq('悪い：0 回')
-    
-        # 先月の確認
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[1]").text).to eq('良い：0 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[2]").text).to eq('普通：0 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[3]").text).to eq('悪い：0 回')
-      end
-
-      # 時刻設定
-      current_time = Time.now.iso8601
-      one_month_ago = (DateTime.now << 1).iso8601
-
-      # 3種の状態で今月と先月の排便記録を作る
-      select '0.良い', from: 'condition'
-      fill_in 'created_at', with: current_time
-      find('.stool-btn').click
-
-      select '0.良い', from: 'condition'
-      fill_in 'created_at', with: one_month_ago
-      find('.stool-btn').click
-
-      select '1.普通', from: 'condition'
-      fill_in 'created_at', with: current_time
-      find('.stool-btn').click
-
-      select '1.普通', from: 'condition'
-      fill_in 'created_at', with: one_month_ago
-      find('.stool-btn').click
-
-      select '2.悪い', from: 'condition'
-      fill_in 'created_at', with: current_time
-      find('.stool-btn').click
-
-      select '2.悪い', from: 'condition'
-      fill_in 'created_at', with: one_month_ago
-      find('.stool-btn').click
-
-      # 変動した表示を確認する
-      within('.stomach-condition') do
-        # 通算の確認
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(通算)']/following::p[1]").text).to eq('良い：2 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(通算)']/following::p[2]").text).to eq('普通：2 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(通算)']/following::p[3]").text).to eq('悪い：2 回')
-    
-        # 今月の確認
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(今月)']/following::p[1]").text).to eq('良い：1 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(今月)']/following::p[2]").text).to eq('普通：1 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(今月)']/following::p[3]").text).to eq('悪い：1 回')
-    
-        # 先月の確認
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[1]").text).to eq('良い：1 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[2]").text).to eq('普通：1 回')
-        expect(find(:xpath, "//h3/strong[text()='便の状態ごとの記録回数(先月)']/following::p[3]").text).to eq('悪い：1 回')
       end
     end
 

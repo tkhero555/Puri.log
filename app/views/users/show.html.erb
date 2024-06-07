@@ -1,308 +1,274 @@
 <% content_for :title, "マイページ" %>
 <div class="bg-base-100 py-8">
-  <div id="tab-menu" class="flex text-xl xl:w-5/6 mx-auto">
-    <%= link_to user_path(current_user), class: "active [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
-      <span class="block text-base sm:hidden">記録&<br>スコア</span>
-      <span class="hidden sm:block">記録&スコア<span>
-    <% end %>
-    <%= link_to user_path(current_user), class: "ml-6 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
-      <span class="block text-base sm:hidden">食事<br>データ</span>
-      <span class="hidden sm:block">食事データ<span>
-    <% end %>
-    <%= link_to user_path(current_user), class: "mx-2 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
-      <span class="block text-base sm:hidden">排便<br>データ</span>
-      <span class="hidden sm:block">排便データ<span>
-    <% end %>
-    <%= link_to user_path(current_user), class: "[&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2" do %>
-      <span class="block text-base sm:hidden">履歴&<br>設定</span>
-      <span class="hidden sm:block">履歴&セッティング<span>
-    <% end %>
-  </div>
-
-  <div id="tab-contents">
-    <div id="tab1">
-
+  <div  data-controller="tab">
+    <div id="tab-menu" class="flex text-xl xl:w-5/6 mx-auto">
+      <%= link_to "#tab1", class: "tab-btn-1 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2 active", data: { action: "tab#showTab", tab_target: "link" } do %>
+        <span class="block text-base sm:hidden">記録&<br>スコア</span>
+        <span class="hidden sm:block">記録&スコア<span>
+      <% end %>
+      <%= link_to "#tab2", class: "tab-btn-2 ml-6 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2", data: { action: "tab#showTab", tab_target: "link" } do %>
+        <span class="block text-base sm:hidden">食事<br>データ</span>
+        <span class="hidden sm:block">食事データ<span>
+      <% end %>
+      <%= link_to "#tab3", class: "tab-btn-3 mx-2 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2", data: { action: "tab#showTab", tab_target: "link" } do %>
+        <span class="block text-base sm:hidden">排便<br>データ</span>
+        <span class="hidden sm:block">排便データ<span>
+      <% end %>
+      <%= link_to "#tab4", class: "tab-btn-4 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2", data: { action: "tab#showTab", tab_target: "link" } do %>
+        <span class="block text-base sm:hidden">履歴&<br>設定</span>
+        <span class="hidden sm:block">履歴&セッティング<span>
+      <% end %>
     </div>
 
-    <div id="tab2">
-
-    </div>
-
-    <div id="tab3">
-
-    </div>
-
-    <div id="tab4">
-
-    </div>
-  </div>
-
-
-  <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-r-lg rounded-bl-lg">
-    <div class="card min-w-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">食事の記録</h2>
-        <%= form_with url: meals_path, class: "w-full max-w-md" do |f| %>
-          <div class="md:flex md:items-center mb-6" data-controller="autocomplete" data-autocomplete-url-value="/users/search" role="combobox">
-            <div class="md:w-1/3">
-              <%= f.label :meal_name, "食事名", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
-            </div>
-            <div class="md:w-2/3">
-              <%= f.text_field :new_meal_name, class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black", data: { autocomplete_target: "input" } %>
-              <%= f.hidden_field :meal_name, data: { autocomplete_target: "hidden" } %>
-              <ul class="list-group" data-autocomplete-target="results"></ul>
-            </div>
-          </div>
-          <div class="md:flex md:items-center mb-6">
-            <div class="md:w-1/3">
-              <%= f.label :meal_created_at, "食べた時間", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
-            </div>
-            <div class="md:w-2/3">
-              <%= f.datetime_field :meal_created_at, value: Time.current.strftime('%Y-%m-%dT'), class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black" %>
+    <div id="tab-contents">
+      <div id="tab1" data-tab-target="tab">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-r-lg rounded-bl-lg">
+          <div class="card min-w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">食事の記録</h2>
+              <%= form_with url: meals_path, class: "w-full max-w-md" do |f| %>
+                <div class="md:flex md:items-center mb-6" data-controller="autocomplete" data-autocomplete-url-value="/users/search" role="combobox">
+                  <div class="md:w-1/3">
+                    <%= f.label :meal_name, "食事名", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+                  </div>
+                  <div class="md:w-2/3">
+                    <%= f.text_field :new_meal_name, class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black", data: { autocomplete_target: "input" } %>
+                    <%= f.hidden_field :meal_name, data: { autocomplete_target: "hidden" } %>
+                    <ul class="list-group" data-autocomplete-target="results"></ul>
+                  </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                  <div class="md:w-1/3">
+                    <%= f.label :meal_created_at, "食べた時間", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+                  </div>
+                  <div class="md:w-2/3">
+                    <%= f.datetime_field :meal_created_at, value: Time.current.strftime('%Y-%m-%dT'), class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black" %>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-1/3"></div>
+                  <div class="w-2/3">
+                    <%= f.submit "記録する", data: { turbo_frame: "meal_form_frame" }, class: "btn btn-ghost shadow bg-primary-content hover:bg-base-400 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded-full meal-btn" %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
-          <div class="flex items-center">
-            <div class="w-1/3"></div>
-            <div class="w-2/3">
-              <%= f.submit "記録する", data: { turbo_frame: "meal_form_frame" }, class: "btn btn-ghost shadow bg-primary-content hover:bg-base-400 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded-full meal-btn" %>
+          <div class="card min-w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">排便の記録</h2>
+              <%= form_with url: stools_path, class: "w-full max-w-md" do |f| %>
+                <div class="md:flex md:items-center mb-6">
+                  <div class="md:w-1/3">
+                    <%= f.label :condition, "便の状態", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+                  </div>
+                  <div class="md:w-2/3">
+                    <%= f.select :condition, [["0.良い", 0], ["1.普通", 1], ["2.悪い", 2]], {include_blank: "選択して下さい"}, class: "bg-gray-200 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black" %>
+                  </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                  <div class="md:w-1/3">
+                    <%= f.label :created_at, "出した日時", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+                  </div>
+                  <div class="md:w-2/3">
+                    <%= f.datetime_field :created_at, value: Time.current.strftime('%Y-%m-%dT'), class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black" %>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-1/3"></div>
+                  <div class="w-2/3">
+                    <%= f.submit "記録する", class: "btn btn-ghost shadow bg-primary-content hover:bg-base-400 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded-full stool-btn" %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="card min-w-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">排便の記録</h2>
-        <%= form_with url: stools_path, class: "w-full max-w-md" do |f| %>
-          <div class="md:flex md:items-center mb-6">
-            <div class="md:w-1/3">
-              <%= f.label :condition, "便の状態", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
-            </div>
-            <div class="md:w-2/3">
-              <%= f.select :condition, [["0.良い", 0], ["1.普通", 1], ["2.悪い", 2]], {include_blank: "選択して下さい"}, class: "bg-gray-200 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black" %>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">マイスコア</h2>
+              <div class="flex items-center justify-center text-9xl my-score">
+                <%= @log_count %>
+              </div>
+              <div class="text-right text-xl">ポイント</div>
             </div>
           </div>
-          <div class="md:flex md:items-center mb-6">
-            <div class="md:w-1/3">
-              <%= f.label :created_at, "出した日時", class: "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">連続記録日数</h2>
+              <h3><strong>食事の連続記録日数</strong></h3>
+              <div class="flex items-center justify-center text-7xl meal-log-days-record">
+                <%= @meal_log_days_record %>
+              </div>
+              <div class="text-right text-3xl">日</div>
+              <h3><strong>排便の連続記録日数</strong></h3>
+              <div class="flex items-center justify-center text-7xl stool-log-days-record">
+                <%= @stool_log_days_record %>
+              </div>
+              <div class="text-right text-3xl">日</div>
             </div>
-            <div class="md:w-2/3">
-              <%= f.datetime_field :created_at, value: Time.current.strftime('%Y-%m-%dT'), class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black" %>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <div class="w-1/3"></div>
-            <div class="w-2/3">
-              <%= f.submit "記録する", class: "btn btn-ghost shadow bg-primary-content hover:bg-base-400 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded-full stool-btn" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">マイスコア</h2>
-        <div class="flex items-center justify-center text-9xl my-score">
-          <%= @log_count %>
+          </div>  
         </div>
-        <div class="text-right text-xl">ポイント</div>
       </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">連続記録日数</h2>
-        <h3><strong>食事の連続記録日数</strong></h3>
-        <div class="flex items-center justify-center text-7xl meal-log-days-record">
-          <%= @meal_log_days_record %>
+
+      <div id="tab2" data-tab-target="tab">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-lg">
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">月毎の記録回数：食事</h2>
+              <div>
+                <%= column_chart @eating_count_graph, xtitle: "月", ytitle: "記録回数" %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">週毎の記録回数：食事</h2>
+              <div>
+                <%= column_chart @eating_weekly_count_graph, xtitle: "週", ytitle: "記録回数" %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">日毎の記録回数：食事</h2>
+              <div>
+                <%= column_chart @eating_daily_count_graph, xtitle: "日", ytitle: "記録回数" %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">おすすめの食事</h2>
+              <div class="max-h-72 overflow-auto recommend-meal">
+                <% @recommend_meals.each do |recommend_meal| %>
+                  <%= recommend_meal.meal_name %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">避けるべき食事</h2>
+              <div class="max-h-72 overflow-auto avert-meal">
+                <% @avert_meals.each do |avert_meal| %>
+                  <%= avert_meal.meal_name %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">登録済みの食事名一覧</h2>
+              <div class="max-h-72 overflow-auto meal-log-index">
+                <table class="table table-xs table-pin-rows table-pin-cols">
+                  <thead>
+                    <tr>
+                      <th></th> 
+                      <td>食事名</td> 
+                      <td>記録回数</td> 
+                      <th></th> 
+                    </tr>
+                  </thead> 
+                  <% @meals.each do |meal| %>
+                    <% meal_id = meal.id %>
+                    <tbody>
+                      <tr>
+                        <th></th>
+                        <td><%= meal.meal_name %></td>
+                        <td><%= @my_meal_count[meal_id] %></td>
+                        <th></th>
+                      </tr>
+                    </tbody>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="text-right text-3xl">日</div>
-        <h3><strong>排便の連続記録日数</strong></h3>
-        <div class="flex items-center justify-center text-7xl stool-log-days-record">
-          <%= @stool_log_days_record %>
-        </div>
-        <div class="text-right text-3xl">日</div>
       </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">おすすめの食事</h2>
-        <div class="max-h-72 overflow-auto recommend-meal">
-          <% @recommend_meals.each do |recommend_meal| %>
-            <%= recommend_meal.meal_name %>
+
+      <div id="tab3" data-tab-target="tab">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-lg">
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">排便の状態：通算</h2>
+              <div>
+                <%= pie_chart @stool_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">月毎の記録回数：排便</h2>
+              <div>
+                <%= column_chart @stool_count_graph, xtitle: "月", ytitle: "記録回数" %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body text-center">
+              <h2 class="card-title">胃腸の調子の推移</h2>
+              <p>0:良い&nbsp;&nbsp;&nbsp;1:普通&nbsp;&nbsp;&nbsp;2:悪い</p>
+              <div>
+                <%= line_chart @user_condition_graph, xtitle: "日", ytitle: "便の状態", curve: false, height: "280px", library: { scales:{ y: { reverse: true} } } %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">排便の状態：今月</h2>
+              <div>
+                <%= pie_chart @stool_this_month_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">排便の状態：先月</h2>
+              <div>
+                <%= pie_chart @stool_last_month_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">週毎の記録回数：排便</h2>
+              <div>
+                <%= column_chart @stool_weekly_count_graph, xtitle: "週", ytitle: "記録回数" %>
+              </div>
+            </div>
+          </div>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">日毎の記録回数：排便</h2>
+              <div>
+                <%= column_chart @stool_daily_count_graph, xtitle: "日", ytitle: "記録回数" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab4" data-tab-target="tab">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-lg">
+          <%= turbo_frame_tag "log_index_frame" do %>
+            <%= render 'shared/log_index' %>
           <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">避けるべき食事</h2>
-        <div class="max-h-72 overflow-auto avert-meal">
-          <% @avert_meals.each do |avert_meal| %>
-            <%= avert_meal.meal_name %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">記録回数の実績</h2>
-        <div class="max-h-72 overflow-auto log-count">
-          <h3><strong>通算</strong></h3>
-            <p>食事：<%= @eating_count %> 回</p>
-            <p>排便：<%= @stool_count %> 回</p>
-          <h3><strong>今月</strong></h3>
-            <p>食事：<%= @this_month_eating_count %> 回</p>
-            <p>排便：<%= @this_month_stool_count %> 回</p>
-          <h3><strong>先月</strong></h3>
-            <p>食事：<%= @last_month_eating_count %> 回</p>
-            <p>排便：<%= @last_month_stool_count %> 回</p>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">登録済みの食事名一覧</h2>
-        <div class="max-h-72 overflow-auto meal-log-index">
-          <table class="table table-xs table-pin-rows table-pin-cols">
-            <thead>
-              <tr>
-                <th></th> 
-                <td>食事名</td> 
-                <td>記録回数</td> 
-                <th></th> 
-              </tr>
-            </thead> 
-            <% @meals.each do |meal| %>
-              <% meal_id = meal.id %>
-              <tbody>
-                <tr>
-                  <th></th>
-                  <td><%= meal.meal_name %></td>
-                  <td><%= @my_meal_count[meal_id] %></td>
-                  <th></th>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">胃腸の状況</h2>
-        <div class="max-h-72 overflow-auto stomach-condition">
-          <h3><strong>便の状態ごとの記録回数(通算)</strong></h3>
-            <p>良い：<%= @stool_good_count %> 回</p>
-            <p>普通：<%= @stool_normal_count %> 回</p>
-            <p>悪い：<%= @stool_bad_count %> 回</p>
-          <h3><strong>便の状態ごとの記録回数(今月)</strong></h3>
-            <p>良い：<%= @this_month_stool_good_count %> 回</p>
-            <p>普通：<%= @this_month_stool_normal_count %> 回</p>
-            <p>悪い：<%= @this_month_stool_bad_count %> 回</p>
-          <h3><strong>便の状態ごとの記録回数(先月)</strong></h3>
-            <p>良い：<%= @last_month_stool_good_count %> 回</p>
-            <p>普通：<%= @last_month_stool_normal_count %> 回</p>
-            <p>悪い：<%= @last_month_stool_bad_count %> 回</p>
-        </div>
-      </div>
-    </div>
-    <%= turbo_frame_tag "log_index_frame" do %>
-      <%= render 'shared/log_index' %>
-    <% end %>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">セッティング</h2>
-        <div>
-          <%= link_to (current_user.notifications_enabled ? "通知をオフにする" : "通知をオンにする"), toggle_notifications_path, data: { turbo_method: :post }, class: "bg-primary-content hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20 notifications-btn" %>
-        </div>
-        <div class="pt-4">
-          <% unless current_user.id == @recorded_test_user_id %>
-            <%= link_to 'ユーザーデータ削除', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: '元には戻せませんが、本当に削除しますか？' }, class: "bg-red-600 hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20 notifications-btn border-2 border-black text-black" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">月毎の記録回数：食事</h2>
-        <div>
-          <%= column_chart @eating_count_graph, xtitle: "月", ytitle: "記録回数" %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">週毎の記録回数：食事</h2>
-        <div>
-          <%= column_chart @eating_weekly_count_graph, xtitle: "週", ytitle: "記録回数" %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">日毎の記録回数：食事</h2>
-        <div>
-          <%= column_chart @eating_daily_count_graph, xtitle: "日", ytitle: "記録回数" %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">月毎の記録回数：排便</h2>
-        <div>
-          <%= column_chart @stool_count_graph, xtitle: "月", ytitle: "記録回数" %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">週毎の記録回数：排便</h2>
-        <div>
-          <%= column_chart @stool_weekly_count_graph, xtitle: "週", ytitle: "記録回数" %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">日毎の記録回数：排便</h2>
-        <div>
-          <%= column_chart @stool_daily_count_graph, xtitle: "日", ytitle: "記録回数" %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">排便の状態：通算</h2>
-        <div>
-          <%= pie_chart @stool_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">排便の状態：今月</h2>
-        <div>
-          <%= pie_chart @stool_this_month_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body">
-        <h2 class="card-title">排便の状態：先月</h2>
-        <div>
-          <%= pie_chart @stool_last_month_condition_count, colors: ["#008000", "#ffa500", "#ff0000"] %>
-        </div>
-      </div>
-    </div>
-    <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
-      <div class="card-body text-center">
-        <h2 class="card-title">胃腸の調子の推移</h2>
-        <p>0:良い&nbsp;&nbsp;&nbsp;1:普通&nbsp;&nbsp;&nbsp;2:悪い</p>
-        <div>
-          <%= line_chart @user_condition_graph, xtitle: "日", ytitle: "便の状態", curve: false, height: "280px", library: { scales:{ y: { reverse: true} } } %>
+          <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">セッティング</h2>
+              <div>
+                <%= link_to (current_user.notifications_enabled ? "通知をオフにする" : "通知をオンにする"), toggle_notifications_path, data: { turbo_method: :post }, class: "bg-primary-content hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20 notifications-btn" %>
+              </div>
+              <div class="pt-4">
+                <% unless current_user.id == @recorded_test_user_id %>
+                  <%= link_to 'ユーザーデータ削除', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: '元には戻せませんが、本当に削除しますか？' }, class: "bg-red-600 hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20 notifications-btn border-2 border-black text-black" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div>
 </div>
