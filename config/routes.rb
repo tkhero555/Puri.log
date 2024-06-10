@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   post 'increment/card', to: 'static_pages#increment', as: 'increment'
   post 'decrement/card', to: 'static_pages#decrement', as: 'decrement'
   post 'toggle_notifications', to: 'users#toggle_notifications'
+  get 'terms', to: 'static_pages#terms'
+  get 'policy', to: 'static_pages#policy'
 end
