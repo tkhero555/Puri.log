@@ -4,6 +4,12 @@ class StaticPagesController < ApplicationController
     @number = session[:number] || EXPLAIN_MIN_PAGE
   end
 
+  def policy
+  end
+
+  def terms
+  end
+
   def increment
     @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_PLUS
     if @number >= EXPLAIN_MAX_PAGE + PAGE_NUMBER_PLUS
