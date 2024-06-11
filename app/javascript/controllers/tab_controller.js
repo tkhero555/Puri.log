@@ -13,8 +13,6 @@ export default class extends Controller {
   }
 
   showTab(event) {
-    console.log("showTab_activated")
-
     event.preventDefault();
     const targetId = event.currentTarget.getAttribute("href").substring(1);
 

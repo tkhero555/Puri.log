@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_accepted, only: [:show]
 
   def show
     # おすすめの食事用のインスタンス変数
@@ -102,5 +103,17 @@ class UsersController < ApplicationController
       flash[:alert] = "通知設定の更新に失敗しました。"
     end
     redirect_to user_path(current_user)
+  end
+
+  def accept_terms
+    current_user.update(accepted: true)
+    redirect_to user_path(current_user)
+  end
+
+  private
+
+  def check_accepted
+    @user_accepted = !current_user.accepted
+    p @user_accepted
   end
 end
