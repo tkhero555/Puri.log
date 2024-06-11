@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   post 'toggle_notifications', to: 'users#toggle_notifications'
   get 'terms', to: 'static_pages#terms'
   get 'policy', to: 'static_pages#policy'
+  post '/accept_terms', to: 'users#accept_terms'
 end
