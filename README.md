@@ -24,10 +24,15 @@ LINEBOTを活用し、手軽に記録ができるようになっています。
 |[![Image from Gyazo](https://i.gyazo.com/f815b61e66d25c28512e32a111602f13.gif)](https://gyazo.com/f815b61e66d25c28512e32a111602f13)|[![Image from Gyazo](https://i.gyazo.com/8bf68b06cd95b39ee024922ad9b6b08a.gif)](https://gyazo.com/8bf68b06cd95b39ee024922ad9b6b08a)|
 |サイトのトップページではスライド形式で、<br>詳しい使用方法を確認できます。|ログインはLINE連携ログインのみに統一しています。<br>ヘッダーからログインできます。|
 
-|マイページの記録機能|マイページで自分のデータを確認|
+|初回ログイン時の利用規約モーダル|マイページの記録機能|
 |----|----|
-|[![Image from Gyazo](https://i.gyazo.com/51aa8015f9f75156c21e8c9a1bc445dc.gif)](https://gyazo.com/51aa8015f9f75156c21e8c9a1bc445dc)|[![Image from Gyazo](https://i.gyazo.com/1060909544881bc3e1febd3f2fa43bb4.gif)](https://gyazo.com/1060909544881bc3e1febd3f2fa43bb4)|
-|マイページに設置されているフォームから、<br>食事と排便を記録することができます。|マイページには自分の記録データを元にした<br>様々なステータスを確認できます。|
+|[![Image from Gyazo](https://i.gyazo.com/13ef9e8463f3e97fde7868205cef6819.gif)](https://gyazo.com/13ef9e8463f3e97fde7868205cef6819)|[![Image from Gyazo](https://i.gyazo.com/51aa8015f9f75156c21e8c9a1bc445dc.gif)](https://gyazo.com/51aa8015f9f75156c21e8c9a1bc445dc)|
+|初回ログイン時のみ利用規約が表示されます。<br>一度同意すればもう表示されなくなります。|マイページに設置されているフォームから、<br>食事と排便を記録することができます。|
+
+|マイページのタブメニュー①②|マイページのタブメニュー③④|
+|----|----|
+|[![Image from Gyazo](https://i.gyazo.com/50ca0b89054407fa16c2dad8b98ca93f.gif)](https://gyazo.com/50ca0b89054407fa16c2dad8b98ca93f)|[![Image from Gyazo](https://i.gyazo.com/79d6944f24be0d4fafa2447dd7c3ef1f.gif)](https://gyazo.com/79d6944f24be0d4fafa2447dd7c3ef1f)|
+|マイページでは様々なデータを確認できます。|ジャンルごとに4つのタブメニューに分かれています。|
 
 |LINE BOTの記録機能|LINE BOTで自分のデータを確認|
 |----|----|
