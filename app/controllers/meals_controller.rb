@@ -18,10 +18,10 @@ class MealsController < ApplicationController
     eating = Eating.new(user_id: user_id, meal_id: meal_id, created_at: params[:meal_created_at])
     if eating.save
       flash[:notice] = '食事を記録しました'
-      redirect_to user_path(current_user)
+      redirect_to user_path
     else
       flash[:alert] = '食事の記録に失敗しました'
-      redirect_to user_path(current_user)
+      redirect_to user_path
     end
   end
 

@@ -7,21 +7,24 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     post 'users/guest_logged_sign_in', to: 'users/sessions#guest_logged_sign_in'
   end
+
   root 'static_pages#index'
+  post 'increment/card', to: 'static_pages#increment', as: 'increment'
+  post 'decrement/card', to: 'static_pages#decrement', as: 'decrement'
+  get 'terms', to: 'static_pages#terms'
+  get 'policy', to: 'static_pages#policy'
+
   post 'callback' => 'line_bot#callback'
-  resources :users, only: %i[show destroy] do
+
+  resource :user, only: %i[show destroy] do
     collection do
       get :search
       post :sort, as: 'sort_log'
+      post :toggle_notifications
+      post :accept_terms
     end
   end
   resources :meals, only: %i[create]
   resources :stools, only: %i[create destroy]
   resources :eatings, only: %i[destroy]
-  post 'increment/card', to: 'static_pages#increment', as: 'increment'
-  post 'decrement/card', to: 'static_pages#decrement', as: 'decrement'
-  post 'toggle_notifications', to: 'users#toggle_notifications'
-  get 'terms', to: 'static_pages#terms'
-  get 'policy', to: 'static_pages#policy'
-  post '/accept_terms', to: 'users#accept_terms'
 end

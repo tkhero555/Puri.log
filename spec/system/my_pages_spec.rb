@@ -8,7 +8,7 @@ RSpec.describe "MyPages", type: :system do
       # ユーザーをログインさせる
       sign_in user
       # マイページに遷移
-      visit user_path(user)
+      visit user_path
     end
     it 'マイスコアcardの表示が正常であること' do
       # 初期の数字が0であることを確認

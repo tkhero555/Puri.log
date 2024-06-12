@@ -102,18 +102,17 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "通知設定の更新に失敗しました。"
     end
-    redirect_to user_path(current_user)
+    redirect_to user_path
   end
 
   def accept_terms
     current_user.update(accepted: true)
-    redirect_to user_path(current_user)
+    redirect_to user_path
   end
 
   private
 
   def check_accepted
     @user_accepted = !current_user.accepted
-    p @user_accepted
   end
 end

@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-06-07T14:39:03+09:00">2024-06-07T14:39:03+09:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-06-12T09:19:49+09:00">2024-06-12T09:19:49+09:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  67.51%
+  67.69%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.97
+         4.96
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>511</b> relevant lines,
-    <span class="green"><b>345</b> lines covered</span> and
-    <span class="red"><b>166</b> lines missed. </span>
+    <b>520</b> relevant lines,
+    <span class="green"><b>352</b> lines covered</span> and
+    <span class="red"><b>168</b> lines missed. </span>
     (<span class="red">
-  67.51%
+  67.69%
 </span>
 )
   </div>
@@ -116,12 +116,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#7cc9df41a6c2dbd6e89280eca7dd9dbf0ae3aeaf" class="src_link" title="app/controllers/static_pages_controller.rb">app/controllers/static_pages_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">47.37 %</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">19</td>
-            <td class="cell--number">9</td>
+            <td class="red strong cell--number t-file__coverage">52.38 %</td>
+            <td class="cell--number">41</td>
+            <td class="cell--number">21</td>
+            <td class="cell--number">11</td>
             <td class="cell--number">10</td>
-            <td class="cell--number">0.53</td>
+            <td class="cell--number">0.57</td>
             
           </tr>
         
@@ -138,12 +138,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#88ac37e479dd809bc97c9cfd44a769f8d2964638" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">74.14 %</td>
-            <td class="cell--number">106</td>
-            <td class="cell--number">58</td>
-            <td class="cell--number">43</td>
-            <td class="cell--number">15</td>
-            <td class="cell--number">19.98</td>
+            <td class="red strong cell--number t-file__coverage">73.85 %</td>
+            <td class="cell--number">118</td>
+            <td class="cell--number">65</td>
+            <td class="cell--number">48</td>
+            <td class="cell--number">17</td>
+            <td class="cell--number">18.38</td>
             
           </tr>
         
@@ -3856,7 +3856,7 @@
 
             
 
-            <code class="ruby">      redirect_to user_path(current_user)</code>
+            <code class="ruby">      redirect_to user_path</code>
           </li>
         </div>
       
@@ -3889,7 +3889,7 @@
 
             
 
-            <code class="ruby">      redirect_to user_path(current_user)</code>
+            <code class="ruby">      redirect_to user_path</code>
           </li>
         </div>
       
@@ -4217,7 +4217,7 @@
 
             
 
-            <code class="ruby">    redirect_to user_path(current_user)</code>
+            <code class="ruby">    redirect_to user_path</code>
           </li>
         </div>
       
@@ -4253,7 +4253,7 @@
     <h3>app/controllers/static_pages_controller.rb</h3>
     <h4>
       <span class="red">
-  47.37%
+  52.38%
 </span>
 
       lines covered
@@ -4262,8 +4262,8 @@
     
 
     <div class="t-line-summary">
-      <b>19</b> relevant lines.
-      <span class="green"><b>9</b> lines covered</span> and
+      <b>21</b> relevant lines.
+      <span class="green"><b>11</b> lines covered</span> and
       <span class="red"><b>10</b> lines missed.</span>
     </div>
 
@@ -4347,51 +4347,51 @@
 
             
 
-            <code class="ruby">  def increment</code>
+            <code class="ruby">  def policy</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="8">
+          <li class="never" data-hits="" data-linenumber="8">
             
             
 
             
 
-            <code class="ruby">    @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_PLUS</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="9">
+          <li class="never" data-hits="" data-linenumber="9">
             
             
 
             
 
-            <code class="ruby">    if @number &gt;= EXPLAIN_MAX_PAGE + PAGE_NUMBER_PLUS</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="10">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="10">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      @number = EXPLAIN_MIN_PAGE</code>
+            
+
+            <code class="ruby">  def terms</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="11">
+          <li class="never" data-hits="" data-linenumber="11">
             
             
 
             
 
-            <code class="ruby">      session[:number] = @number</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -4402,12 +4402,56 @@
 
             
 
-            <code class="ruby">    else</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="13">
+          <li class="covered" data-hits="1" data-linenumber="13">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def increment</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="14">
+            
+            
+
+            
+
+            <code class="ruby">    @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_PLUS</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="15">
+            
+            
+
+            
+
+            <code class="ruby">    if @number &gt;= EXPLAIN_MAX_PAGE + PAGE_NUMBER_PLUS</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="16">
+            
+            
+
+            
+
+            <code class="ruby">      @number = EXPLAIN_MIN_PAGE</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="17">
             
             
 
@@ -4418,57 +4462,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="14">
+          <li class="never" data-hits="" data-linenumber="18">
             
             
 
             
 
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="15">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="16">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="17">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def decrement</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="18">
-            
-            
-
-            
-
-            <code class="ruby">    @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_MINUS</code>
+            <code class="ruby">    else</code>
           </li>
         </div>
       
@@ -4479,56 +4479,12 @@
 
             
 
-            <code class="ruby">    if @number &lt;= EXPLAIN_MIN_PAGE + PAGE_NUMBER_MINUS</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="20">
-            
-            
-
-            
-
-            <code class="ruby">      @number = EXPLAIN_MAX_PAGE</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="21">
-            
-            
-
-            
-
             <code class="ruby">      session[:number] = @number</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="22">
-            
-            
-
-            
-
-            <code class="ruby">    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="23">
-            
-            
-
-            
-
-            <code class="ruby">      session[:number] = @number</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="24">
+          <li class="never" data-hits="" data-linenumber="20">
             
             
 
@@ -4539,7 +4495,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="25">
+          <li class="never" data-hits="" data-linenumber="21">
             
             
 
@@ -4550,7 +4506,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
+          <li class="never" data-hits="" data-linenumber="22">
             
             
 
@@ -4561,13 +4517,57 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="covered" data-hits="1" data-linenumber="23">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def decrement</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="24">
             
             
 
             
 
-            <code class="ruby">  # トップページで使用する定数の設定</code>
+            <code class="ruby">    @number = (session[:number] || EXPLAIN_MIN_PAGE) + PAGE_NUMBER_MINUS</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="25">
+            
+            
+
+            
+
+            <code class="ruby">    if @number &lt;= EXPLAIN_MIN_PAGE + PAGE_NUMBER_MINUS</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="26">
+            
+            
+
+            
+
+            <code class="ruby">      @number = EXPLAIN_MAX_PAGE</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="27">
+            
+            
+
+            
+
+            <code class="ruby">      session[:number] = @number</code>
           </li>
         </div>
       
@@ -4578,29 +4578,29 @@
 
             
 
-            <code class="ruby">  # 詳しい説明の最小と最大ページ番号</code>
+            <code class="ruby">    else</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="29">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="29">
+            
             
 
             
 
-            <code class="ruby">  EXPLAIN_MIN_PAGE = 1</code>
+            <code class="ruby">      session[:number] = @number</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="30">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="30">
+            
             
 
             
 
-            <code class="ruby">  EXPLAIN_MAX_PAGE = 8</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -4611,7 +4611,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -4622,12 +4622,78 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="33">
+            
+            
+
+            
+
+            <code class="ruby">  # トップページで使用する定数の設定</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="34">
+            
+            
+
+            
+
+            <code class="ruby">  # 詳しい説明の最小と最大ページ番号</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="35">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  EXPLAIN_MIN_PAGE = 1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="36">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  EXPLAIN_MAX_PAGE = 8</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="37">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="38">
+            
+            
+
+            
+
             <code class="ruby">  # 詳しい説明のページ移行用の値</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="33">
+          <li class="covered" data-hits="1" data-linenumber="39">
             <span class="hits">1</span>
             
 
@@ -4638,7 +4704,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="34">
+          <li class="covered" data-hits="1" data-linenumber="40">
             <span class="hits">1</span>
             
 
@@ -4649,7 +4715,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="35">
+          <li class="never" data-hits="" data-linenumber="41">
             
             
 
@@ -4917,7 +4983,7 @@
 
             
 
-            <code class="ruby">      redirect_to user_path(current_user)</code>
+            <code class="ruby">      redirect_to user_path</code>
           </li>
         </div>
       
@@ -5027,7 +5093,7 @@
 
             
 
-            <code class="ruby">        redirect_to user_path(current_user) and return</code>
+            <code class="ruby">        redirect_to user_path and return</code>
           </li>
         </div>
       
@@ -5071,7 +5137,7 @@
 
             
 
-            <code class="ruby">    redirect_to user_path(current_user)</code>
+            <code class="ruby">    redirect_to user_path</code>
           </li>
         </div>
       
@@ -5280,7 +5346,7 @@
 
             
 
-            <code class="ruby">        redirect_to user_path(current_user) and return</code>
+            <code class="ruby">        redirect_to user_path and return</code>
           </li>
         </div>
       
@@ -5360,7 +5426,7 @@
     <h3>app/controllers/users_controller.rb</h3>
     <h4>
       <span class="red">
-  74.14%
+  73.85%
 </span>
 
       lines covered
@@ -5369,9 +5435,9 @@
     
 
     <div class="t-line-summary">
-      <b>58</b> relevant lines.
-      <span class="green"><b>43</b> lines covered</span> and
-      <span class="red"><b>15</b> lines missed.</span>
+      <b>65</b> relevant lines.
+      <span class="green"><b>48</b> lines covered</span> and
+      <span class="red"><b>17</b> lines missed.</span>
     </div>
 
     
@@ -5404,7 +5470,18 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="3">
+          <li class="covered" data-hits="1" data-linenumber="3">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  before_action :check_accepted, only: [:show]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="4">
             
             
 
@@ -5415,7 +5492,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="4">
+          <li class="covered" data-hits="1" data-linenumber="5">
             <span class="hits">1</span>
             
 
@@ -5426,7 +5503,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="5">
+          <li class="never" data-hits="" data-linenumber="6">
             
             
 
@@ -5437,7 +5514,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="6">
+          <li class="covered" data-hits="32" data-linenumber="7">
             <span class="hits">32</span>
             
 
@@ -5448,7 +5525,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="7">
+          <li class="covered" data-hits="32" data-linenumber="8">
             <span class="hits">32</span>
             
 
@@ -5459,7 +5536,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="8">
+          <li class="missed" data-hits="0" data-linenumber="9">
             
             
 
@@ -5470,24 +5547,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="9">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="10">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -5498,18 +5564,18 @@
 
             
 
-            <code class="ruby">    # 避けるべき食事用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="12">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="12">
+            
             
 
             
 
-            <code class="ruby">    @avert_meals = current_user.meals.where(&#39;score &lt;= ?&#39;, Meal::AVERT_MEAL_JUDGE_FIRST_POINT)</code>
+            <code class="ruby">    # 避けるべき食事用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5520,12 +5586,23 @@
 
             
 
+            <code class="ruby">    @avert_meals = current_user.meals.where(&#39;score &lt;= ?&#39;, Meal::AVERT_MEAL_JUDGE_FIRST_POINT)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="32" data-linenumber="14">
+            <span class="hits">32</span>
+            
+
+            
+
             <code class="ruby">    if @avert_meals.nil?</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="14">
+          <li class="missed" data-hits="0" data-linenumber="15">
             
             
 
@@ -5536,24 +5613,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="15">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="16">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -5564,29 +5630,29 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="18">
+            
+            
+
+            
+
             <code class="ruby">    # 記録履歴一覧用のインスタンス変数</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="18">
+          <li class="covered" data-hits="32" data-linenumber="19">
             <span class="hits">32</span>
             
 
             
 
             <code class="ruby">    set_log_index</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="19">
-            
-            
-
-            
-
-            <code class="ruby"></code>
           </li>
         </div>
       
@@ -5597,18 +5663,18 @@
 
             
 
-            <code class="ruby">    # 通算記録回数表示用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="21">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="21">
+            
             
 
             
 
-            <code class="ruby">    @eating_count = current_user.eatings.count</code>
+            <code class="ruby">    # 通算記録回数表示用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5619,7 +5685,7 @@
 
             
 
-            <code class="ruby">    @stool_count = current_user.stools.count</code>
+            <code class="ruby">    @eating_count = current_user.eatings.count</code>
           </li>
         </div>
       
@@ -5630,18 +5696,18 @@
 
             
 
-            <code class="ruby">    @log_count = @eating_count + @stool_count</code>
+            <code class="ruby">    @stool_count = current_user.stools.count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="24">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="24">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @log_count = @eating_count + @stool_count</code>
           </li>
         </div>
       
@@ -5652,18 +5718,18 @@
 
             
 
-            <code class="ruby">    # 今月の記録回数表示用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="26">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="26">
+            
             
 
             
 
-            <code class="ruby">    @this_month_eating_count = current_user.eatings.this_month.count</code>
+            <code class="ruby">    # 今月の記録回数表示用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5674,18 +5740,18 @@
 
             
 
-            <code class="ruby">    @this_month_stool_count = current_user.stools.this_month.count</code>
+            <code class="ruby">    @this_month_eating_count = current_user.eatings.this_month.count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="28">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="28">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @this_month_stool_count = current_user.stools.this_month.count</code>
           </li>
         </div>
       
@@ -5696,18 +5762,18 @@
 
             
 
-            <code class="ruby">    # 先月の記録回数表示用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="30">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="30">
+            
             
 
             
 
-            <code class="ruby">    @last_month_eating_count = current_user.eatings.last_month.count</code>
+            <code class="ruby">    # 先月の記録回数表示用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5718,18 +5784,18 @@
 
             
 
-            <code class="ruby">    @last_month_stool_count = current_user.stools.last_month.count</code>
+            <code class="ruby">    @last_month_eating_count = current_user.eatings.last_month.count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="32">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @last_month_stool_count = current_user.stools.last_month.count</code>
           </li>
         </div>
       
@@ -5740,18 +5806,18 @@
 
             
 
-            <code class="ruby">    # 食事の記録回数グラフ用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="34">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="34">
+            
             
 
             
 
-            <code class="ruby">    @eating_count_graph = current_user.set_instance_eating_count_graph</code>
+            <code class="ruby">    # 食事の記録回数グラフ用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5762,7 +5828,7 @@
 
             
 
-            <code class="ruby">    @eating_weekly_count_graph = current_user.set_instance_eating_weekly_count_graph</code>
+            <code class="ruby">    @eating_count_graph = current_user.set_instance_eating_count_graph</code>
           </li>
         </div>
       
@@ -5773,18 +5839,18 @@
 
             
 
-            <code class="ruby">    @eating_daily_count_graph = current_user.set_instance_eating_daily_count_graph</code>
+            <code class="ruby">    @eating_weekly_count_graph = current_user.set_instance_eating_weekly_count_graph</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="37">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="37">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @eating_daily_count_graph = current_user.set_instance_eating_daily_count_graph</code>
           </li>
         </div>
       
@@ -5795,18 +5861,18 @@
 
             
 
-            <code class="ruby">    # 排便の記録回数グラフ用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="39">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="39">
+            
             
 
             
 
-            <code class="ruby">    @stool_count_graph = current_user.set_instance_stool_count_graph</code>
+            <code class="ruby">    # 排便の記録回数グラフ用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5817,7 +5883,7 @@
 
             
 
-            <code class="ruby">    @stool_weekly_count_graph = current_user.set_instance_stool_weekly_count_graph</code>
+            <code class="ruby">    @stool_count_graph = current_user.set_instance_stool_count_graph</code>
           </li>
         </div>
       
@@ -5828,18 +5894,18 @@
 
             
 
-            <code class="ruby">    @stool_daily_count_graph = current_user.set_instance_stool_daily_count_graph</code>
+            <code class="ruby">    @stool_weekly_count_graph = current_user.set_instance_stool_weekly_count_graph</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="42">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @stool_daily_count_graph = current_user.set_instance_stool_daily_count_graph</code>
           </li>
         </div>
       
@@ -5850,18 +5916,18 @@
 
             
 
-            <code class="ruby">    # 登録済みの食事メニュー一覧用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="44">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="44">
+            
             
 
             
 
-            <code class="ruby">    @my_meal_count = current_user.eatings.group(:meal_id).count</code>
+            <code class="ruby">    # 登録済みの食事メニュー一覧用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5872,18 +5938,18 @@
 
             
 
-            <code class="ruby">    @meals = current_user.meals</code>
+            <code class="ruby">    @my_meal_count = current_user.eatings.group(:meal_id).count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="46">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="46">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @meals = current_user.meals</code>
           </li>
         </div>
       
@@ -5894,18 +5960,18 @@
 
             
 
-            <code class="ruby">    # 通算の胃腸の状況用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="48">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="48">
+            
             
 
             
 
-            <code class="ruby">    @stool_good_count = current_user.stools.condition_is(&quot;good&quot;).count</code>
+            <code class="ruby">    # 通算の胃腸の状況用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5916,7 +5982,7 @@
 
             
 
-            <code class="ruby">    @stool_normal_count = current_user.stools.condition_is(&quot;normal&quot;).count</code>
+            <code class="ruby">    @stool_good_count = current_user.stools.condition_is(&quot;good&quot;).count</code>
           </li>
         </div>
       
@@ -5927,18 +5993,18 @@
 
             
 
-            <code class="ruby">    @stool_bad_count = current_user.stools.condition_is(&quot;bad&quot;).count</code>
+            <code class="ruby">    @stool_normal_count = current_user.stools.condition_is(&quot;normal&quot;).count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="51">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="51">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @stool_bad_count = current_user.stools.condition_is(&quot;bad&quot;).count</code>
           </li>
         </div>
       
@@ -5949,18 +6015,18 @@
 
             
 
-            <code class="ruby">    # 今月の胃腸の状況用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="53">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="53">
+            
             
 
             
 
-            <code class="ruby">    @this_month_stool_good_count = current_user.stools.condition_is(&quot;good&quot;).this_month.count</code>
+            <code class="ruby">    # 今月の胃腸の状況用のインスタンス変数</code>
           </li>
         </div>
       
@@ -5971,7 +6037,7 @@
 
             
 
-            <code class="ruby">    @this_month_stool_normal_count = current_user.stools.condition_is(&quot;normal&quot;).this_month.count</code>
+            <code class="ruby">    @this_month_stool_good_count = current_user.stools.condition_is(&quot;good&quot;).this_month.count</code>
           </li>
         </div>
       
@@ -5982,18 +6048,18 @@
 
             
 
-            <code class="ruby">    @this_month_stool_bad_count = current_user.stools.condition_is(&quot;bad&quot;).this_month.count</code>
+            <code class="ruby">    @this_month_stool_normal_count = current_user.stools.condition_is(&quot;normal&quot;).this_month.count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="56">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="56">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @this_month_stool_bad_count = current_user.stools.condition_is(&quot;bad&quot;).this_month.count</code>
           </li>
         </div>
       
@@ -6004,18 +6070,18 @@
 
             
 
-            <code class="ruby">    # 先月の胃腸の状況用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="58">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="58">
+            
             
 
             
 
-            <code class="ruby">    @last_month_stool_good_count = current_user.stools.condition_is(&quot;good&quot;).last_month.count</code>
+            <code class="ruby">    # 先月の胃腸の状況用のインスタンス変数</code>
           </li>
         </div>
       
@@ -6026,7 +6092,7 @@
 
             
 
-            <code class="ruby">    @last_month_stool_normal_count = current_user.stools.condition_is(&quot;normal&quot;).last_month.count</code>
+            <code class="ruby">    @last_month_stool_good_count = current_user.stools.condition_is(&quot;good&quot;).last_month.count</code>
           </li>
         </div>
       
@@ -6037,18 +6103,18 @@
 
             
 
-            <code class="ruby">    @last_month_stool_bad_count = current_user.stools.condition_is(&quot;bad&quot;).last_month.count</code>
+            <code class="ruby">    @last_month_stool_normal_count = current_user.stools.condition_is(&quot;normal&quot;).last_month.count</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="61">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="61">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @last_month_stool_bad_count = current_user.stools.condition_is(&quot;bad&quot;).last_month.count</code>
           </li>
         </div>
       
@@ -6059,18 +6125,18 @@
 
             
 
-            <code class="ruby">    # 排便の状態円グラフ用のインスタンス変数</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="63">
-            <span class="hits">32</span>
+          <li class="never" data-hits="" data-linenumber="63">
+            
             
 
             
 
-            <code class="ruby">    @stool_condition_count = current_user.set_instance_stool_condition_count_graph</code>
+            <code class="ruby">    # 排便の状態円グラフ用のインスタンス変数</code>
           </li>
         </div>
       
@@ -6081,7 +6147,7 @@
 
             
 
-            <code class="ruby">    @stool_this_month_condition_count = current_user.set_instance_stool_this_month_condition_count_graph</code>
+            <code class="ruby">    @stool_condition_count = current_user.set_instance_stool_condition_count_graph</code>
           </li>
         </div>
       
@@ -6092,18 +6158,18 @@
 
             
 
-            <code class="ruby">    @stool_last_month_condition_count = current_user.set_instance_stool_last_month_condition_count_graph</code>
+            <code class="ruby">    @stool_this_month_condition_count = current_user.set_instance_stool_this_month_condition_count_graph</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="66">
-            
-            
-
+          <li class="covered" data-hits="32" data-linenumber="66">
+            <span class="hits">32</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @stool_last_month_condition_count = current_user.set_instance_stool_last_month_condition_count_graph</code>
           </li>
         </div>
       
@@ -6114,12 +6180,23 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="68">
+            
+            
+
+            
+
             <code class="ruby">    # 胃腸の状態推移グラフ用のインスタンス変数</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="68">
+          <li class="covered" data-hits="32" data-linenumber="69">
             <span class="hits">32</span>
             
 
@@ -6130,7 +6207,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="never" data-hits="" data-linenumber="70">
             
             
 
@@ -6141,7 +6218,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="70">
+          <li class="never" data-hits="" data-linenumber="71">
             
             
 
@@ -6152,7 +6229,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="71">
+          <li class="covered" data-hits="32" data-linenumber="72">
             <span class="hits">32</span>
             
 
@@ -6163,7 +6240,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="72">
+          <li class="covered" data-hits="32" data-linenumber="73">
             <span class="hits">32</span>
             
 
@@ -6174,7 +6251,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="73">
+          <li class="never" data-hits="" data-linenumber="74">
             
             
 
@@ -6185,7 +6262,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="74">
+          <li class="never" data-hits="" data-linenumber="75">
             
             
 
@@ -6196,7 +6273,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="32" data-linenumber="75">
+          <li class="covered" data-hits="32" data-linenumber="76">
             <span class="hits">32</span>
             
 
@@ -6207,7 +6284,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="76">
+          <li class="never" data-hits="" data-linenumber="77">
             
             
 
@@ -6218,7 +6295,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="77">
+          <li class="never" data-hits="" data-linenumber="78">
             
             
 
@@ -6229,7 +6306,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="78">
+          <li class="covered" data-hits="1" data-linenumber="79">
             <span class="hits">1</span>
             
 
@@ -6240,7 +6317,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="79">
+          <li class="missed" data-hits="0" data-linenumber="80">
             
             
 
@@ -6251,7 +6328,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="80">
+          <li class="missed" data-hits="0" data-linenumber="81">
             
             
 
@@ -6262,7 +6339,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="81">
+          <li class="missed" data-hits="0" data-linenumber="82">
             
             
 
@@ -6273,7 +6350,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="82">
+          <li class="missed" data-hits="0" data-linenumber="83">
             
             
 
@@ -6284,24 +6361,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="83">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="84">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -6312,12 +6378,23 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="86">
+            
+            
+
+            
+
             <code class="ruby">  # 食事記録フォームの入力補助</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="86">
+          <li class="covered" data-hits="1" data-linenumber="87">
             <span class="hits">1</span>
             
 
@@ -6328,7 +6405,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="87">
+          <li class="missed" data-hits="0" data-linenumber="88">
             
             
 
@@ -6339,7 +6416,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="88">
+          <li class="missed" data-hits="0" data-linenumber="89">
             
             
 
@@ -6350,7 +6427,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="89">
+          <li class="missed" data-hits="0" data-linenumber="90">
             
             
 
@@ -6361,24 +6438,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="90">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="91">
             
             
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -6389,12 +6455,23 @@
 
             
 
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="93">
+            
+            
+
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="93">
+          <li class="covered" data-hits="1" data-linenumber="94">
             <span class="hits">1</span>
             
 
@@ -6405,7 +6482,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="94">
+          <li class="missed" data-hits="0" data-linenumber="95">
             
             
 
@@ -6416,7 +6493,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="95">
+          <li class="never" data-hits="" data-linenumber="96">
             
             
 
@@ -6427,7 +6504,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="96">
+          <li class="never" data-hits="" data-linenumber="97">
             
             
 
@@ -6438,7 +6515,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="97">
+          <li class="covered" data-hits="1" data-linenumber="98">
             <span class="hits">1</span>
             
 
@@ -6449,7 +6526,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="98">
+          <li class="missed" data-hits="0" data-linenumber="99">
             
             
 
@@ -6460,7 +6537,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="99">
+          <li class="missed" data-hits="0" data-linenumber="100">
             
             
 
@@ -6471,7 +6548,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="100">
+          <li class="missed" data-hits="0" data-linenumber="101">
             
             
 
@@ -6482,7 +6559,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="101">
+          <li class="never" data-hits="" data-linenumber="102">
             
             
 
@@ -6493,7 +6570,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="102">
+          <li class="missed" data-hits="0" data-linenumber="103">
             
             
 
@@ -6504,7 +6581,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="104">
             
             
 
@@ -6515,18 +6592,18 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="104">
+          <li class="missed" data-hits="0" data-linenumber="105">
             
             
 
             
 
-            <code class="ruby">    redirect_to user_path(current_user)</code>
+            <code class="ruby">    redirect_to user_path</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="105">
+          <li class="never" data-hits="" data-linenumber="106">
             
             
 
@@ -6537,7 +6614,128 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="106">
+          <li class="never" data-hits="" data-linenumber="107">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="108">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def accept_terms</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="109">
+            
+            
+
+            
+
+            <code class="ruby">    current_user.update(accepted: true)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="110">
+            
+            
+
+            
+
+            <code class="ruby">    redirect_to user_path</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="111">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="112">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="113">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  private</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="114">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="115">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def check_accepted</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="32" data-linenumber="116">
+            <span class="hits">32</span>
+            
+
+            
+
+            <code class="ruby">    @user_accepted = !current_user.accepted</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="117">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="118">
             
             
 
@@ -7809,7 +8007,7 @@
 
             
 
-            <code class="ruby">      expect(current_path).to eq user_path(user)</code>
+            <code class="ruby">      expect(current_path).to eq user_path</code>
           </li>
         </div>
       
@@ -7961,7 +8159,7 @@
 
             
 
-            <code class="ruby">    visit user_path(user)</code>
+            <code class="ruby">    visit user_path</code>
           </li>
         </div>
       
@@ -8016,7 +8214,7 @@
 
             
 
-            <code class="ruby">    visit user_path(user)</code>
+            <code class="ruby">    visit user_path</code>
           </li>
         </div>
       
@@ -8214,7 +8412,7 @@
 
             
 
-            <code class="ruby">    expect(current_path).to eq user_path(user)</code>
+            <code class="ruby">    expect(current_path).to eq user_path</code>
           </li>
         </div>
       
@@ -8575,7 +8773,7 @@
 
             
 
-            <code class="ruby">      visit user_path(user)</code>
+            <code class="ruby">      visit user_path</code>
           </li>
         </div>
       
@@ -10388,7 +10586,7 @@
 
             
 
-            <code class="ruby">    visit user_path(user)</code>
+            <code class="ruby">    visit user_path</code>
           </li>
         </div>
       
@@ -10784,7 +10982,7 @@
 
             
 
-            <code class="ruby">    expect(current_path).to eq(user_path(user))</code>
+            <code class="ruby">    expect(current_path).to eq(user_path)</code>
           </li>
         </div>
       
@@ -11180,7 +11378,7 @@
 
             
 
-            <code class="ruby">    expect(current_path).to eq(user_path(user))</code>
+            <code class="ruby">    expect(current_path).to eq(user_path)</code>
           </li>
         </div>
       
@@ -11576,7 +11774,7 @@
 
             
 
-            <code class="ruby">    expect(current_path).to eq(user_path(user))</code>
+            <code class="ruby">    expect(current_path).to eq(user_path)</code>
           </li>
         </div>
       

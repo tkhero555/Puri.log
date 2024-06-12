@@ -18,7 +18,7 @@ class StoolsController < ApplicationController
       score_change = Meal::MEAL_SCORE_CHANGE_MINUS
     else
       flash[:notice] = '排便を記録しました'
-      redirect_to user_path(current_user)
+      redirect_to user_path
       return
     end
     start_time = stool.created_at - Eating::DETERMINING_COMPATIBILITY_START_TIME.hours
@@ -28,11 +28,11 @@ class StoolsController < ApplicationController
       meal = Meal.find(eating.meal_id)
       unless meal.update(score: meal.score + score_change)
         flash.now[:alert] = '排便の記録に失敗しました'
-        redirect_to user_path(current_user) and return
+        redirect_to user_path and return
       end
     end
     flash[:notice] = '排便を記録しました'
-    redirect_to user_path(current_user)
+    redirect_to user_path
   end
 
   def destroy
@@ -51,7 +51,7 @@ class StoolsController < ApplicationController
       meal = Meal.find(eating.meal_id)
       unless meal.update(score: meal.score + score_change)
         flash.now[:alert] = '記録の削除に失敗しました。'
-        redirect_to user_path(current_user) and return
+        redirect_to user_path and return
       end
     end
     stool.destroy!

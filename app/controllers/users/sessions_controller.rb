@@ -21,13 +21,13 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to user_path(current_user), notice: "ゲストユーザーとしてログインしました。"
+    redirect_to user_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   def guest_logged_sign_in
     user = User.find(2)
     sign_in user
-    redirect_to user_path(current_user), notice: "ゲストユーザーとしてログインしました。"
+    redirect_to user_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   # protected
