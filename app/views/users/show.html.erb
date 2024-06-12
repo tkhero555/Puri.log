@@ -1,7 +1,7 @@
 <% content_for :title, "マイページ" %>
 <div class="bg-base-100 py-8">
   <div  data-controller="tab">
-    <div id="tab-menu" class="flex text-xl xl:w-5/6 mx-auto">
+    <div id="tab-menu" class="flex text-xl 2xl:w-5/6 mx-auto">
       <%= link_to "#tab1", class: "tab-btn-1 [&.active]:bg-base-200 hover:text-blue-300 rounded-t-lg p-2 active", data: { action: "tab#showTab", tab_target: "link" } do %>
         <span class="block text-base sm:hidden">記録&<br>スコア</span>
         <span class="hidden sm:block">記録&スコア<span>
@@ -22,7 +22,7 @@
 
     <div id="tab-contents">
       <div id="tab1" data-tab-target="tab">
-        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-r-lg rounded-bl-lg">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax 2xl:w-5/6 gap-12 rounded-r-lg rounded-bl-lg">
           <div class="card min-w-96 bg-base-100 shadow-xl mx-auto">
             <div class="card-body">
               <h2 class="card-title">食事の記録</h2>
@@ -111,7 +111,7 @@
       </div>
 
       <div id="tab2" data-tab-target="tab">
-        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-lg">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax 2xl:w-5/6 gap-12 rounded-lg">
           <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
             <div class="card-body">
               <h2 class="card-title">月毎の記録回数：食事</h2>
@@ -141,7 +141,7 @@
               <h2 class="card-title">おすすめの食事</h2>
               <div class="max-h-72 overflow-auto recommend-meal">
                 <% @recommend_meals.each do |recommend_meal| %>
-                  <%= recommend_meal.meal_name %>
+                  <%= recommend_meal.meal_name %><br>
                 <% end %>
               </div>
             </div>
@@ -151,7 +151,7 @@
               <h2 class="card-title">避けるべき食事</h2>
               <div class="max-h-72 overflow-auto avert-meal">
                 <% @avert_meals.each do |avert_meal| %>
-                  <%= avert_meal.meal_name %>
+                  <%= avert_meal.meal_name %><br>
                 <% end %>
               </div>
             </div>
@@ -188,7 +188,7 @@
       </div>
 
       <div id="tab3" data-tab-target="tab">
-        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-lg">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax 2xl:w-5/6 gap-12 rounded-lg">
           <div class="card w-96 max-h-96 bg-base-100 shadow-xl mx-auto">
             <div class="card-body">
               <h2 class="card-title">排便の状態：通算</h2>
@@ -250,7 +250,7 @@
       </div>
 
       <div id="tab4" data-tab-target="tab">
-        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax xl:w-5/6 gap-12 rounded-lg">
+        <div class="py-8 bg-base-200 mx-auto grid grid-cols-1 md:grid-cols-2-minmax xl:grid-cols-3-minmax 2xl:w-5/6 gap-12 rounded-lg">
           <%= turbo_frame_tag "log_index_frame" do %>
             <%= render 'shared/log_index' %>
           <% end %>
@@ -258,7 +258,7 @@
             <div class="card-body">
               <h2 class="card-title">セッティング</h2>
               <div>
-                <%= link_to (current_user.notifications_enabled ? "通知をオフにする" : "通知をオンにする"), toggle_notifications_path, data: { turbo_method: :post }, class: "bg-primary-content hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20 notifications-btn" %>
+                <%= link_to (current_user.notifications_enabled ? "通知をオフにする" : "通知をオンにする"), toggle_notifications_user_path, data: { turbo_method: :post }, class: "bg-primary-content hover:bg-base-200 font-bold py-2 px-4 rounded-full w-20 notifications-btn" %>
               </div>
               <div class="pt-4">
                 <% unless current_user.id == @recorded_test_user_id %>
@@ -272,6 +272,7 @@
     </div>
   </div>
 </div>
+
 <div data-controller="modal" data-modal-value="<%= @user_accepted %>">
   <dialog data-modal-target="dialog" class="md:w-1/2 h-3/4 rounded-xl">
     <div class="mx-auto md:w-5/6 h-5/6 md:mt-4 md:border md:border-black md:rounded-xl overflow-hidden border-b border-black">
@@ -387,8 +388,9 @@
       </div>
       </div>
     </div>
+    
     <div class="pt-4 mx-auto flex justify-center md:w-3/4">
-      <%= link_to '同意する',  accept_terms_path, class: "py-4 px-4 md:px-6 mr-8 bg-primary-content hover:bg-base-200 font-bold p-2 rounded-full inline-block", data: { turbo_method: :post } %>
+      <%= link_to '同意する',  accept_terms_user_path, class: "py-4 px-4 md:px-6 mr-8 bg-primary-content hover:bg-base-200 font-bold p-2 rounded-full inline-block", data: { turbo_method: :post } %>
       <%= link_to '同意しない', "#", class: "py-4 md:p-4 bg-base-300 hover:bg-base-200 font-bold p-2 rounded-full inline-block", data: { action: "modal#close" } %>
     </div>
   </dialog>

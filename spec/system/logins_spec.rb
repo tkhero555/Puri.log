@@ -22,7 +22,7 @@ RSpec.describe "Logins", type: :system do
       }.to change(User, :count).by(1)
       expect(page).to have_content 'ログインしました'
       user = User.find_by(email: 'test@example.com')
-      expect(current_path).to eq user_path(user)
+      expect(current_path).to eq user_path
     end
   end
 end

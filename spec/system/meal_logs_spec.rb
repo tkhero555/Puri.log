@@ -5,12 +5,12 @@ RSpec.describe "MealLogs", type: :system do
 
   before do
     sign_in user
-    visit user_path(user)
+    visit user_path
   end
 
   it '食事記録フォームの動作が正常であることを確認する' do
     # マイページに遷移
-    visit user_path(user)
+    visit user_path
 
     # 食事記録フォームに食事名入力
     fill_in 'new_meal_name', with: 'Sample Meal'
@@ -28,7 +28,7 @@ RSpec.describe "MealLogs", type: :system do
     expect(page).to have_content '食事を記録しました'
 
     # 遷移先画面のpath確認
-    expect(current_path).to eq user_path(user)
+    expect(current_path).to eq user_path
 
     # 2個目の記録
     fill_in 'new_meal_name', with: 'Sample Meal'

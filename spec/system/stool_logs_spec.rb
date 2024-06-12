@@ -6,7 +6,7 @@ RSpec.describe "StoolLogs", type: :system do
   before do
     sign_in user
     # マイページに遷移
-    visit user_path(user)
+    visit user_path
   end
 
   it '状態「良い」で排便を記録した時の動作を確認する' do
@@ -42,7 +42,7 @@ RSpec.describe "StoolLogs", type: :system do
     expect(page).to have_content '排便を記録しました'
 
     # 遷移先画面のpathを確認
-    expect(current_path).to eq(user_path(user))
+    expect(current_path).to eq(user_path)
   end
 
   it '状態「普通」で排便を記録した時の動作を確認する' do
@@ -78,7 +78,7 @@ RSpec.describe "StoolLogs", type: :system do
     expect(page).to have_content '排便を記録しました'
 
     # 遷移先画面のpathを確認
-    expect(current_path).to eq(user_path(user))
+    expect(current_path).to eq(user_path)
   end
 
   it '状態「悪い」で排便を記録した時の動作を確認する' do
@@ -114,6 +114,6 @@ RSpec.describe "StoolLogs", type: :system do
     expect(page).to have_content '排便を記録しました'
 
     # 遷移先画面のpathを確認
-    expect(current_path).to eq(user_path(user))
+    expect(current_path).to eq(user_path)
   end
 end

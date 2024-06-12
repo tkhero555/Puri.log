@@ -18,6 +18,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(:user, @profile)
     end
     flash[:notice] = "ログインしました"
-    redirect_to user_path(current_user)
+    redirect_to user_path
   end
 end
