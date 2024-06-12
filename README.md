@@ -50,7 +50,7 @@ LINEBOTを活用し、手軽に記録ができるようになっています。
 ### ■ 使用している技術
 |カテゴリ|技術|
 |----|----|
-|フロントエンド|javascript / Hotwire / tailwindCSS / daisyUI|
+|フロントエンド|stimulus / Hotwire / tailwindCSS / daisyUI|
 |バックエンド|Ruby 3.3.0 / Rails 7.1.3.2|
 |データベース|MYSQL|
 |認証|devise|
