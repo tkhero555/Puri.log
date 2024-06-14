@@ -39,6 +39,9 @@ LINEBOTを活用し、手軽に記録ができるようになっています。
 |[![Image from Gyazo](https://i.gyazo.com/66bece8a2075efa08b2c3757a4cd5c89.gif)](https://gyazo.com/66bece8a2075efa08b2c3757a4cd5c89)|[![Image from Gyazo](https://i.gyazo.com/4dfe3e84f8cef5e3a5f0b2ed760d5b4c.gif)](https://gyazo.com/4dfe3e84f8cef5e3a5f0b2ed760d5b4c)|
 |LINE BOTからも記録することができます。|LINE BOTでもステータスの一部が確認できます。|
 
+機能の実装について語っている記事はこちら
+https://qiita.com/tkhero555/items/317f5a3fa1e584a53190
+
 ### ■ サービスの差別化ポイント・推しポイント
 
 明確な差別化ポイントとして、対象ユーザーを胃腸の弱い人に絞っている点、食事と便の関係性に注目している点があります。<br>
