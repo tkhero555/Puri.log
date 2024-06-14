@@ -1,7 +1,7 @@
 # 「Puri.log」
 サービスURL:https://www.puri-log.com/
 
-![Alt text](<Puri.log OGP用画像1200 (1).png>)
+![Alt text](./app/assets/images/purilog_top_image.png)
 
 ### ■ サービス概要
 
@@ -63,4 +63,4 @@ LINEBOTを活用し、手軽に記録ができるようになっています。
   https://www.figma.com/file/Gz3PGuJz0pdUp5TUxz7Ris/%E5%8D%92%E6%A5%AD%E8%A9%A6%E9%A8%93%E3%82%A2%E3%83%97%E3%83%AA%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&mode=design&t=g8TSF07mKy0rHjes-1
 
 ### ■ ER図  
-![Alt text](<スクリーンショット 2024-06-01 15.58.52.png>)
+![Alt text](./app/assets/images/er.png)
