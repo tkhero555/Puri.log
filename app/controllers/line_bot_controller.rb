@@ -114,7 +114,7 @@ class LineBotController < ApplicationController
         break
       end
       # 食事名：記録日時という形式の文字列を作成して、変数に追加
-      stool_log_reply_message << "#{meal.meal_name}：#{meal.created_at.strftime("%-m-%d %H:%M")}\n"
+      stool_log_reply_message << "#{meal.meal_name}：#{eating.created_at.strftime("%-m-%d %H:%M")}\n"
     end
     message = {
                 type: "text",
