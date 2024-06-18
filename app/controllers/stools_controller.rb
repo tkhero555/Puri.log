@@ -2,14 +2,14 @@ class StoolsController < ApplicationController
 
   def create
     if params[:condition] == ""
-      condition = Stool::STOOL_LOG_CONDITION_NORMAL
+      condition = ""
     else
       condition = params[:condition].to_i
     end
     stool = Stool.new(condition: condition, user_id: current_user.id, created_at:params[:created_at])
     unless stool.save
-      flash.now[:danger] = '排便の記録に失敗しました'
-      render("user/show")
+      flash[:alert] = '排便の記録に失敗しました'
+      redirect_to user_path
       return
     end
     if condition == Stool::STOOL_LOG_CONDITION_GOOD
@@ -27,7 +27,7 @@ class StoolsController < ApplicationController
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
       unless meal.update(score: meal.score + score_change)
-        flash.now[:alert] = '排便の記録に失敗しました'
+        flash[:alert] = '排便の記録に失敗しました'
         redirect_to user_path and return
       end
     end
@@ -50,7 +50,7 @@ class StoolsController < ApplicationController
     eatings.each do |eating|
       meal = Meal.find(eating.meal_id)
       unless meal.update(score: meal.score + score_change)
-        flash.now[:alert] = '記録の削除に失敗しました。'
+        flash[:alert] = '記録の削除に失敗しました。'
         redirect_to user_path and return
       end
     end
