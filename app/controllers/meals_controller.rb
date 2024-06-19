@@ -17,7 +17,6 @@ class MealsController < ApplicationController
       else
         flash[:alert] = '食事の記録に失敗しました'
         redirect_to user_path
-        p "meal.saveの失敗"
         return
       end
     end
@@ -28,7 +27,6 @@ class MealsController < ApplicationController
     else
       flash[:alert] = '食事の記録に失敗しました'
       redirect_to user_path
-      p "eating.saveの失敗"
     end
   end
 
