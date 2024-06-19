@@ -204,8 +204,16 @@ class LineBotController < ApplicationController
       meal_id = meal.id
     else
       meal = Meal.new(meal_name: meal_log, user_id: @user_id)
-      meal.save
-      meal_id = meal.id
+      if meal.save
+        meal_id = meal.id
+      else
+        message = {
+                type: "text",
+                text: "食事の記録に失敗しました。やり直してください。"
+              }
+        message = achievement(@user, message)
+        return message
+      end
     end
     # evaluationテーブルにデータを保存する。評価値であるscoreのデフォルトは0
     # saveの成否に応じてユーザーへの返信内容を設定する
